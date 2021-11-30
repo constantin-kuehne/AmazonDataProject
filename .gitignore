@@ -50,4 +50,4 @@ Thumbs.db
 
 *.tsv
 *.env
-*.ipynb_checkpoints
+.ipynb_checkpoints/
