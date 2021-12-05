@@ -1,3 +1,18 @@
+# ---
+# jupyter:
+#   jupytext:
+#     formats: ipynb,py:percent
+#     text_representation:
+#       extension: .py
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.13.1
+#   kernelspec:
+#     display_name: Python 3 (ipykernel)
+#     language: python
+#     name: python3
+# ---
+
 # %%
 import os
 import elasticsearch as es
@@ -18,7 +33,7 @@ client.ping()
 client.indices.get_alias()
 
 # %%
-index_name = "constantin_amazondataproject_v2"
+index_name = "constantin_amazondataproject_v3"
 
 # %%
 client.indices.create(index=index_name)
@@ -32,6 +47,28 @@ import pandas as pd
 # %%
 import csv
 import numpy as np
+
+# %%
+body = {
+    "mappings": {
+        "properties": {
+            "marketplace": { "type": "keyword" },
+            "customer_id": { "type": "keyword"},
+            "review_id": { "type": "keyword" },
+            "product_id": { "type": "keyword" },
+            "product_parent": { "type": "keyword" },
+            "product_title": { "type": "text" },
+            "star_rating": { "type": "byte" },
+            "helpful_votes": { "type": "integer" },
+            "total_votes": { "type": "integer" },
+            "vine": { "type": "boolean" },
+            "verified_purchase": { "type": "boolean" },
+            "review_headline": { "type": "text" },
+            "review_body": { "type": "text" },
+            "review_date": { "type": "date" }
+        }
+    }
+}
 
 # %%
 convert_to_bool = lambda x: True if x == "Y" else False
@@ -57,6 +94,7 @@ dtypes = {
 def data_iterator(reader):
         # need to remove when using csv.DictReader
         for chunk in reader:
+            chunk.replace(np.nan, "", inplace=True)
             for _, row in chunk.iterrows():
                 doc = {
                     "marketplace": row["marketplace"],
@@ -100,5 +138,27 @@ with open("../amazon_reviews_multilingual_DE_v1_00.tsv", mode="r") as f:
     )
     res = bulk(client=client, index=index_name, actions=data_iterator(reader))
 res
+
+# %%
+with open("../amazon_reviews_multilingual_DE_v1_00.tsv", mode="r") as f:
+    reader = pd.read_csv(
+        f,
+        delimiter="\t",
+        quoting=csv.QUOTE_NONE,
+        encoding="utf-8",
+        chunksize=7000,
+        parse_dates=["review_date"],
+        converters=converters,
+        dtype=dtypes,
+    )
+    for chunk in reader:
+        l = chunk
+        break
+
+# %%
+test = l.to_json(orient="records")
+
+# %%
+pd.DataFrame.from_dict([{"Test": np.nan, "Test2": 2}]).to_json(orient="records")
 
 # %%
