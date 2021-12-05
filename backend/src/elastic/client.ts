@@ -5,7 +5,7 @@ const config: ClientOptions = {
     auth: {
         username: process.env.ELASTIC_USERNAME,
         password: process.env.ELASTIC_PASSWORD
-    }
+    },
 }
 
 const client = new Client(config)

@@ -1,7 +1,7 @@
 import client from "../src/elastic/client"
 
-test('check if client ping is true', () => {
+test('check if client ping is true', async () => {
     return client.ping().then(data => {
-        expect(data).toBe(true)
+        expect(data.body).toBe(true)
     })
 })
