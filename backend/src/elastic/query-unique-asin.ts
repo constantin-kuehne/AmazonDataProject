@@ -11,7 +11,14 @@ export default async (ASIN: string) => {
                         "value": `${ASIN}*`
                     }
                 }
-            }
+            },
+            "collapse": {
+                "field": "product_id.keyword"
+            },
+          "fields": [
+              "fields.product_id.keyword"
+          ],
+          "_source": false
         }
     })
 }

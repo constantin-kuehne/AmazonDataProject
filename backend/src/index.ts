@@ -1,6 +1,7 @@
 import express from "express";
 import queryASIN from "./elastic/query-asin"
 import dotenv from "dotenv"
+import * as config from "./config"
 
 dotenv.config()
 
