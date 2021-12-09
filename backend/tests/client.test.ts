@@ -1,3 +1,4 @@
+import { SearchTotalHits } from "@elastic/elasticsearch/api/types"
 import client from "../src/elastic/client"
 import queryAsin from "../src/elastic/query-asin"
 import queryUniqueAsin from "../src/elastic/query-unique-asin"
@@ -22,7 +23,8 @@ describe('elasticsearch client', () => {
                 expect(data.body.hasOwnProperty("hits")).toBe(true)
                 expect(data.body.hits.hasOwnProperty("total")).toBe(true)
                 expect(data.body.hits.total.hasOwnProperty("value")).toBe(true)
-                expect(data.body.hits.total.value).toBeGreaterThan(0)
+                const total = data.body.hits.total as SearchTotalHits
+                expect(total.value).toBeGreaterThan(0)
             })
         })
 

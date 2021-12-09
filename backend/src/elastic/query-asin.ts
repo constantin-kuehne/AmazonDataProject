@@ -1,3 +1,4 @@
+// TODO: make this a normal query not wildcard query (don't think it is needed here)
 import client from "./client"
 import config from "../config"
 

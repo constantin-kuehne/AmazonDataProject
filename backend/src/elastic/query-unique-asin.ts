@@ -2,7 +2,7 @@ import client from "./client"
 import config from "../config"
 
 export default async (ASIN: string) => {
-    return client.search({
+    return client.search<false>({
         index: `${config.index}`,
         body: {
             "query": {
