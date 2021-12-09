@@ -18,7 +18,7 @@ describe('elasticsearch client', () => {
         })
 
     test('check if query of a product id that should exist actually returns something', async () => {
-        return queryAsin("B00*").then(data => {
+        return queryAsin("B000002L7Y").then(data => {
                 expect(data.hasOwnProperty("body")).toBe(true)
                 expect(data.body.hasOwnProperty("hits")).toBe(true)
                 expect(data.body.hits.hasOwnProperty("total")).toBe(true)

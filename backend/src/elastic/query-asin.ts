@@ -1,4 +1,3 @@
-// TODO: make this a normal query not wildcard query (don't think it is needed here)
 import client from "./client"
 import config from "../config"
 
@@ -7,9 +6,9 @@ export default async (ASIN: string) => {
         index: `${config.index}`,
         body: {
             "query": {
-                "wildcard": {
+                "match": {
                     "product_id.wildcard": {
-                        "value": `${ASIN}*`
+                        "query": `${ASIN}`
                     }
                 }
             }
