@@ -1,24 +1,44 @@
 import client from "./client"
 import config from "../config"
 
+interface SearchBody {
+    index: string,
+    body: {
+        query: {
+            wildcard: {
+                "product_id.wildcard": {
+                    value: string
+                }
+            }
+        },
+        collapse: {
+            field: "product_id.keyword"
+        },
+        fields: ["product_id.keyword"]
+    }
+}
+
+// TODO: filter path so only hits get returned: https://stackoverflow.com/a/46194936
 export default async (ASIN: string) => {
-    return client.search<false>({
+    return client.search<false, SearchBody>({
         index: `${config.index}`,
         body: {
-            "query": {
-                "wildcard": {
+            query: {
+                wildcard: {
                     "product_id.wildcard": {
-                        "value": `${ASIN}*`
+                        value: `${ASIN}*`
                     }
                 }
             },
-            "collapse": {
-                "field": "product_id.keyword"
+            collapse: {
+                field: "product_id.keyword"
             },
-          "fields": [
-              "fields.product_id.keyword"
+          fields: [
+              "product_id.keyword"
           ],
-          "_source": false
+          _source: false
         }
     })
 }
+
+export { SearchBody }
