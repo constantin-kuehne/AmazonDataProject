@@ -3,7 +3,7 @@ import express from "express";
 import "./loadenv"
 import "./config"
 
-import getHits from "./elastic/get-hits"
+import { getQueryAsinHits, getQueryUniqueAsinHits } from "./elastic/get-hits"
 import queryUniqueAsin from "./elastic/query-unique-asin";
 import queryAsin from "./elastic/query-asin";
 
@@ -16,11 +16,11 @@ app.get( "/", ( _ , res ) => {
 });
 
 app.get("/query-asin", (req, res) => {
-    queryAsin(req.query.ASIN as string).then(data => res.send(getHits(data)))
+    queryAsin(req.query.ASIN as string).then(data => res.send(getQueryAsinHits(data)))
 })
 
-app.get("/query-unqiue-asin", (req, res) => {
-    queryUniqueAsin(req.query.ASIN as string).then(data => res.send(data.body.hits.hits.map(d => d.fields[0])))
+app.get("/query-unique-asin", (req, res) => {
+    queryUniqueAsin(req.query.ASIN as string).then(data => res.send(getQueryUniqueAsinHits(data)))
 })
 
 // start the Express server

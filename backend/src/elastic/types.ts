@@ -1,3 +1,5 @@
+// WARN: do not use these types, they are already implemented in the new
+// elastic api
 interface ShardsResponse {
   total: number;
   successful: number;
