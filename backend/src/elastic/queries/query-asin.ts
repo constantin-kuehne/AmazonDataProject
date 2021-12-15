@@ -35,11 +35,11 @@ interface SearchBody {
   };
 }
 
-type test = <Source, SearchBody>(
-  arg: any,
-  query: SearchBody,
-  cb: (data: ApiResponse<SearchResponse<Source>, SearchBody>) => Source[]
-) => Promise<Source>;
+// type test = <Source, SearchBody>(
+//   arg: any,
+//   query: SearchBody,
+//   cb: (data: ApiResponse<SearchResponse<Source>, SearchBody>) => Source[]
+// ) => Promise<Source>;
 
 const _queryAsinRaw = (ASIN: string) =>
   client.search<Source, SearchBody>({

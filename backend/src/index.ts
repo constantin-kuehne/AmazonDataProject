@@ -7,8 +7,12 @@ import client from "./elastic/client";
 
 import AsinRouter from "./routes/asin";
 
+import logger from "morgan";
+
 const app = express();
 const port = 3000; // default port to listen
+
+app.use(logger("dev"));
 
 app.use("/asin", AsinRouter);
 
