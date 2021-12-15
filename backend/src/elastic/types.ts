@@ -1,41 +1,9 @@
-// WARN: do not use these types, they are already implemented in the new
-// elastic api
-interface ShardsResponse {
-  total: number;
-  successful: number;
-  failed: number;
-  skipped: number;
-}
+import { ApiResponse } from "@elastic/elasticsearch";
+import { SearchResponse } from "@elastic/elasticsearch/api/types";
 
-interface Explanation {
-  value: number;
-  description: string;
-  details: Explanation[];
-}
+type hitsCallback = <Source, SearchBody>(
+  data: ApiResponse<SearchResponse<Source>, SearchBody>,
+  ...args: unknown[]
+) => Source[];
 
-interface SearchResponse<T> {
-  took: number;
-  timed_out: boolean;
-  _scroll_id?: string;
-  _shards: ShardsResponse;
-  hits: {
-    total: number;
-    max_score: number;
-    hits: Array<{
-      _index: string;
-      _type: string;
-      _id: string;
-      _score: number;
-      _source: T;
-      _version?: number;
-      _explanation?: Explanation;
-      fields?: any;
-      highlight?: any;
-      inner_hits?: any;
-      matched_queries?: string[];
-      sort?: string[];
-    }>;
-  };
-  aggregations?: any;
-}
-
+export { hitsCallback };
