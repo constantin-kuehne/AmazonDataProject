@@ -1,10 +1,6 @@
 import { Router } from "express";
-import queryAsin, {
-  Source as QueryAsinSource,
-  SearchBody as QueryAsinSearchBody,
-} from "../elastic/queries/query-asin";
+import queryAsin from "../elastic/queries/query-asin";
 import queryCompletionAsin from "../elastic/queries/query-completion-asin";
-import { getQueryHits } from "../elastic/hits";
 
 const router = Router();
 
