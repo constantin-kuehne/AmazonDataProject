@@ -1,4 +1,5 @@
 import client from "../src/elastic/client";
+import "../src/loadenv";
 
 describe("elasticsearch client", () => {
   test("check if client ping is true", async () => {

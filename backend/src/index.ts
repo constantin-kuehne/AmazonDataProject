@@ -4,21 +4,22 @@ import "./loadenv";
 import "./config";
 
 import client from "./elastic/client";
+import logger from "morgan";
+import createError from "http-errors";
 
 import AsinRouter from "./routes/asin";
-
-import logger from "morgan";
-
-import createError from "http-errors";
+import StarRatingRouter from "./routes/star-rating";
 
 const app = express();
 const port = 3000; // default port to listen
 
 app.use(logger("dev"));
 
+app.use((_, __, next) => next(createError(404)));
+
 app.use("/asin", AsinRouter);
 
-app.use((req, res, next) => next(createError(404)));
+app.use("/starrating/", StarRatingRouter);
 
 // start the Express server
 client.ping().then((res) => {

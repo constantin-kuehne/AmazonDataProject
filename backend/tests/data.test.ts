@@ -1,10 +1,8 @@
-import queryAsin, {
-  Source as QueryAsinSource,
-  _queryAsinRaw,
-} from "../src/elastic/queries/query-asin";
+import queryAsin, { _queryAsinRaw } from "../src/elastic/queries/query-asin";
 import queryCompletionAsin, {
   _queryCompletionAsinRaw,
 } from "../src/elastic/queries/query-completion-asin";
+import queryStarRatingAsin from "../src/elastic/queries/query-star-rating";
 
 describe("data tests", () => {
   test("check if query for ASIN works", async () => {
@@ -26,10 +24,16 @@ describe("data tests", () => {
     });
   });
 
-  test("check if completion ASIN of an ASIN wildcard that should exist actually returns something", async () => {
+  test("check if completion ASIN of an ASIN wildcard that should exist actually  returns something", async () => {
     return queryCompletionAsin("B000002L7").then((data) => {
       expect(data.length).toBeGreaterThan(0);
       expect(Array.isArray(data)).toBe(true);
+    });
+  });
+
+  test("check if star rating ASIN of an ASIN that should exist actually returns something", async () => {
+    return queryStarRatingAsin("B000002L7Y").then((data) => {
+      expect(typeof data.starRating).toBe("number");
     });
   });
 });
