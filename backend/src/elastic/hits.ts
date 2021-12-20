@@ -1,6 +1,7 @@
 import { ApiResponse } from "@elastic/elasticsearch/api/new";
 import {
   AggregationsSingleBucketAggregate,
+  CountResponse,
   SearchResponse,
 } from "@elastic/elasticsearch/api/types";
 import { hitsCallback } from "./types";
@@ -38,4 +39,11 @@ const getStarRating = <Source, SearchBody>(
   return { docCount, starRating };
 };
 
-export { getQueryFields, getQueryHits, getStarRating };
+const getNumberReviews = <SearchBody>(
+  data: ApiResponse<CountResponse, SearchBody>
+) => {
+  const hits = data.body.count;
+  return hits;
+};
+
+export { getQueryFields, getQueryHits, getStarRating, getNumberReviews };

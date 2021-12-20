@@ -1,6 +1,7 @@
 import client from "../client";
 import config from "../../config";
 import { getStarRating } from "../hits";
+import { SearchRequest } from "@elastic/elasticsearch/api/types";
 
 interface SearchBodyAll {
   index: string;
@@ -28,7 +29,7 @@ interface SearchBodyAll {
   };
 }
 
-interface SearchBody {
+class SearchBody implements SearchRequest {
   index: string;
   size: number;
   body: {

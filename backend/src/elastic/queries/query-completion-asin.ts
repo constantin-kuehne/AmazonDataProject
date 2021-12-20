@@ -1,8 +1,9 @@
 import client from "../client";
 import config from "../../config";
 import { getQueryFields } from "../hits";
+import { SearchRequest } from "@elastic/elasticsearch/api/types";
 
-interface SearchBody {
+class SearchBody implements SearchRequest {
   index: string;
   body: {
     query: {
