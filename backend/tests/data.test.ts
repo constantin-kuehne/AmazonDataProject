@@ -33,6 +33,7 @@ describe("data tests", () => {
 
   test("check if star rating ASIN of an ASIN that should exist actually returns something", async () => {
     return queryStarRatingAsin("B000002L7Y").then((data) => {
+      console.log(data);
       expect(typeof data.starRating).toBe("number");
     });
   });

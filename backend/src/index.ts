@@ -15,12 +15,11 @@ const port = 3000; // default port to listen
 
 app.use(logger("dev"));
 
-app.use((_, __, next) => next(createError(404)));
-
 app.use("/asin", AsinRouter);
 
-app.use("/starrating/", StarRatingRouter);
+app.use("/starrating", StarRatingRouter);
 
+app.use((_, __, next) => next(createError(404)));
 // start the Express server
 client.ping().then((res) => {
   if (!res) {
