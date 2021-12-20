@@ -39,6 +39,23 @@ const getStarRating = <Source, SearchBody>(
   return { docCount, starRating };
 };
 
+const getTotalVotes = <Source, SearchBody>(
+  data: ApiResponse<SearchResponse<Source>, SearchBody>,
+  filterName: string,
+  aggName: string
+): { docCount: number; totalVotes: number } => {
+  const aggregation: AggregationsSingleBucketAggregate = data.body.aggregations[
+    filterName
+  ] as AggregationsSingleBucketAggregate;
+  const docCount = aggregation.doc_count;
+  const intermediate: Record<string, number> = aggregation[aggName] as Record<
+    string,
+    any
+  >;
+  const totalVotes = intermediate.value;
+
+  return { docCount, totalVotes };
+};
 const getNumberReviews = <SearchBody>(
   data: ApiResponse<CountResponse, SearchBody>
 ) => {
@@ -46,4 +63,10 @@ const getNumberReviews = <SearchBody>(
   return hits;
 };
 
-export { getQueryFields, getQueryHits, getStarRating, getNumberReviews };
+export {
+  getQueryFields,
+  getQueryHits,
+  getStarRating,
+  getNumberReviews,
+  getTotalVotes,
+};
