@@ -19,7 +19,8 @@ app.use("/asin", AsinRouter);
 
 app.use("/completion", CompletionRouter);
 
-app.use((_, __, next) => next(createError(404)));
+app.use((_, __, next) => next(createError(404, "Not Found")));
+
 // start the Express server
 client.ping().then((res) => {
   if (!res) {

@@ -4,6 +4,10 @@ import {
   CountResponse,
   SearchResponse,
 } from "@elastic/elasticsearch/api/types";
+import {
+  Source as CompletionTitleSource,
+  SearchBody as CompletionTitleSearchBody,
+} from "./queries/query-completion-product-title";
 import { hitsCallback } from "./types";
 
 const getQueryFields = <Source, SearchBody>(
@@ -11,6 +15,20 @@ const getQueryFields = <Source, SearchBody>(
   field: string
 ) => {
   const hits: string[] = data.body.hits.hits.flatMap((d) => d.fields[field]);
+  return hits;
+};
+
+// TODO: make more generic maybe use has key method to check for asin field
+const getCompletionTitle = (
+  data: ApiResponse<
+    SearchResponse<CompletionTitleSource>,
+    CompletionTitleSearchBody
+  >,
+  field: string
+) => {
+  const hits = data.body.hits.hits.map((d) => {
+    return { product_title: d.fields[field][0], asin: d._source.product_id };
+  });
   return hits;
 };
 
@@ -56,6 +74,25 @@ const getTotalVotes = <Source, SearchBody>(
 
   return { docCount, totalVotes };
 };
+
+const getHelpfulVotes = <Source, SearchBody>(
+  data: ApiResponse<SearchResponse<Source>, SearchBody>,
+  filterName: string,
+  aggName: string
+): { docCount: number; helfulVotes: number } => {
+  const aggregation: AggregationsSingleBucketAggregate = data.body.aggregations[
+    filterName
+  ] as AggregationsSingleBucketAggregate;
+  const docCount = aggregation.doc_count;
+  const intermediate: Record<string, number> = aggregation[aggName] as Record<
+    string,
+    any
+  >;
+  const helfulVotes = intermediate.value;
+
+  return { docCount, helfulVotes };
+};
+
 const getNumberReviews = <SearchBody>(
   data: ApiResponse<CountResponse, SearchBody>
 ) => {
@@ -69,4 +106,6 @@ export {
   getStarRating,
   getNumberReviews,
   getTotalVotes,
+  getHelpfulVotes,
+  getCompletionTitle,
 };

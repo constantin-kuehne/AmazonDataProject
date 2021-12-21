@@ -2,9 +2,11 @@ import queryAsin, { _queryAsinRaw } from "../src/elastic/queries/query-asin";
 import queryCompletionAsin, {
   _queryCompletionAsinRaw,
 } from "../src/elastic/queries/query-completion-asin";
+import queryCompletionTitle from "../src/elastic/queries/query-completion-product-title";
 import queryStarRatingAsin from "../src/elastic/queries/query-star-rating";
 import queryNumberReviews from "../src/elastic/queries/query-number-reviews";
 import queryTotalVotes from "../src/elastic/queries/query-total-votes";
+import queryHelpfulVotes from "../src/elastic/queries/query-helpful-votes";
 
 describe("data tests", () => {
   test("check if query for ASIN works", async () => {
@@ -33,6 +35,13 @@ describe("data tests", () => {
     });
   });
 
+  test("check if completion product title works for a product title that should exist actually  returns something", async () => {
+    return queryCompletionTitle("test").then((data) => {
+      console.log(data);
+      expect(data.length).toBeGreaterThan(0);
+    });
+  });
+
   test("check if star rating ASIN of an ASIN that should exist actually returns something", async () => {
     return queryStarRatingAsin("B000002L7Y").then((data) => {
       expect(typeof data.starRating).toBe("number");
@@ -47,10 +56,17 @@ describe("data tests", () => {
     });
   });
 
-  test("check if star rating ASIN of an ASIN that should exist actually returns something", async () => {
+  test("check if total votes ASIN of an ASIN that should exist actually returns something", async () => {
     return queryTotalVotes("B000002L7Y").then((data) => {
       expect(typeof data.totalVotes).toBe("number");
       expect(data.totalVotes).toBeGreaterThan(0);
+    });
+  });
+
+  test("check if helpful votes ASIN of an ASIN that should exist actually returns something", async () => {
+    return queryHelpfulVotes("B000002L7Y").then((data) => {
+      expect(typeof data.helfulVotes).toBe("number");
+      expect(data.helfulVotes).toBeGreaterThan(0);
     });
   });
 });

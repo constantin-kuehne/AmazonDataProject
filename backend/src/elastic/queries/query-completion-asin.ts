@@ -8,15 +8,16 @@ class SearchBody implements SearchRequest {
   body: {
     query: {
       wildcard: {
-        "product_id.wildcard": {
+        [key: string]: {
           value: string;
         };
       };
     };
     collapse: {
-      field: "product_id.keyword";
+      field: string;
     };
-    fields: ["product_id.keyword"];
+    fields: [string];
+    _source: boolean;
   };
 }
 
