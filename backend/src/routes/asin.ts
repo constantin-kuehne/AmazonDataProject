@@ -1,5 +1,5 @@
-// TODO: add helpful votes api endpoint
 import { Router } from "express";
+import queryHelpfulVotes from "../elastic/queries/query-helpful-votes";
 import queryAsin from "../elastic/queries/query-asin";
 import queryNumberReviews from "../elastic/queries/query-number-reviews";
 import queryStarRating from "../elastic/queries/query-star-rating";
@@ -21,6 +21,10 @@ router.get("/:ASIN/star-rating", (req, res) => {
 
 router.get("/:ASIN/total-votes", (req, res) => {
   queryTotalVotes(req.params.ASIN as string).then((data) => res.json(data));
+});
+
+router.get("/:ASIN/helpful-votes", (req, res) => {
+  queryHelpfulVotes(req.params.ASIN as string).then((data) => res.json(data));
 });
 
 export default router;
