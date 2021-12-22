@@ -22,8 +22,8 @@ interface Source {
 }
 
 // TODO: pobably should collapse based on asin and then make array of all asins
-// TODO: with this product title. (only to make sure we don't just forget about
-// TODO: product titles to be able to have more than 1 asin)
+// with this product title. (only to make sure we don't just forget about
+// product titles to be able to have more than 1 asin)
 const _queryCompletionTitleRaw = (
   title: string,
   field: string,
