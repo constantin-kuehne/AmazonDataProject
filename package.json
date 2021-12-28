@@ -4,6 +4,9 @@
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.15.0",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.2.6",
     "dotenv": "^10.0.0"
   }
 }
