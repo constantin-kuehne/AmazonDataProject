@@ -3,7 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import Search from "./components/searchbar";
 import {Avatar} from "@material-ui/core";
-import AvatarGroup from '@mui/material/AvatarGroup';
+import {Toolbar, Typography} from "@mui/material";
+import { AppBar } from '@mui/material';
+import Box from "@mui/material/Box";
 
 function App() {
   return (
@@ -22,14 +24,14 @@ function App() {
             <p> Das ist ein Divider</p>
         </div>
 
-        <body className="App-Body">
+        <div className="App-Body">
 
 
         <p> Dashboard Stuff </p>
 
 
 
-        </body>
+        </div>
     </div>
   );
 }
