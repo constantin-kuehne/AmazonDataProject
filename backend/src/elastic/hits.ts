@@ -23,11 +23,13 @@ const getCompletionTitle = (
   data: ApiResponse<
     SearchResponse<CompletionTitleSource>,
     CompletionTitleSearchBody
-  >,
-  field: string
+  >
 ) => {
   const hits = data.body.hits.hits.map((d) => {
-    return { product_title: d.fields[field][0], asin: d._source.product_id };
+    return {
+      product_title: d._source.product_title,
+      asin: d._source.product_id,
+    };
   });
   return hits;
 };

@@ -1,7 +1,7 @@
 import client from "../client";
 import config from "../../config";
 import { SearchRequest } from "@elastic/elasticsearch/api/types";
-import { getHelpfulVotes, getTotalVotes } from "../hits";
+import { getHelpfulVotes } from "../hits";
 
 class SearchBody implements SearchRequest {
   index: string;

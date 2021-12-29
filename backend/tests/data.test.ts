@@ -37,8 +37,9 @@ describe("data tests", () => {
 
   test("check if completion product title works for a product title that should exist actually  returns something", async () => {
     return queryCompletionTitle("test").then((data) => {
-      console.log(data);
       expect(data.length).toBeGreaterThan(0);
+      expect(typeof data[0].product_title).toBe("string");
+      expect(typeof data[0].asin).toBe("string");
     });
   });
 
