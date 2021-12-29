@@ -27,13 +27,13 @@ const _queryCompletionAsinRaw = (ASIN: string, field: string) =>
     body: {
       query: {
         wildcard: {
-          "product_id.wildcard": {
+          "product_id.keyword": {
             value: `${ASIN}*`,
           },
         },
       },
       collapse: {
-        field,
+        field: field,
       },
       fields: [field],
       _source: false,
