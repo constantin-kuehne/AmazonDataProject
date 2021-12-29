@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Search from "./components/searchbar";
+import {Avatar} from "@material-ui/core";
+import AvatarGroup from '@mui/material/AvatarGroup';
 
 function App() {
   return (
@@ -9,10 +11,21 @@ function App() {
     <div className="App">
 
       <header className="App-header">
-          <h3> Amazon Data Project</h3>
+          <Avatar
+              alt="Example Alt"
+              src="logo512.png" />
+          <h2> Amazon Data Project</h2>
           <Search/>
       </header>
-        <body>
+
+        <div className="dashboard-divider">
+            <p> Das ist ein Divider</p>
+        </div>
+
+        <body className="App-Body">
+
+
+        <p> Dashboard Stuff </p>
 
 
 
