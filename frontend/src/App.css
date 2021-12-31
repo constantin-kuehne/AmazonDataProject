@@ -39,19 +39,19 @@
 }
 .App-Body{
   background-color: #385AA8;
-  background-image: linear-gradient(to right, dodgerblue , yellow);
+  background-image: linear-gradient(to right, white , white);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 
 
 }
 
-.dashboard-divider{
+.app-about{
   background-color: #385AA8;
   background-image: linear-gradient(to right, white , white);
   min-height: 10vh;
@@ -61,6 +61,19 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
+
+
+}
+
+.app-footer{
+  background-image: linear-gradient(to right, dodgerblue , yellow);
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+
 
 
 }

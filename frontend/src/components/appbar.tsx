@@ -22,3 +22,4 @@ export default function DenseAppBar() {
         </Box>
     );
 }
+//TODO Coming Soon -> Doku warum wird die scheisse nicht angezeigt, ich werd sauer.
