@@ -4,6 +4,7 @@ import * as path from "path";
 interface ConfigInterface {
   index: string;
   url: string;
+  max_request_size: number;
 }
 
 const rawData = fs.readFileSync(

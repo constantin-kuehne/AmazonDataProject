@@ -33,7 +33,7 @@ const _queryCompletionAsinRaw = (ASIN: string, field: string) =>
         },
       },
       collapse: {
-        field: field,
+        field,
       },
       fields: [field],
       _source: false,

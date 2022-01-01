@@ -13,7 +13,6 @@ class SearchBody implements SearchRequest {
     query: QueryDslQueryContainer;
     sort: any;
   };
-  _source: string[];
 }
 
 interface Source {
@@ -21,7 +20,7 @@ interface Source {
   total_votes: number;
 }
 
-// TODO: add review_headline to sources
+// TODO: top 10 only
 const _queryReviewVotesAsinRaw = (ASIN: string) => {
   const query: SearchBody = {
     index: config.index,
@@ -44,15 +43,14 @@ const _queryReviewVotesAsinRaw = (ASIN: string) => {
         },
       },
       sort: [
-        "_score",
         {
           total_votes: {
             order: "desc",
           },
         },
+        "_score",
       ],
     },
-    _source: ["total_votes", "helpful_votes"],
   };
   return client.search<Source, SearchBody>(query);
 };
