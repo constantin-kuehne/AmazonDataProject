@@ -13,8 +13,7 @@ const useStyles = makeStyles({
         backgroundColor: "transparent"
     },
     errorbutton:{
-        backgroundColor: "darkred",
-        color: "white",
+        backgroundColor: "transparent",
         fontSize: 10,
     }
     }
@@ -29,7 +28,7 @@ function App() {
       <header className="App-header">
           <Avatar
               alt="Example Alt"
-              src="logo512.png" />
+              src="logo512.png"/>
           <h2> Amazon Data Project</h2>
           <Search/>
           <br/>
@@ -46,10 +45,11 @@ function App() {
 
 
 
-
       </header>
 
         <div className="App-about">
+
+
 
             <p> This is how it works!</p>
 
@@ -78,7 +78,8 @@ function App() {
                 className={classes.errorbutton}
                 onClick={() => console.log("Error Button Clicked")} //TODO Wenn man Bock hat, kann man dafür ne Function machen.
                 variant="outlined"
-                color="primary">
+                color="secondary"
+                type="submit">
                 Fehler melden
             </Button>
 
