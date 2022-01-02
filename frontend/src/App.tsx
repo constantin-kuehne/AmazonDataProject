@@ -6,6 +6,7 @@ import {Avatar} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import {KeyboardArrowRight} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core"
+import ResponsiveAppBar from "./components/appbar";
 
 //App Styling for App.tsx mui components
 const useStyles = makeStyles({
@@ -25,11 +26,19 @@ function App() {
 
     <div className="App">
 
+        <div className="app-bar">
+            <ResponsiveAppBar/>
+        </div>
+
       <header className="App-header">
+          <div>
           <Avatar
               alt="Example Alt"
-              src="logo512.png"/>
-          <h2> Amazon Data Project</h2>
+              src="Bigproject_Logo.png"
+             />
+
+          </div>
+          <h2> ADP SEARCH</h2>
           <Search/>
           <br/>
 
@@ -39,7 +48,7 @@ function App() {
               className={classes.searchbutton}
               color={"secondary"}
               endIcon={<KeyboardArrowRight/>}
-              type={"submit"} variant={"outlined"}> Suche starten
+              type={"submit"} variant={"outlined"}> Search
 
           </Button>
 
@@ -47,8 +56,10 @@ function App() {
 
       </header>
 
-        <div className="App-about">
 
+        <div className="App-about">
+            <br/>
+            <br/>
 
 
             <p> This is how it works!</p>
@@ -80,7 +91,7 @@ function App() {
                 variant="outlined"
                 color="secondary"
                 type="submit">
-                Fehler melden
+                Report problem
             </Button>
 
         </div>

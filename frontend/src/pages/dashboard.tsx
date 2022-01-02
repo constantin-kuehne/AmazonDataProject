@@ -8,6 +8,11 @@ import { select } from 'd3-selection'class BarChart extends Component {
         super(props)
         this.createBarChart = this.createBarChart.bind(this)
     }
+    componentDidMount() {
+      this.createBarChart()
+   }   componentDidUpdate() {
+      this.createBarChart()
+   }
 
 
 

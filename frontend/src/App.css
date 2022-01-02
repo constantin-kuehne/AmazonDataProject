@@ -77,3 +77,8 @@
 
 
 }
+
+.app-bar{
+
+  background-image: linear-gradient(to right, dodgerblue , yellow);
+}
