@@ -60,7 +60,7 @@ export default function Search() {
                 <SearchIcon />
             </div>
             <InputBase
-                placeholder="Product ID"
+                placeholder="Suche Product ID"
                 classes={{
                     root: classes.inputRoot,
                     input: classes.inputInput,

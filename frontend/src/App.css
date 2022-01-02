@@ -51,7 +51,7 @@
 
 }
 
-.app-about{
+.App-about{
   background-color: #385AA8;
   background-image: linear-gradient(to right, white , white);
   min-height: 10vh;
@@ -65,7 +65,7 @@
 
 }
 
-.app-footer{
+.App-footer{
   background-image: linear-gradient(to right, dodgerblue , yellow);
   min-height: 10vh;
   display: flex;

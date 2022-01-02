@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import {KeyboardArrowRight} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core"
 
-
+//App Styling for App.tsx mui components
 const useStyles = makeStyles({
     searchbutton:{
         backgroundColor: "transparent"
@@ -16,12 +16,10 @@ const useStyles = makeStyles({
         backgroundColor: "darkred",
         color: "white",
         fontSize: 10,
-
-
     }
     }
 )
-
+//App Function
 function App() {
     const classes = useStyles()
   return (
@@ -35,7 +33,9 @@ function App() {
           <h2> Amazon Data Project</h2>
           <Search/>
           <br/>
-          <Button
+
+
+          <Button //Searchbutton
               onClick={() => console.log("Search Button Clicked - Process started.")}
               className={classes.searchbutton}
               color={"secondary"}
@@ -43,11 +43,20 @@ function App() {
               type={"submit"} variant={"outlined"}> Suche starten
 
           </Button>
+
+
+
+
       </header>
 
-        <div className="app-about">
+        <div className="App-about">
+
             <p> This is how it works!</p>
+
+
+
         </div>
+
 
         <div className="App-Body">
 
@@ -58,7 +67,13 @@ function App() {
 
 
         </div>
-        <div className="app-footer">
+
+
+
+
+
+        <div className="App-footer">
+
             <Button
                 className={classes.errorbutton}
                 onClick={() => console.log("Error Button Clicked")} //TODO Wenn man Bock hat, kann man dafür ne Function machen.
@@ -68,6 +83,8 @@ function App() {
             </Button>
 
         </div>
+
+
     </div>
 
   );

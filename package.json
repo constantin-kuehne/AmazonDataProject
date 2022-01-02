@@ -13,6 +13,14 @@
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.6",
     "@mui/styles": "^5.2.3",
+    "d3-array": "^3.1.1",
+    "d3-axis": "^3.0.0",
+    "d3-brush": "^3.0.0",
+    "d3-geo": "^3.0.1",
+    "d3-selection": "^3.0.0",
+    "d3-shape": "^3.0.1",
+    "d3-svg-legend": "^2.25.6",
+    "d3-transition": "^3.0.1",
     "dotenv": "^10.0.0",
     "yarn": "^1.22.17"
   }
