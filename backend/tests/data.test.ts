@@ -9,6 +9,7 @@ import queryTotalVotes from "../src/elastic/queries/query-total-votes";
 import queryHelpfulVotes from "../src/elastic/queries/query-helpful-votes";
 import queryReviewsVotes from "../src/elastic/queries/query-reviews-votes";
 import queryReviews from "../src/elastic/queries/query-reviews";
+import queryTimeNumberReviews from "../src/elastic/queries/query-time-number-reviews";
 
 describe("data tests", () => {
   test("check if query for ASIN works", async () => {
@@ -82,9 +83,17 @@ describe("data tests", () => {
     });
   });
 
-  test("check if helpful votes and total votes on each unique review basis, searched based on ASIN", async () => {
+  test("check if , searched based on ASIN", async () => {
     return queryReviews("B000002L7Y").then((data) => {
       expect(typeof data[0].total_votes).toBe("number");
+    });
+  });
+
+  test("check if query for  ", async () => {
+    return queryTimeNumberReviews("B004TACMZ8").then((data) => {
+      console.log(data);
+      expect(typeof data[0].intervalTime).toBe("string");
+      expect(typeof data[0].intervalTimeUnix).toBe("number");
     });
   });
 });

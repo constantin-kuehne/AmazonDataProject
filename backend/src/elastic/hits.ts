@@ -1,5 +1,7 @@
 import { ApiResponse } from "@elastic/elasticsearch/api/new";
 import {
+  AggregationsKeyedBucketKeys,
+  AggregationsMultiBucketAggregate,
   AggregationsSingleBucketAggregate,
   CountResponse,
   SearchResponse,
@@ -102,11 +104,34 @@ const getNumberReviews = <SearchBody>(
   return hits;
 };
 
+const getTimeNumberReviews = <Source, SearchBody>(
+  data: ApiResponse<SearchResponse<Source>, SearchBody>,
+  aggName: string
+): {
+  intervalTime: string;
+  intervalTimeUnix: number;
+  docCount: number;
+}[] => {
+  const aggregation: AggregationsMultiBucketAggregate<AggregationsKeyedBucketKeys> =
+    data.body.aggregations[
+      aggName
+    ] as AggregationsMultiBucketAggregate<AggregationsKeyedBucketKeys>;
+  const buckets = aggregation.buckets.map((d) => {
+    return {
+      intervalTime: d.key_as_string,
+      intervalTimeUnix: d.key as number,
+      docCount: d.doc_count,
+    };
+  });
+  return buckets;
+};
+
 export {
   getQueryFields,
   getQueryHits,
   getStarRating,
   getNumberReviews,
+  getTimeNumberReviews,
   getTotalVotes,
   getHelpfulVotes,
   getCompletionTitle,
