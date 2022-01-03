@@ -17,7 +17,7 @@ router.get("/:ASIN", (req, res) => {
 });
 
 router.get("/:ASIN/number-reviews/:DATETYPE", (req, res) => {
-  let interval: number = parseInt(req.query.interval as string);
+  let interval: number = parseInt(req.query.interval as string, 10);
   if (Number.isNaN(interval)) {
     interval = undefined;
   }

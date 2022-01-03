@@ -30,7 +30,7 @@ const _queryTimeNumberReviewsAsinRaw = (
   interval: typeof CalendarIntervalOptions[keyof typeof CalendarIntervalOptions],
   intervalNumber: number = 1
 ) => {
-  let query: SearchBody = {
+  const query: SearchBody = {
     index: `${config.index}`,
     body: {
       query: {
