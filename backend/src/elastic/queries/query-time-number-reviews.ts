@@ -6,15 +6,14 @@ import {
   QueryDslQueryContainer,
   SearchRequest,
 } from "@elastic/elasticsearch/api/types";
-import util from "util";
 
-enum EnumCalendarInterval {
-  DAY = "d",
-  WEEK = "w",
-  MONTH = "M",
-  QUARTER = "q",
-  YEAR = "y",
-}
+const CalendarIntervalOptions = {
+  DAY: "d",
+  WEEK: "w",
+  MONTH: "M",
+  QUARTER: "q",
+  YEAR: "y",
+} as const;
 
 class SearchBody implements SearchRequest {
   index: string;
@@ -28,7 +27,7 @@ const _queryTimeNumberReviewsAsinRaw = (
   ASIN: string,
   field: string,
   aggName: string,
-  interval: EnumCalendarInterval,
+  interval: typeof CalendarIntervalOptions[keyof typeof CalendarIntervalOptions],
   intervalNumber: number = 1
 ) => {
   let query: SearchBody = {
@@ -54,16 +53,21 @@ const _queryTimeNumberReviewsAsinRaw = (
   return client.search<false, SearchBody>(query);
 };
 
-export default async (ASIN: string) => {
+export default async (
+  ASIN: string,
+  interval: keyof typeof CalendarIntervalOptions = "MONTH",
+  intervalNumber: number = 1
+) => {
   const field = "product_id.keyword";
   const aggName = "date_interval";
   const data = await _queryTimeNumberReviewsAsinRaw(
     ASIN,
     field,
     aggName,
-    EnumCalendarInterval.MONTH
+    CalendarIntervalOptions[interval],
+    intervalNumber
   );
   return getTimeNumberReviews<false, SearchBody>(data, aggName);
 };
 
-export { SearchBody, _queryTimeNumberReviewsAsinRaw };
+export { SearchBody, CalendarIntervalOptions, _queryTimeNumberReviewsAsinRaw };

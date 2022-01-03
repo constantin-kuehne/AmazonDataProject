@@ -9,7 +9,9 @@ import queryTotalVotes from "../src/elastic/queries/query-total-votes";
 import queryHelpfulVotes from "../src/elastic/queries/query-helpful-votes";
 import queryReviewsVotes from "../src/elastic/queries/query-reviews-votes";
 import queryReviews from "../src/elastic/queries/query-reviews";
-import queryTimeNumberReviews from "../src/elastic/queries/query-time-number-reviews";
+import queryTimeNumberReviews, {
+  CalendarIntervalOptions,
+} from "../src/elastic/queries/query-time-number-reviews";
 
 describe("data tests", () => {
   test("check if query for ASIN works", async () => {
@@ -90,8 +92,7 @@ describe("data tests", () => {
   });
 
   test("check if query for  ", async () => {
-    return queryTimeNumberReviews("B004TACMZ8").then((data) => {
-      console.log(data);
+    return queryTimeNumberReviews("B004TACMZ8", "MONTH").then((data) => {
       expect(typeof data[0].intervalTime).toBe("string");
       expect(typeof data[0].intervalTimeUnix).toBe("number");
     });
