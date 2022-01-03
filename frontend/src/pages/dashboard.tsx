@@ -7,7 +7,7 @@ export interface Source {
   review_headline: string;
 }
 
-export const BarChart = (props: {}) => {
+export const BarChart = () => {
   const svgRef = useRef<null | SVGSVGElement>(null);
 
   const [data, setData] = useState<null | Source[]>(null);
@@ -58,9 +58,9 @@ export const BarChart = (props: {}) => {
       bars = bars.attr("x", margin.left + 1);
       bars = bars
         .attr("y", (d) => {
-          const wow = yScale(d.review_headline);
-          const now = wow! + 15;
-          return now || 0;
+          const yPos = yScale(d.review_headline);
+          const yPosAdjusted = yPos! + 15;
+          return yPosAdjusted;
         })
         .attr("height", 12)
         .attr("width", (d) => xScale(d.total_votes) - margin.left - 1)
