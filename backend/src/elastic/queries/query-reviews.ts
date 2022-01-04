@@ -20,11 +20,10 @@ interface Source {
   total_votes: number;
 }
 
-// TODO: top 10 only
-const _queryReviewVotesAsinRaw = (ASIN: string) => {
+const _queryReviewVotesAsinRaw = (ASIN: string, size: number) => {
   const query: SearchBody = {
     index: config.index,
-    size: config.max_request_size,
+    size: size,
     body: {
       query: {
         script_score: {
@@ -56,7 +55,7 @@ const _queryReviewVotesAsinRaw = (ASIN: string) => {
 };
 
 export default async (ASIN: string) => {
-  const data = await _queryReviewVotesAsinRaw(ASIN);
+  const data = await _queryReviewVotesAsinRaw(ASIN, 10);
   return getQueryHits<Source, SearchBody>(data);
 };
 
