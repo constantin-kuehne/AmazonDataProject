@@ -54,8 +54,8 @@ const _queryReviewVotesAsinRaw = (ASIN: string, size: number) => {
   return client.search<Source, SearchBody>(query);
 };
 
-export default async (ASIN: string) => {
-  const data = await _queryReviewVotesAsinRaw(ASIN, 10);
+export default async (ASIN: string, size: number = 10) => {
+  const data = await _queryReviewVotesAsinRaw(ASIN, size);
   return getQueryHits<Source, SearchBody>(data);
 };
 

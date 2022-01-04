@@ -47,14 +47,20 @@ router.get("/:ASIN/helpful-votes", (req, res) => {
   queryHelpfulVotes(req.params.ASIN as string).then((data) => res.json(data));
 });
 
-// bar chart helpful votes total votes
+// bar chart helpful votes total votes review headline
 router.get("/:ASIN/reviews-votes", (req, res) => {
-  queryReviewsVotes(req.params.ASIN as string).then((data) => res.json(data));
+  let size: number = parseInt(req.query.size as string);
+  size = Number.isNaN(size) ? undefined : size;
+  queryReviewsVotes(req.params.ASIN as string, size).then((data) =>
+    res.json(data)
+  );
 });
 
 // same as one up but more info
 router.get("/:ASIN/reviews", (req, res) => {
-  queryReviews(req.params.ASIN as string).then((data) => res.json(data));
+  let size: number = parseInt(req.query.size as string);
+  size = Number.isNaN(size) ? undefined : size;
+  queryReviews(req.params.ASIN as string, size).then((data) => res.json(data));
 });
 
 export default router;
