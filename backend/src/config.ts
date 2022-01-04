@@ -5,6 +5,7 @@ interface ConfigInterface {
   index: string;
   url: string;
   max_request_size: number;
+  port: number;
 }
 
 const rawData = fs.readFileSync(

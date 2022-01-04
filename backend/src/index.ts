@@ -1,7 +1,7 @@
 import express from "express";
 
 import "./loadenv";
-import "./config";
+import config from "./config";
 
 import client from "./elastic/client";
 import logger from "morgan";
@@ -12,7 +12,7 @@ import AsinRouter from "./routes/asin";
 import CompletionRouter from "./routes/completion";
 
 const app = express();
-const port = 3001; // default port to listen
+const port = config.port; // default port to listen
 
 app.use(cors());
 
