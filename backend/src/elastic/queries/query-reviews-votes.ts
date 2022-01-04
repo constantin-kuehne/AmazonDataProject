@@ -43,12 +43,12 @@ const _queryReviewVotesAsinRaw = (ASIN: string, size: number) => {
         },
       },
       sort: [
-        "_score",
         {
           total_votes: {
             order: "desc",
           },
         },
+        "_score",
       ],
     },
     _source: ["total_votes", "helpful_votes", "review_headline"],
