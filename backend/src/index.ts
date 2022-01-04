@@ -6,12 +6,15 @@ import "./config";
 import client from "./elastic/client";
 import logger from "morgan";
 import createError from "http-errors";
+import cors from "cors";
 
 import AsinRouter from "./routes/asin";
 import CompletionRouter from "./routes/completion";
 
 const app = express();
-const port = 3000; // default port to listen
+const port = 3001; // default port to listen
+
+app.use(cors());
 
 app.use(logger("dev"));
 
