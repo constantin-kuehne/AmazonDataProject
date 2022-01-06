@@ -9,6 +9,7 @@ import queryReviews from "../elastic/queries/query-reviews";
 import queryTimeNumberReviews, {
   CalendarIntervalOptions,
 } from "../elastic/queries/query-time-number-reviews";
+import { queryVotesSimilarProducts } from "../elastic/queries/query-similar-products";
 
 const router = Router();
 
@@ -61,6 +62,17 @@ router.get("/:ASIN/reviews", (req, res) => {
   let size: number = parseInt(req.query.size as string);
   size = Number.isNaN(size) ? undefined : size;
   queryReviews(req.params.ASIN as string, size).then((data) => res.json(data));
+});
+
+router.get("/:ASIN/votes-similar-products", (req, res) => {
+  let size: number = parseInt(req.query.size as string);
+  size = Number.isNaN(size) ? undefined : size;
+  queryVotesSimilarProducts(
+    req.params.ASIN as string,
+    req.query.title as string,
+    req.query.category as string,
+    size
+  ).then((data) => res.json(data));
 });
 
 export default router;

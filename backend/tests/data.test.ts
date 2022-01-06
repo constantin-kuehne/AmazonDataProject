@@ -10,6 +10,11 @@ import queryHelpfulVotes from "../src/elastic/queries/query-helpful-votes";
 import queryReviewsVotes from "../src/elastic/queries/query-reviews-votes";
 import queryReviews from "../src/elastic/queries/query-reviews";
 import queryTimeNumberReviews from "../src/elastic/queries/query-time-number-reviews";
+import {
+  querySimilarProductsFull,
+  querySimilarProducts,
+  queryVotesSimilarProducts,
+} from "../src/elastic/queries/query-similar-products";
 
 describe("data tests", () => {
   test("check if query for ASIN works", async () => {
@@ -93,6 +98,44 @@ describe("data tests", () => {
     return queryTimeNumberReviews("B004TACMZ8", "MONTH").then((data) => {
       expect(typeof data[0].intervalTime).toBe("string");
       expect(typeof data[0].intervalTimeUnix).toBe("number");
+    });
+  });
+
+  test("check if similar products api works and gives back helpful votes and total votes", async () => {
+    return querySimilarProductsFull(
+      "B000002L7J",
+      "Meat is murder",
+      "Music"
+    ).then((data: any[]) => {
+      expect(data.length).toBe(50);
+      const asinArray = data.flatMap((d) => d.product_id);
+      expect(new Set(asinArray).size).toBe(asinArray.length);
+      expect(typeof data[0].total_votes).toBe("number");
+      expect(new Set(Object.keys(data[0]))).toEqual(
+        new Set(["total_votes", "helpful_votes", "product_title", "product_id"])
+      );
+    });
+  });
+
+  test("check if similar products api works and gives back helpful votes and total votes", async () => {
+    return querySimilarProducts("B000002L7J", "Meat is murder", "Music").then(
+      (data: any[]) => {
+        expect(data.length).toBe(50);
+        expect(typeof data[0]).toBe("string");
+      }
+    );
+  });
+
+  test("check if similar products api works and gives back helpful votes and total votes", async () => {
+    return queryVotesSimilarProducts(
+      "B000002L7J",
+      "Meat is murder",
+      "Music"
+    ).then((data) => {
+      expect(data.length).toBe(50);
+      expect(new Set(Object.keys(data[0]))).toEqual(
+        new Set(["ASIN", "docCount", "totalVotes"])
+      );
     });
   });
 });

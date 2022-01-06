@@ -1,8 +1,15 @@
 import { ApiResponse } from "@elastic/elasticsearch/api/new";
 import {
+  AggregationsAggregate,
+  AggregationsFiltersAggregate,
+  AggregationsFiltersBucketItem,
+  AggregationsKeyedBucket,
   AggregationsKeyedBucketKeys,
+  AggregationsKeyedValueAggregate,
   AggregationsMultiBucketAggregate,
   AggregationsSingleBucketAggregate,
+  AggregationsTermsAggregate,
+  AggregationsValueAggregate,
   CountResponse,
   SearchResponse,
 } from "@elastic/elasticsearch/api/types";
@@ -10,6 +17,7 @@ import {
   Source as CompletionTitleSource,
   SearchBody as CompletionTitleSearchBody,
 } from "./queries/query-completion-product-title";
+import { SourceSumVotesArrayASINS as SimilarProductsSource } from "./queries/query-similar-products";
 import { hitsCallback } from "./types";
 
 const getQueryFields = <Source, SearchBody>(
@@ -43,6 +51,34 @@ const getQueryHits: hitsCallback = <Source, SearchBody>(
   return hits;
 };
 
+const getQueryHitsSimilarProducts = <SearchBody>(
+  data: ApiResponse<SearchResponse<SimilarProductsSource>, SearchBody>
+) => {
+  const hits: string[] = data.body.hits.hits.map((d) => d._source.product_id);
+  return hits;
+};
+
+const getVotesSimilarProducts = <SearchBody>(
+  data: ApiResponse<SearchResponse<false>, SearchBody>,
+  asins: string[]
+) => {
+  const filteredHits = data.body.aggregations[
+    "AsinFilter"
+  ] as AggregationsSingleBucketAggregate;
+  const bucketsHits = filteredHits["GroupByAsin"] as AggregationsTermsAggregate;
+  const bucketsArray = bucketsHits.buckets as AggregationsKeyedBucket[];
+  const hits = bucketsArray.map((d) => {
+    const sum1 = d.sum1 as AggregationsValueAggregate;
+    const sum2 = d.sum2 as AggregationsValueAggregate;
+    return {
+      ASIN: d.key as string,
+      docCount: d.doc_count as number,
+      totalVotes: sum1.value as number,
+      helpfulVotes: sum2.value as number,
+    };
+  });
+  return hits.sort((a, b) => asins.indexOf(a.ASIN) - asins.indexOf(b.ASIN));
+};
 const getStarRating = <Source, SearchBody>(
   data: ApiResponse<SearchResponse<Source>, SearchBody>,
   filterName: string,
@@ -135,4 +171,6 @@ export {
   getTotalVotes,
   getHelpfulVotes,
   getCompletionTitle,
+  getQueryHitsSimilarProducts,
+  getVotesSimilarProducts,
 };

@@ -18,6 +18,7 @@ class SearchBody implements SearchRequest {
 interface Source {
   helpful_votes: number;
   total_votes: number;
+  review_headline: string;
 }
 
 const _queryReviewVotesAsinRaw = (ASIN: string, size: number) => {
