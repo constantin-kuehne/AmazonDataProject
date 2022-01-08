@@ -70,11 +70,18 @@ const getVotesSimilarProducts = <SearchBody>(
   const hits = bucketsArray.map((d) => {
     const sum1 = d.sum1 as AggregationsValueAggregate;
     const sum2 = d.sum2 as AggregationsValueAggregate;
+    const avg1 = d.avg1 as AggregationsValueAggregate;
+    const term1 = d.term1 as AggregationsMultiBucketAggregate<{
+      key: string;
+      doc_count: number;
+    }>;
     return {
       ASIN: d.key as string,
       docCount: d.doc_count as number,
       totalVotes: sum1.value as number,
       helpfulVotes: sum2.value as number,
+      starRating: avg1.value as number,
+      productTitle: term1.buckets[0].key,
     };
   });
   return hits.sort((a, b) => asins.indexOf(a.ASIN) - asins.indexOf(b.ASIN));

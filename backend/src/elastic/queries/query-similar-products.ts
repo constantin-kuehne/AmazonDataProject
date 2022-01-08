@@ -91,6 +91,8 @@ const _querySumVotesArrayASINSRaw = (
   field: string,
   sum1Field: keyof DocumentOptional,
   sum2Field: keyof DocumentOptional,
+  avg1Field: keyof DocumentOptional,
+  term1Field: string,
   size: number = 50
 ) => {
   let query: SearchBodySumVotesArrayASINS = {
@@ -120,6 +122,17 @@ const _querySumVotesArrayASINSRaw = (
                 sum2: {
                   sum: {
                     field: sum2Field,
+                  },
+                },
+                avg1: {
+                  avg: {
+                    field: avg1Field,
+                  },
+                },
+                term1: {
+                  terms: {
+                    field: term1Field,
+                    size: 1,
                   },
                 },
               },
@@ -191,6 +204,8 @@ export const queryVotesSimilarProducts = async (
     field,
     "total_votes",
     "helpful_votes",
+    "star_rating",
+    "product_title.keyword",
     size
   );
 
