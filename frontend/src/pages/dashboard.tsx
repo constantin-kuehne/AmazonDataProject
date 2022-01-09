@@ -18,7 +18,7 @@ export const BarChart = () => {
   useEffect(() => {
     fetch("http://localhost:3001/asin/B000002L7Y/reviews")
       .then((res) => res.json())
-      .then((wow) => setData(wow.slice(0, 20)));
+      .then((data) => setData(data.slice(0, 20)));
   }, []);
 
   useEffect(() => {
