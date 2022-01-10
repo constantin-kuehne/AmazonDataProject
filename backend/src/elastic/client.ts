@@ -1,12 +1,16 @@
-import { Client, ClientOptions } from "@elastic/elasticsearch"
+import { Client, ClientOptions } from "@elastic/elasticsearch";
+import type { Client as NewClientType } from "@elastic/elasticsearch/api/new";
+import configVars from "../config";
 
 const config: ClientOptions = {
-    node: "http://10.11.12.69:9200",
-    auth: {
-        username: process.env.ELASTIC_USERNAME,
-        password: process.env.ELASTIC_PASSWORD
-    },
-}
+  node: configVars.url,
+  auth: {
+    username: process.env.ELASTIC_USERNAME,
+    password: process.env.ELASTIC_PASSWORD,
+  },
+};
 
-const client = new Client(config)
-export default client
+// @ts-expect-error @elastic/elasticsearch
+const client: NewClientType = new Client(config);
+
+export default client;
