@@ -1,6 +1,7 @@
 # README #
 
-## This is a university project ## \
+## This is a university project ##
+
 HDBW Munich 2021/22 - Big Data, Digital Technology & Data Visualization
 
 ### What is this project for ###
@@ -18,11 +19,12 @@ and display them in a webapp built in an react environment.
 
 ### How to run in docker ###
 
-* Build docker image:\
+* Build docker image:
 ``docker build . -t adp:release``
 
-* Run docker image:\
-``docker run --volume ${PWD}/backend/.env:/server/.env -dp 3000:3000 adp:release``\
+* Run docker image:
+``docker run --volume ${PWD}/backend/.env:/server/.env -dp 3000:3000 adp:release``
+
 please make sure to specify the right path to the .env file after the volume flag
 
 ### Contribution guidelines ###
