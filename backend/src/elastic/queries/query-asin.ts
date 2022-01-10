@@ -1,8 +1,7 @@
 import client from "../client";
 import config from "../../config";
 import { getQueryHits } from "../hits";
-import { ApiResponse } from "@elastic/elasticsearch";
-import { SearchResponse } from "@elastic/elasticsearch/api/types";
+import { SearchRequest } from "@elastic/elasticsearch/api/types";
 
 interface Source {
   marketplace: string;
@@ -22,7 +21,7 @@ interface Source {
   review_date: Date;
 }
 
-interface SearchBody {
+class SearchBody implements SearchRequest {
   index: string;
   body: {
     query: {

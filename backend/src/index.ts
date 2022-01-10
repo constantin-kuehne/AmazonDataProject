@@ -1,24 +1,28 @@
 import express from "express";
 
 import "./loadenv";
-import "./config";
+import config from "./config";
 
 import client from "./elastic/client";
+import logger from "morgan";
+import createError from "http-errors";
+import cors from "cors";
 
 import AsinRouter from "./routes/asin";
-
-import logger from "morgan";
-
-import createError from "http-errors";
+import CompletionRouter from "./routes/completion";
 
 const app = express();
-const port = 3000; // default port to listen
+const port = config.port; // default port to listen
+
+app.use(cors());
 
 app.use(logger("dev"));
 
 app.use("/asin", AsinRouter);
 
-app.use((req, res, next) => next(createError(404)));
+app.use("/completion", CompletionRouter);
+
+app.use((_, __, next) => next(createError(404, "Not Found")));
 
 // start the Express server
 client.ping().then((res) => {

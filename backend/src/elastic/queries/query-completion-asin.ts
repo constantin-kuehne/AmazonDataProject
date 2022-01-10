@@ -1,21 +1,23 @@
 import client from "../client";
 import config from "../../config";
 import { getQueryFields } from "../hits";
+import { SearchRequest } from "@elastic/elasticsearch/api/types";
 
-interface SearchBody {
+class SearchBody implements SearchRequest {
   index: string;
   body: {
     query: {
       wildcard: {
-        "product_id.wildcard": {
+        [key: string]: {
           value: string;
         };
       };
     };
     collapse: {
-      field: "product_id.keyword";
+      field: string;
     };
-    fields: ["product_id.keyword"];
+    fields: [string];
+    _source: boolean;
   };
 }
 
@@ -25,7 +27,7 @@ const _queryCompletionAsinRaw = (ASIN: string, field: string) =>
     body: {
       query: {
         wildcard: {
-          "product_id.wildcard": {
+          "product_id.keyword": {
             value: `${ASIN}*`,
           },
         },
