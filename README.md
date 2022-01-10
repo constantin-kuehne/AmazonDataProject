@@ -1,29 +1,30 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+##This is a university project ##
+HDBW Munich 2021/22 - Big Data, Digital Technology & Data Visualization
 
-### What is this repository for? ###
+### What is this project for ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+This project is about dealing with complex and big data, visualize them with D3 or other visualization tools 
+and display them in a webapp built in an react environment. 
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Run npm install
+* Run npm audit fix --force
+* Run "npm run start" -> Starts the webapp on your localhost. 
+* This app is designed to run on a linux server environment and is able to handle various requests through eclipse APIs to our online database.
+* The access is limited and not public domain.
 
 ### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* Elastic, APIs, Data-Stuff, Dashboard Data -> Constantin Kühne
+* D3 & Data Visualization-Stuff, Dashboard Design -> Valentin Kieslinger
+* React App Development, Design, D3 implementing -> Tim Muscholl
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* constantin.kuehne@student.hdbw-hochschule.de
+* valentin.kieslinger@student.hdbw-hochschule.de
+* tim.muscholl@student.hdbw-hochschule.de
+* HDBW Munich

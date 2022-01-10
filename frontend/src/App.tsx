@@ -1,24 +1,78 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Search from "./components/searchbar";
+import { Avatar } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import { KeyboardArrowRight } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core";
+import ResponsiveAppBar from "./components/appbar";
+import { BarChart } from "./pages/dashboard";
 
+//App Styling for App.tsx mui components
+const useStyles = makeStyles({
+  searchbutton: {
+    backgroundColor: "transparent",
+  },
+  errorbutton: {
+    backgroundColor: "transparent",
+    fontSize: 10,
+  },
+});
+//App Function
 function App() {
+  const classes = useStyles();
   return (
     <div className="App">
+      <div className="app-bar">
+        <ResponsiveAppBar />
+      </div>
+
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div>
+          <Avatar alt="Example Alt" src="Bigproject_Logo.png" />
+        </div>
+        <h2> ADP SEARCH</h2>
+        <Search />
+        <br />
+
+        <Button //Searchbutton
+          onClick={() =>
+            console.log("Search Button Clicked - Process started.")
+          }
+          className={classes.searchbutton}
+          color={"secondary"}
+          endIcon={<KeyboardArrowRight />}
+          type={"submit"}
+          variant={"outlined"}
         >
-          Learn React
-        </a>
+          {" "}
+          Search
+        </Button>
       </header>
+
+      <div className="App-about">
+        <br />
+        <br />
+
+        <p> This is how it works!</p>
+      </div>
+
+      <div className="App-Body">
+        <BarChart />
+      </div>
+
+      <div className="App-footer">
+        <Button
+          className={classes.errorbutton}
+          onClick={() => console.log("Error Button Clicked")} //TODO Wenn man Bock hat, kann man dafür ne Function machen.
+          variant="outlined"
+          color="secondary"
+          type="submit"
+        >
+          Report problem
+        </Button>
+      </div>
     </div>
   );
 }
