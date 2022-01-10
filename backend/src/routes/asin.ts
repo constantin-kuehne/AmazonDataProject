@@ -50,7 +50,7 @@ router.get("/:ASIN/helpful-votes", (req, res) => {
 
 // bar chart helpful votes total votes review headline
 router.get("/:ASIN/reviews-votes", (req, res) => {
-  let size: number = parseInt(req.query.size as string);
+  let size: number = parseInt(req.query.size as string, 10);
   size = Number.isNaN(size) ? undefined : size;
   queryReviewsVotes(req.params.ASIN as string, size).then((data) =>
     res.json(data)
@@ -59,13 +59,13 @@ router.get("/:ASIN/reviews-votes", (req, res) => {
 
 // same as one up but more info
 router.get("/:ASIN/reviews", (req, res) => {
-  let size: number = parseInt(req.query.size as string);
+  let size: number = parseInt(req.query.size as string, 10);
   size = Number.isNaN(size) ? undefined : size;
   queryReviews(req.params.ASIN as string, size).then((data) => res.json(data));
 });
 
 router.get("/:ASIN/votes-similar-products", (req, res) => {
-  let size: number = parseInt(req.query.size as string);
+  let size: number = parseInt(req.query.size as string, 10);
   size = Number.isNaN(size) ? undefined : size;
   queryVotesSimilarProducts(
     req.params.ASIN as string,

@@ -50,9 +50,9 @@ const _querySimilarProductsRaw = (
   size: number,
   source: string[]
 ) => {
-  let query: SearchBodySimilarProducts = {
+  const query: SearchBodySimilarProducts = {
     index: config.index,
-    size: size,
+    size,
     body: {
       query: {
         bool: {
@@ -67,7 +67,7 @@ const _querySimilarProductsRaw = (
               like: [
                 {
                   _index: config.index,
-                  doc: doc,
+                  doc,
                 },
               ],
               min_term_freq: 1,
@@ -78,7 +78,7 @@ const _querySimilarProductsRaw = (
         },
       },
       collapse: {
-        field: field,
+        field,
       },
     },
     _source: source,
@@ -95,7 +95,7 @@ const _querySumVotesArrayASINSRaw = (
   term1Field: string,
   size: number = 50
 ) => {
-  let query: SearchBodySumVotesArrayASINS = {
+  const query: SearchBodySumVotesArrayASINS = {
     index: config.index,
     size: 0,
     _source: false,
@@ -110,8 +110,8 @@ const _querySumVotesArrayASINSRaw = (
           aggs: {
             GroupByAsin: {
               terms: {
-                field: field,
-                size: size,
+                field,
+                size,
               },
               aggs: {
                 sum1: {

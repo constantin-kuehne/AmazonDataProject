@@ -24,7 +24,7 @@ interface Source {
 const _queryReviewVotesAsinRaw = (ASIN: string, size: number) => {
   const query: SearchBody = {
     index: config.index,
-    size: size,
+    size,
     body: {
       query: {
         script_score: {

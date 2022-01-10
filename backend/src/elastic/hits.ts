@@ -62,10 +62,8 @@ const getVotesSimilarProducts = <SearchBody>(
   data: ApiResponse<SearchResponse<false>, SearchBody>,
   asins: string[]
 ) => {
-  const filteredHits = data.body.aggregations[
-    "AsinFilter"
-  ] as AggregationsSingleBucketAggregate;
-  const bucketsHits = filteredHits["GroupByAsin"] as AggregationsTermsAggregate;
+  const filteredHits = data.body.aggregations.AsinFilter as AggregationsSingleBucketAggregate;
+  const bucketsHits = filteredHits.GroupByAsin as AggregationsTermsAggregate;
   const bucketsArray = bucketsHits.buckets as AggregationsKeyedBucket[];
   const hits = bucketsArray.map((d) => {
     const sum1 = d.sum1 as AggregationsValueAggregate;
