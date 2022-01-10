@@ -40,7 +40,7 @@ ENV NODE_ENV="production"
 COPY ./backend/config/ ../config/
 COPY ./backend/package.json ./
 
-VOLUME ./backend/.env:/server/.env
+VOLUME ${PWD}/backend/.env:/server/.env
 
 EXPOSE 3000
 

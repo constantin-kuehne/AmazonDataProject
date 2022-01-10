@@ -16,6 +16,15 @@ and display them in a webapp built in an react environment.
 * This app is designed to run on a linux server environment and is able to handle various requests through eclipse APIs to our online database.
 * The access is limited and not public domain.
 
+### How to run in docker ###
+
+* Build docker image:
+``docker build . -t adp:release``
+
+* Run docker image
+``docker run --volume ${PWD}/backend/.env:/server/.env -dp 3000:3000 adp:release``
+please make sure to specify the right path to the .env file after the volume flag
+
 ### Contribution guidelines ###
 
 * Elastic, APIs, Data-Stuff, Dashboard Data -> Constantin Kühne
