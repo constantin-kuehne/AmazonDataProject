@@ -23,7 +23,7 @@ and display them in a webapp built in an react environment.
 ``docker build . -t adp:release``
 
 * Run docker image:
-``docker run --volume ${PWD}/backend/.env:/server/.env -dp 3000:3000 adp:release``
+``docker run --volume ${PWD}/backend/.env:/server/.env --rm -dp 3000:3000 adp:release``
 
 please make sure to specify the right path to the .env file after the volume flag
 
