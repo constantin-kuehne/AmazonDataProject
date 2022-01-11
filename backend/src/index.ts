@@ -23,7 +23,7 @@ app.use("/asin", AsinRouter);
 
 app.use("/completion", CompletionRouter);
 
-app.use(express.static("dist"));
+app.use(express.static("public"));
 
 app.use((_, __, next) => next(createError(404, "Not Found")));
 
