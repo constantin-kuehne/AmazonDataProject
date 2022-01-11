@@ -1,6 +1,4 @@
-FROM node:16-alpine
-
-ENV BUILD_PATH="/server/src/dist"
+FROM node:16 AS frontend
 
 RUN npm install -g typescript@4.5.4
 
@@ -16,6 +14,9 @@ COPY ./frontend/public/ ./public/
 RUN npm install .
 RUN npm run build
 
+
+FROM node:16 AS backend
+
 WORKDIR /backend
 
 COPY ./backend/tslint.json ./
@@ -26,21 +27,22 @@ COPY ./backend/src/ ./src/
 
 RUN npm install .
 
-RUN npm run build -- --outDir /server/src/
+RUN npm run build 
 
-WORKDIR /
 
-RUN rm -rf ./frontend/
-RUN rm -rf ./backend/
-
-WORKDIR /server/src
+FROM node:16-alpine
 
 ENV NODE_ENV="production"
 
-COPY ./backend/config/ ../config/
-COPY ./backend/package.json ./
+WORKDIR /server/src
 
-VOLUME ${PWD}/backend/.env:/server/.env
+COPY /backend/config/ ../config/
+COPY /backend/package.json ./
+
+COPY --from=backend /backend/dist/ ./
+COPY --from=frontend /frontend/build/ ./public/
+
+# VOLUME ${PWD}/backend/.env:/server/.env
 
 EXPOSE 3000
 
