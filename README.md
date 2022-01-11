@@ -22,6 +22,9 @@ and display them in a webapp built in an react environment.
 * Build docker image:
 ``docker build . -t adp:release``
 
+* Build docker image for linux/amd64:
+``docker buildx build --platform linux/amd64 . -t adp:linux``
+
 * Run docker image:
 ``docker run --volume ${PWD}/backend/.env:/server/.env --rm -dp 3000:3000 adp:release``
 
