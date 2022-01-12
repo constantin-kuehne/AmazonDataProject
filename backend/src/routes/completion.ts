@@ -9,7 +9,9 @@ router.get("/asin", (req, res) => {
 });
 
 router.get("/title", (req, res) => {
-  queryCompletionProductTitle(req.query.s as string).then((data) =>
+  let size: number = parseInt(req.query.size as string, 10);
+  size = Number.isNaN(size) ? undefined : size;
+  queryCompletionProductTitle(req.query.s as string, size).then((data) =>
     res.json(data)
   );
 });

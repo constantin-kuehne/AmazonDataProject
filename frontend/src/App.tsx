@@ -36,7 +36,7 @@ function App() {
         <Search />
         <br />
 
-        <Button //Searchbutton
+        {/*<Button //Searchbutton
           onClick={() =>
             console.log("Search Button Clicked - Process started.")
           }
@@ -48,7 +48,7 @@ function App() {
         >
           {" "}
           Search
-        </Button>
+        </Button>*/}
       </header>
 
       <div className="App-about">

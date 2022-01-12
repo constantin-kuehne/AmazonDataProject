@@ -72,7 +72,7 @@ const _querySimilarProductsRaw = (
               ],
               min_term_freq: 1,
               min_doc_freq: 1,
-              max_query_terms: 12,
+              max_query_terms: 30,
             },
           },
         },

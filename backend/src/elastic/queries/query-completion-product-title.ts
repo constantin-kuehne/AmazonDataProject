@@ -1,14 +1,18 @@
 import client from "../client";
 import config from "../../config";
 import { getCompletionTitle } from "../hits";
-import { SearchRequest } from "@elastic/elasticsearch/api/types";
+import {
+  QueryDslMatchQuery,
+  SearchRequest,
+} from "@elastic/elasticsearch/api/types";
 
 class SearchBody implements SearchRequest {
   index: string;
+  size: number;
   body: {
     query: {
       match: {
-        [field: string]: string;
+        [field: string]: QueryDslMatchQuery;
       };
     };
     collapse: { field: string };
@@ -28,13 +32,20 @@ const _queryCompletionTitleRaw = (
   title: string,
   field: string,
   sourceFields: boolean | string[],
-  collapseField: string
+  collapseField: string,
+  size: number = 10
 ) => {
   const query: SearchBody = {
     index: `${config.index}`,
+    size: size,
     body: {
       query: {
-        match: {},
+        match: {
+          [field]: {
+            query: title.trim(),
+            operator: "or",
+          },
+        },
       },
       collapse: {
         field: collapseField,
@@ -42,11 +53,10 @@ const _queryCompletionTitleRaw = (
       _source: sourceFields,
     },
   };
-  query.body.query.match[field] = title;
   return client.search<Source, SearchBody>(query);
 };
 
-export default async (title: string) => {
+export default async (title: string, size: number = 10) => {
   const field = "product_title";
   const sourceFields = ["product_id", "product_title"];
   const collapseField = "product_id.keyword";
@@ -54,7 +64,8 @@ export default async (title: string) => {
     title,
     field,
     sourceFields,
-    collapseField
+    collapseField,
+    size
   );
   return getCompletionTitle(data);
 };
