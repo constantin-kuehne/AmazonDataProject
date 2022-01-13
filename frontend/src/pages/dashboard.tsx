@@ -1,13 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 
+import config from "../config";
+import { Source as SearchProductSource } from "../components/searchbar";
+
 export interface Source {
   helpful_votes: number;
   total_votes: number;
   review_headline: string;
 }
 
-export const BarChart = () => {
+export const BarChart = ({
+  searchedProduct,
+  size = 20,
+}: {
+  searchedProduct: null | SearchProductSource;
+  size?: number;
+}) => {
   const svgRef = useRef<null | SVGSVGElement>(null);
 
   const [data, setData] = useState<null | Source[]>(null);
@@ -16,10 +25,14 @@ export const BarChart = () => {
   const margin = { left: 400, right: 30, top: 30, bottom: 30 };
 
   useEffect(() => {
-    fetch("http://localhost:3001/asin/B000002L7Y/reviews")
-      .then((res) => res.json())
-      .then((data) => setData(data.slice(0, 20)));
-  }, []);
+    if (searchedProduct?.hasOwnProperty("product_id")) {
+      const uri = `${config.url}/asin/${searchedProduct?.product_id}/reviews?size=${size}`;
+      fetch(uri)
+        .then((res) => res.json())
+        .then((data) => setData(data))
+        .catch((err) => console.error(err));
+    }
+  }, [searchedProduct]);
 
   useEffect(() => {
     if (svgRef.current && data) {
@@ -67,6 +80,10 @@ export const BarChart = () => {
         .attr("fill", "lightgray");
     }
   }, [data, svgRef.current]);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <div>

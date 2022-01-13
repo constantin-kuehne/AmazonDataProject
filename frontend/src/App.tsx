@@ -8,6 +8,7 @@ import { KeyboardArrowRight } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core";
 import ResponsiveAppBar from "./components/appbar";
 import { BarChart } from "./pages/dashboard";
+import "./config";
 
 //App Styling for App.tsx mui components
 const useStyles = makeStyles({
@@ -66,7 +67,7 @@ const App = () => {
       </div>
 
       <div className="App-Body">
-        <BarChart />
+        <BarChart searchedProduct={searchedProduct} />
       </div>
 
       <div className="App-footer">
