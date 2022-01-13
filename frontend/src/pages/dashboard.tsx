@@ -37,6 +37,7 @@ export const BarChart = ({
   useEffect(() => {
     if (svgRef.current && data) {
       const svg = d3.select(svgRef.current);
+      svg.selectAll("*").remove();
       const max = d3.max(data, (d) => d.total_votes);
 
       const xScale = d3.scaleLinear(
@@ -51,12 +52,12 @@ export const BarChart = ({
         .call(xAxisFn)
         .attr("transform", `translate(0, ${height - margin.bottom})`);
 
-      const yScale = d3.scaleBand(
-        data
-          .sort((a, b) => a.total_votes - b.total_votes)
-          .map((d) => d.review_headline),
-        [margin.top, height - margin.bottom]
-      );
+      const yScale = d3
+        .scaleBand(
+          data.map((d) => d.review_headline),
+          [margin.top, height - margin.bottom]
+        )
+        .padding(0.3);
       const yAxisFn = d3.axisLeft(yScale);
 
       const yAxis = svg.append<SVGGElement>("g");
@@ -72,18 +73,14 @@ export const BarChart = ({
       bars = bars
         .attr("y", (d) => {
           const yPos = yScale(d.review_headline);
-          const yPosAdjusted = yPos! + 15;
+          const yPosAdjusted = yPos!;
           return yPosAdjusted;
         })
-        .attr("height", 12)
-        .attr("width", (d) => xScale(d.total_votes) - margin.left - 1)
+        .attr("height", yScale.bandwidth())
+        .attr("width", (d) => xScale(d.total_votes) - margin.left)
         .attr("fill", "lightgray");
     }
   }, [data, svgRef.current]);
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   return (
     <div>
