@@ -11,16 +11,18 @@ export interface Source {
 
 export const BarChart = ({
   searchedProduct,
+  width,
+  height,
   size = 20,
 }: {
   searchedProduct: null | SearchProductSource;
+  width: number;
+  height: number;
   size?: number;
 }) => {
   const svgRef = useRef<null | SVGSVGElement>(null);
 
   const [data, setData] = useState<null | Source[]>(null);
-  const width = 1000;
-  const height = 500;
   const margin = { left: 400, right: 30, top: 30, bottom: 30 };
 
   useEffect(() => {

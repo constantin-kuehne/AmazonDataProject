@@ -8,8 +8,8 @@ export const Dashboard = ({
   searchedProduct: null | SearchProductSource;
 }) => {
   return (
-    <>
-      <BarChart searchedProduct={searchedProduct} />
-    </>
+    <div>
+      <BarChart searchedProduct={searchedProduct} width={1000} height={500} />
+    </div>
   );
 };
