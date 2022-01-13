@@ -70,8 +70,8 @@ export const BarChart = ({
         .enter()
         .append("rect");
 
-      bars = bars.attr("x", margin.left + 1);
       bars = bars
+        .attr("x", margin.left + 1)
         .attr("y", (d) => {
           const yPos = yScale(d.review_headline);
           const yPosAdjusted = yPos!;
