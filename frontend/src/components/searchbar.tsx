@@ -135,7 +135,10 @@ const Search = ({
               }}
             >
               {searchResults.map((ele) => (
-                <ListItem key={ele.product_id}>
+                <ListItem
+                  key={ele.product_id}
+                  onClick={() => setSearchedProduct(ele)}
+                >
                   <ListItemButton>
                     <ListItemText
                       primary={ele.product_title}
@@ -147,7 +150,6 @@ const Search = ({
                           textOverflow: "ellipsis",
                         },
                       }}
-                      onClick={() => setSearchedProduct(ele)}
                     />
                   </ListItemButton>
                 </ListItem>

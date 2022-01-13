@@ -4,10 +4,9 @@ import "./App.css";
 import Search, { Source } from "./components/searchbar";
 import { Avatar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import { KeyboardArrowRight } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core";
 import ResponsiveAppBar from "./components/appbar";
-import { BarChart } from "./pages/dashboard";
+import { Dashboard } from "./pages/dashboard";
 import "./config";
 
 //App Styling for App.tsx mui components
@@ -67,7 +66,7 @@ const App = () => {
       </div>
 
       <div className="App-Body">
-        <BarChart searchedProduct={searchedProduct} />
+        <Dashboard searchedProduct={searchedProduct} />
       </div>
 
       <div className="App-footer">
