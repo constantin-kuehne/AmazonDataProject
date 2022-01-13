@@ -6,7 +6,7 @@ import {
 } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import {
   Box,
   List,
@@ -14,6 +14,8 @@ import {
   ListItemText,
   ListItemButton,
 } from "@mui/material";
+
+import { DocumentRequired } from "../types";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -73,10 +75,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface Source {
-  product_title: string;
-  asin: string;
-}
+export interface Source extends DocumentRequired {}
 
 const getProductTitles = async (searchTitle: string) => {
   const res = await fetch(
@@ -85,7 +84,11 @@ const getProductTitles = async (searchTitle: string) => {
   return res.json() as Promise<Source[] | []>;
 };
 
-const Search = () => {
+const Search = ({
+  setSearchedProduct,
+}: {
+  setSearchedProduct: Dispatch<SetStateAction<null | Source>>;
+}) => {
   const classes = useStyles();
 
   let timer: NodeJS.Timeout;
@@ -132,7 +135,7 @@ const Search = () => {
               }}
             >
               {searchResults.map((ele) => (
-                <ListItem>
+                <ListItem key={ele.product_id}>
                   <ListItemButton>
                     <ListItemText
                       primary={ele.product_title}
@@ -144,7 +147,7 @@ const Search = () => {
                           textOverflow: "ellipsis",
                         },
                       }}
-                      onClick={}
+                      onClick={() => setSearchedProduct(ele)}
                     />
                   </ListItemButton>
                 </ListItem>

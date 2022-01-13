@@ -35,12 +35,7 @@ const getCompletionTitle = (
     CompletionTitleSearchBody
   >
 ) => {
-  const hits = data.body.hits.hits.map((d) => {
-    return {
-      product_title: d._source.product_title,
-      asin: d._source.product_id,
-    };
-  });
+  const hits = data.body.hits.hits.map((d) => d._source);
   return hits;
 };
 

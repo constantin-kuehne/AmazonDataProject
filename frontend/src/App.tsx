@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Search from "./components/searchbar";
+import Search, { Source } from "./components/searchbar";
 import { Avatar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { KeyboardArrowRight } from "@material-ui/icons";
@@ -20,8 +20,15 @@ const useStyles = makeStyles({
   },
 });
 //App Function
-function App() {
+const App = () => {
   const classes = useStyles();
+
+  const [searchedProduct, setSearchedProduct] = useState<Source | null>(null);
+
+  useEffect(() => {
+    console.log(searchedProduct);
+  }, [searchedProduct]);
+
   return (
     <div className="App">
       <div className="app-bar">
@@ -33,7 +40,7 @@ function App() {
           <Avatar alt="Example Alt" src="Bigproject_Logo.png" />
         </div>
         <h2> ADP SEARCH</h2>
-        <Search />
+        <Search setSearchedProduct={setSearchedProduct} />
         <br />
 
         {/*<Button //Searchbutton
@@ -75,6 +82,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
