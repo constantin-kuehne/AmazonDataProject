@@ -47,7 +47,7 @@ describe("data tests", () => {
     return queryCompletionTitle("test").then((data) => {
       expect(data.length).toBeGreaterThan(0);
       expect(typeof data[0].product_title).toBe("string");
-      expect(typeof data[0].asin).toBe("string");
+      expect(typeof data[0].product_id).toBe("string");
     });
   });
 
