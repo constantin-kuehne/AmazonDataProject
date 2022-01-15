@@ -58,10 +58,7 @@ const App = () => {
       </header>
 
       <div className="App-about">
-        <br />
-        <br />
-
-        <p> This is how it works!</p>
+          <p> This is how the app works - About our App.</p>
       </div>
 
       <div className="App-Body">

@@ -9,7 +9,14 @@ export const Dashboard = ({
 }) => {
   return (
     <div>
+        <h3> This is the first Chart.</h3>
       <BarChart searchedProduct={searchedProduct} width={1000} height={500} />
+        <h3> This is the second Chart.</h3>
+        <BarChart searchedProduct={searchedProduct} width={1000} height={500} />
+        <h3> This is the third Chart.</h3>
+        <BarChart searchedProduct={searchedProduct} width={1000} height={500} />
+        <h3> This is the fourth Chart.</h3>
+        <BarChart searchedProduct={searchedProduct} width={1000} height={500} />
     </div>
   );
 };
