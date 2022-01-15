@@ -42,3 +42,10 @@ please make sure to specify the right path to the .env file after the volume fla
 * valentin.kieslinger@student.hdbw-hochschule.de
 * tim.muscholl@student.hdbw-hochschule.de
 * HDBW Munich
+
+### There is more documentation about this project!
+
+* Web App
+
+
+You'll find this documents in the "Further Documentation" Directory.
