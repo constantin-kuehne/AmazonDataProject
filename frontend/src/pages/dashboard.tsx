@@ -1,5 +1,5 @@
 import React from "react";
-import { BarChart } from "./BarChart";
+import { BarChart } from "../components/graphs/BarChart";
 import { Source as SearchProductSource } from "../components/searchbar";
 
 export const Dashboard = ({

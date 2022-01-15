@@ -12,10 +12,13 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['About', 'Contact'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+//Appbar created with MUI
 
-const ResponsiveAppBar = () => {
+//Links der Appbar und dem Profile Icon. Können durch Routes ersetzt werden mit React Router. //TODO Routing
+const pages = ['Documentation', 'Contact'];
+const settings = ['Dashboard', 'Report a Problem'];
+
+const ADPAppbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -34,15 +37,17 @@ const ResponsiveAppBar = () => {
         setAnchorElUser(null);
     };
 
+
     return (
         <AppBar position="static" style={{background: "transparent"}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
-                        variant="h6"
+                        variant="h4"
                         noWrap
                         component="div"
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+                        fontWeight="600"
                     >
                         Amazon Data Project
                     </Typography>
@@ -89,7 +94,7 @@ const ResponsiveAppBar = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
-                        LOGO
+                        AMAZON DATA PROJECT
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
@@ -106,7 +111,7 @@ const ResponsiveAppBar = () => {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="User" src="Bigproject_Logo.png" />
+                                <Avatar alt="User" src="ADP_Logo.png" />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -137,4 +142,4 @@ const ResponsiveAppBar = () => {
         </AppBar>
     );
 };
-export default ResponsiveAppBar;
+export default ADPAppbar;

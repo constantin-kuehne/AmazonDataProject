@@ -34,7 +34,7 @@ please make sure to specify the right path to the .env file after the volume fla
 
 * Elastic, APIs, Data-Stuff, Dashboard Data -> Constantin Kühne
 * D3 & Data Visualization-Stuff, Dashboard Design -> Valentin Kieslinger
-* React App Development, Design, D3 implementing -> Tim Muscholl
+* React App Development, Design, Components -> Tim Muscholl
 
 ### Who do I talk to? ###
 

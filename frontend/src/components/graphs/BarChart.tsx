@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import config from "../config";
-import { Source as SearchProductSource } from "../components/searchbar";
+import config from "../../config";
+import { Source as SearchProductSource } from "../searchbar";
 import * as d3 from "d3";
 
 export interface Source {
