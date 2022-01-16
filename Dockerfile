@@ -7,11 +7,12 @@ WORKDIR /frontend
 COPY ./frontend/package.json ./
 COPY ./frontend/package-lock.json ./
 
-COPY ./frontend/tsconfig.json ./
-COPY ./frontend/src/ ./src/
-COPY ./frontend/public/ ./public/
-
 RUN npm install .
+
+COPY ./frontend/tsconfig.json ./
+COPY ./frontend/public/ ./public/
+COPY ./frontend/src/ ./src/
+
 RUN npm run build
 
 
@@ -19,13 +20,14 @@ FROM node:16 AS backend
 
 WORKDIR /backend
 
-COPY ./backend/tslint.json ./
-COPY ./backend/tsconfig.json ./
 COPY ./backend/package.json ./
 COPY ./backend/package-lock.json ./
-COPY ./backend/src/ ./src/
 
 RUN npm install .
+
+COPY ./backend/tslint.json ./
+COPY ./backend/tsconfig.json ./
+COPY ./backend/src/ ./src/
 
 RUN npm run build 
 
