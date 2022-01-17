@@ -6,16 +6,25 @@ HDBW Munich 2021/22 - Big Data, Digital Technology & Data Visualization
 
 ### What is this project for ###
 
-This project is about dealing with complex and big data, visualize them with D3 or other visualization tools 
-and display them in a webapp built in an react environment. 
+This project is about dealing with complex and big data through an elastic database, visualize them with D3 or other visualization tools 
+and display them in a webapp built in a react environment. 
 
 ### How do I get set up? ###
 
-* Run npm install
-* Run npm audit fix --force
-* Run "npm run start" -> Starts the webapp on your localhost. 
-* This app is designed to run on a linux server environment and is able to handle various requests through eclipse APIs to our online database.
-* The access is limited and not public domain.
+Install the frontend:
+* Run ``cd frontend``
+* Run ``npm install``
+* Run ``npm audit fix --force``
+* Run ``npm run start`` -> Starts the webapp on your localhost. 
+
+Install the backend:
+* Run ``cd backend``
+* Run ``npm install``
+* Run ``npm audit fix --force``
+* Run ``npm run start`` -> Starts the backend.
+
+This app is designed to run on a linux server environment and is able to handle various requests through elastic APIs to our online database.
+The access is limited and not public domain.
 
 ### How to run in docker ###
 
@@ -30,7 +39,7 @@ and display them in a webapp built in an react environment.
 
 please make sure to specify the right path to the .env file after the volume flag
 
-### Contribution guidelines ###
+### Contribution & Team ###
 
 * Elastic, APIs, Data-Stuff, Dashboard Data -> Constantin Kühne
 * D3 & Data Visualization-Stuff, Dashboard Design -> Valentin Kieslinger
@@ -48,4 +57,4 @@ please make sure to specify the right path to the .env file after the volume fla
 * Web App
 
 
-You'll find this documents in the "Further Documentation" Directory.
+You'll find this documents in the "Further Documentation" directory.
