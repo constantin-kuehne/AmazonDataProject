@@ -80,6 +80,24 @@ export const BarChart = ({
         .attr("height", yScale.bandwidth())
         .attr("width", (d) => xScale(d.total_votes) - margin.left)
         .attr("fill", "lightgray");
+
+        let bars1 = svg
+        .selectAll("rect")
+        .data<Source>(data)
+        .enter()
+        .append("rect");
+
+        bars1 = bars1
+        .attr("x", margin.left + 1)
+        .attr("y", (d) => {
+          const yPos = yScale(d.review_headline);
+          const yPosAdjusted = yPos!;
+          return yPosAdjusted;
+        })
+        .attr("height", yScale.bandwidth())
+        .attr("width", (d) => xScale(d.helpful_votes) - margin.left)
+        .attr("fill", "lightblue");
+
     }
   }, [data, svgRef.current]);
 
