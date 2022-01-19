@@ -8,6 +8,8 @@ import { Dashboard } from "./pages/dashboard";
 import "./config";
 import ADPAppbar from "./components/appbar";
 import About from "./pages/about";
+import Select from "./components/select_asin_producttitle";
+import SearchSelect from "./components/select_asin_producttitle";
 
 //App Styling for App.tsx mui components
 const useStyles = makeStyles({
@@ -34,14 +36,24 @@ const App = () => {
       <div className="app-bar">
         <ADPAppbar />
       </div>
-
       <header className="App-header">
         <div>
           <Avatar alt="Example Alt" src="ADP_Logo.png" />
         </div>
+        <br/>
         <h2> ADP SEARCH</h2>
+        <SearchSelect/>
+        <br/>
         <Search setSearchedProduct={setSearchedProduct} />
-        <br />
+        <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+
+
+
 
         {/*<Button //Searchbutton
           onClick={() =>
