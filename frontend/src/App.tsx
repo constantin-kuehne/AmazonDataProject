@@ -61,9 +61,13 @@ const App = () => {
           <p> This is how the app works - About our App.</p>
       </div>
 
-      <div className="App-Body">
-        <Dashboard searchedProduct={searchedProduct} />
-      </div>
+      {searchedProduct !== null ? (
+        <div className="App-Body">
+          <Dashboard searchedProduct={searchedProduct} />
+        </div>
+      ) : (
+        <></>
+      )}
 
       <div className="App-footer">
         <Button
