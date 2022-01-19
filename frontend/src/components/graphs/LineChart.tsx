@@ -166,7 +166,12 @@ export const LineChart = ({
           tooltipMonth.text(
             `Month: ${new Date(d.intervalTimeUnix).toLocaleString("en-US", {
               month: "long",
-            })}`
+            }
+            )} - ${new Date(d.intervalTimeUnix).toLocaleString("en-US", {
+              year: "numeric",
+            
+            }
+            )}`
           );
           const tooltipMonthNode = tooltipMonth.node() as SVGTextElement;
           const labelWidth = tooltipMonthNode.getComputedTextLength();
