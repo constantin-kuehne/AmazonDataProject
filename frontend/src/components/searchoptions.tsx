@@ -45,14 +45,14 @@ export default function SearchSelect() {
        <div className={classes.options}>
            <Box  sx={{ minWidth: 120 }}>
                <FormControl fullWidth>
-                   <InputLabel id="demo-simple-select-label" color="secondary"> Option</InputLabel>
+                   <InputLabel id="demo-simple-select-label" color="primary"> Option</InputLabel>
                    <Select
                        labelId="demo-simple-select-label"
                        id="demo-simple-select"
                        value={search}
                        label="Search Option"
                        onChange={handleChange}
-                       color="secondary"
+                       color="primary"
                    >
                        <MenuItem value={10}>ASIN</MenuItem>
                        <MenuItem value={20}>Product</MenuItem>
