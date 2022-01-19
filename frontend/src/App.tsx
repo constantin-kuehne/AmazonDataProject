@@ -36,10 +36,10 @@ const App = () => {
         <div>
           <Avatar alt="Example Alt" src="ADP_Logo.png" />
         </div>
-        <br/>
+        <br />
         <h2> ADP SEARCH</h2>
-        <SearchSelect/>
-        <br/>
+        <SearchSelect />
+        <br />
         <Search setSearchedProduct={setSearchedProduct} />
 
         {/*<Button //Searchbutton

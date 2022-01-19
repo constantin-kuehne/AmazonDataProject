@@ -74,11 +74,9 @@ export const BarChart = ({
         .classed("totalVotes", true);
 
       bars = bars
-        .attr("x", margin.left + 1)
+        .attr("x", margin.left + 0.5)
         .attr("y", (d) => {
-          const yPos = yScale(d.review_headline);
-          const yPosAdjusted = yPos!;
-          return yPosAdjusted;
+          return yScale(d.review_headline)!;
         })
         .attr("height", yScale.bandwidth())
         .attr("width", (d) => xScale(d.total_votes) - margin.left)
@@ -92,15 +90,17 @@ export const BarChart = ({
         .classed("helpfulVotes", true);
 
       bars1 = bars1
-        .attr("x", margin.left + 1)
+        .attr("x", margin.left + 0.5)
         .attr("y", (d) => {
-          const yPos = yScale(d.review_headline);
-          const yPosAdjusted = yPos!;
-          return yPosAdjusted;
+          const yPos =
+            yScale(d.review_headline)! +
+            yScale.bandwidth() / 2 -
+            (yScale.bandwidth() * 0.7) / 2;
+          return yPos;
         })
-        .attr("height", yScale.bandwidth())
+        .attr("height", yScale.bandwidth() * 0.7)
         .attr("width", (d) => xScale(d.helpful_votes) - margin.left)
-        .attr("fill", "lightblue");
+        .attr("fill", "#0288d1");
     }
   }, [data, svgRef.current]);
 
