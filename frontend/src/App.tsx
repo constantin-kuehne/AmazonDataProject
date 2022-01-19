@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Search, { Source } from "./components/searchbar";
 import { Avatar } from "@material-ui/core";
@@ -24,10 +24,6 @@ const App = () => {
   const classes = useStyles();
 
   const [searchedProduct, setSearchedProduct] = useState<Source | null>(null);
-
-  useEffect(() => {
-    console.log(searchedProduct);
-  }, [searchedProduct]);
 
   return (
     <div className="App">
@@ -59,7 +55,7 @@ const App = () => {
       </header>
 
       <div className="App-about">
-          <About/>
+        <About />
       </div>
 
       {searchedProduct !== null ? (
