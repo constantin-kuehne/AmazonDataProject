@@ -67,10 +67,11 @@ export const BarChart = ({
       yAxis.call(yAxisFn).attr("transform", `translate(${margin.left}, 0)`);
 
       let bars = svg
-        .selectAll("rect")
+        .selectAll("rect.totalVotes")
         .data<Source>(data)
         .enter()
-        .append("rect");
+        .append("rect")
+        .classed("totalVotes", true);
 
       bars = bars
         .attr("x", margin.left + 1)
@@ -84,10 +85,11 @@ export const BarChart = ({
         .attr("fill", "lightgray");
 
       let bars1 = svg
-        .selectAll("rect")
+        .selectAll("rect.helpfulVotes")
         .data<Source>(data)
         .enter()
-        .append("rect");
+        .append("rect")
+        .classed("helpfulVotes", true);
 
       bars1 = bars1
         .attr("x", margin.left + 1)

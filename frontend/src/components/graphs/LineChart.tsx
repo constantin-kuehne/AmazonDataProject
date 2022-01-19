@@ -84,7 +84,10 @@ export const LineChart = ({
         .call(yAxisFn)
         .call((g) => {
           g.select(".domain").remove();
-          g.selectAll(".tick line").attr("stroke", "lightgrey");
+          g.selectAll(".tick line")
+            .attr("stroke", "lightgrey")
+            .attr("x1", 0)
+            .attr("x2", width);
         })
         //label
         .append("text")
@@ -104,7 +107,6 @@ export const LineChart = ({
         .call(xAxisFn)
         .call((g) => {
           g.select(".domain").remove();
-          g.selectAll(".tick line").attr("stroke", "black");
         });
 
       //hide everything out of this area
@@ -203,7 +205,6 @@ export const LineChart = ({
 
       function onZoom(event: any) {
         const xNew = event.transform.rescaleX(xScale);
-        const xNew1 = event.transform.rescaleX(xScale);
 
         svg.selectAll("g.x-axis").remove(); //Ck hinzugefügt
         const xAxisFn = d3.axisBottom(xNew);
@@ -212,13 +213,16 @@ export const LineChart = ({
           .append<SVGGElement>("g")
           .classed("x-axis", true) // CK Namen geändert
           .attr("transform", `translate(0, ${height - margin.bottom})`)
-          .call(xAxisFn);
+          .call(xAxisFn)
+          .call((g) => {
+            g.select(".domain").remove();
+          });
 
         dots.attr("cx", (d) => xNew(d.intervalTimeUnix));
         path.attr(
           "d",
           d3.line<Source>(
-            (d) => xNew1(d.intervalTimeUnix),
+            (d) => xNew(d.intervalTimeUnix),
             (d) => yScale(d.docCount)
           )
         );
