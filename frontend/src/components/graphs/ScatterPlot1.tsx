@@ -36,7 +36,6 @@ export const ScatterPlot = ({
   useEffect(() => {
     if (searchedProduct?.hasOwnProperty("product_id")) {
       const uri = `${config.url}/asin/${searchedProduct?.product_id}/votes-similar-products?title=${searchedProduct.product_title}&category=${searchedProduct.product_category}`;
-      console.log(uri);
       fetch(uri)
         .then((res) => res.json())
         .then((data) => setData(data))
@@ -50,9 +49,6 @@ export const ScatterPlot = ({
   }, [searchedProduct]);
 
   useEffect(() => {
-    console.log(searchedProduct);
-    console.log(data);
-    console.log(searchedData);
     if (svgRef.current && data && searchedData) {
       const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove();

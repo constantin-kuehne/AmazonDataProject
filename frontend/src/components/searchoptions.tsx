@@ -10,6 +10,7 @@ import {
   makeStyles,
   Theme,
 } from "@material-ui/core/styles";
+import { SearchOptions } from "../App";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -38,12 +39,12 @@ export default function SearchSelect({
   setSearch,
 }: {
   search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  setSearch: React.Dispatch<React.SetStateAction<SearchOptions>>;
 }) {
   const classes = useStyles();
 
   const handleChange = (event: SelectChangeEvent) => {
-    setSearch(event.target.value as string);
+    setSearch(event.target.value as SearchOptions);
   };
 
   return (

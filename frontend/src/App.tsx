@@ -11,6 +11,7 @@ import About from "./pages/about";
 import Select from "./components/searchoptions";
 import SearchSelect from "./components/searchoptions";
 
+export type SearchOptions = "Product" | "ASIN";
 //App Styling for App.tsx mui components
 const useStyles = makeStyles({
   searchbutton: {
@@ -26,7 +27,7 @@ const App = () => {
   const classes = useStyles();
 
   const [searchedProduct, setSearchedProduct] = useState<Source | null>(null);
-  const [search, setSearch] = useState<string>("Product");
+  const [search, setSearch] = useState<SearchOptions>("Product");
 
   return (
     <div className="App">
@@ -41,7 +42,7 @@ const App = () => {
         <h2> ADP SEARCH</h2>
         <SearchSelect search={search} setSearch={setSearch} />
         <br />
-        <Search setSearchedProduct={setSearchedProduct} />
+        <Search setSearchedProduct={setSearchedProduct} search={search} />
 
         {/*<Button //Searchbutton
           onClick={() =>

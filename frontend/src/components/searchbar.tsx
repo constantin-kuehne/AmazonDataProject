@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 
 import { DocumentRequired } from "../types";
+import { SearchOptions } from "../App";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -77,17 +78,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export interface Source extends DocumentRequired {}
 
-const getProductTitles = async (searchTitle: string) => {
+const getProductTitles = async (searchString: string, search: string) => {
+  const searchOption = search === "Product" ? "title" : "asin";
   const res = await fetch(
-    `http://localhost:3001/completion/title?s=${searchTitle}&size=10`
+    `http://localhost:3001/completion/${searchOption}?s=${searchString}&size=10`
   );
   return res.json() as Promise<Source[] | []>;
 };
 
 const Search = ({
   setSearchedProduct,
+  search,
 }: {
   setSearchedProduct: Dispatch<SetStateAction<null | Source>>;
+  search: SearchOptions;
 }) => {
   const classes = useStyles();
 
@@ -102,7 +106,9 @@ const Search = ({
   }) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      getProductTitles(value).then((data: Source[]) => setSearchResults(data));
+      getProductTitles(value, search).then((data: Source[]) =>
+        setSearchResults(data)
+      );
     }, 100);
   };
 
