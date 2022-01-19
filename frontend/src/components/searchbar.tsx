@@ -106,10 +106,6 @@ const Search = ({
     }, 100);
   };
 
-  useEffect(() => {
-    console.log(searchResults);
-  }, [searchResults]);
-
   return (
     <div className={classes.search}>
       <div>

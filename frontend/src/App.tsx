@@ -24,10 +24,6 @@ const App = () => {
 
   const [searchedProduct, setSearchedProduct] = useState<Source | null>(null);
 
-  useEffect(() => {
-    console.log(searchedProduct);
-  }, [searchedProduct]);
-
   return (
     <div className="App">
       <div className="app-bar">
@@ -58,7 +54,7 @@ const App = () => {
       </header>
 
       <div className="App-about">
-          <p> This is how the app works - About our App.</p>
+        <p> This is how the app works - About our App.</p>
       </div>
 
       <div className="App-Body">
