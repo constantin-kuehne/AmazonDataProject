@@ -23,7 +23,7 @@ export const BarChart = ({
   const svgRef = useRef<null | SVGSVGElement>(null);
 
   const [data, setData] = useState<null | Source[]>(null);
-  const margin = { left: 400, right: 30, top: 30, bottom: 30 };
+  const margin = { left: 300, right: 30, top: 30, bottom: 30 };
 
   useEffect(() => {
     if (searchedProduct?.hasOwnProperty("product_id")) {
@@ -39,6 +39,7 @@ export const BarChart = ({
     if (svgRef.current && data) {
       const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove();
+
       const max = d3.max(data, (d) => d.total_votes);
 
       const xScale = d3.scaleLinear(
@@ -59,6 +60,7 @@ export const BarChart = ({
           [margin.top, height - margin.bottom]
         )
         .padding(0.3);
+
       const yAxisFn = d3.axisLeft(yScale);
 
       const yAxis = svg.append<SVGGElement>("g");

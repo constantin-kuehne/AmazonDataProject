@@ -17,6 +17,7 @@ router.get("/:ASIN", (req, res) => {
   queryAsin(req.params.ASIN as string).then((data) => res.json(data));
 });
 
+// Line chart
 router.get("/:ASIN/number-reviews/:DATETYPE", (req, res) => {
   let interval: number = parseInt(req.query.interval as string, 10);
   if (Number.isNaN(interval)) {

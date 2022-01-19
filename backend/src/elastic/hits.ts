@@ -1,11 +1,7 @@
 import { ApiResponse } from "@elastic/elasticsearch/api/new";
 import {
-  AggregationsAggregate,
-  AggregationsFiltersAggregate,
-  AggregationsFiltersBucketItem,
   AggregationsKeyedBucket,
   AggregationsKeyedBucketKeys,
-  AggregationsKeyedValueAggregate,
   AggregationsMultiBucketAggregate,
   AggregationsSingleBucketAggregate,
   AggregationsTermsAggregate,
