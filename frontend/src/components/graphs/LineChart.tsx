@@ -7,7 +7,6 @@ export interface Source {
   intervalTimeUnix: number;
   docCount: number;
 }
-
 const CalendarIntervalOptions = {
   DAY: "d",
   WEEK: "w",
@@ -43,6 +42,7 @@ export const LineChart = ({
   }, [searchedProduct]);
 
   useEffect(() => {
+    console.log(data);
     if (svgRef.current && data) {
       const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove();
@@ -77,7 +77,7 @@ export const LineChart = ({
 
       const yAxisFn = d3.axisLeft(yScale);
 
-      // yAxis & grid
+      // yAxis & grid;
       const yAxis = svg
         .append<SVGGElement>("g")
         .classed("y-axis", true)
@@ -85,11 +85,9 @@ export const LineChart = ({
         .call(yAxisFn)
         .call((g) => {
           g.select(".domain").remove();
-          g.selectAll(".tick-line")
-            //.attr("x1", [width - margin.right])
-            .attr("stroke", "lightgrey");
+          g.selectAll(".tick-line").attr("stroke", "lightgrey");
         })
-        //lable
+        //label
         .append("text")
         .attr("font-family", "sans-serif")
         .attr("font-size", 12)
@@ -107,7 +105,7 @@ export const LineChart = ({
         .call(xAxisFn)
         .call((g) => {
           g.select(".domain").remove();
-          g.selectAll(".tick line").attr("stroke", "black");
+          g.selectAll(".tick-line").attr("stroke", "black");
         });
 
       //hide everything out of this area
@@ -121,9 +119,13 @@ export const LineChart = ({
         .attr("y", margin.top)
         .attr("fill", "white");
 
-      const clip = svg.append("g").attr("clip-path", "url(#border)");
+      const clip = svg
+        .append<SVGGElement>("g")
+        .attr("clip-path", "url(#border)");
       svg.append("path");
-      const clip1 = svg.append("path").attr("clip-path", "url(#border)");
+      const clip1 = svg
+        .append<SVGPathElement>("path")
+        .attr("clip-path", "url(#border)");
 
       //implement line
       const path = clip1
@@ -149,7 +151,9 @@ export const LineChart = ({
         .attr("cy", (d) => yScale(d.docCount))
         .attr("r", 2.5)
         .style("fill", "darkblue")
-        .on("mouseenter", function (d: Source) {
+        //@ts-ignore
+        .on("mouseenter", function (event, d: Source) {
+          console.log(d);
           d3.select(this)
             .attr("r", 5)
             .style("fill", "blue")
@@ -166,12 +170,9 @@ export const LineChart = ({
           tooltipMonth.text(
             `Month: ${new Date(d.intervalTimeUnix).toLocaleString("en-US", {
               month: "long",
-            }
-            )} - ${new Date(d.intervalTimeUnix).toLocaleString("en-US", {
+            })} - ${new Date(d.intervalTimeUnix).toLocaleString("en-US", {
               year: "numeric",
-            
-            }
-            )}`
+            })}`
           );
           const tooltipMonthNode = tooltipMonth.node() as SVGTextElement;
           const labelWidth = tooltipMonthNode.getComputedTextLength();
@@ -218,16 +219,16 @@ export const LineChart = ({
 
         dots.attr("cx", (d) => xNew(d.intervalTimeUnix));
         path.attr(
-            "d",
-            d3.line<Source>(
-              (d) => xNew1(d.intervalTimeUnix),
-              (d) => yScale(d.docCount)
-            )
+          "d",
+          d3.line<Source>(
+            (d) => xNew1(d.intervalTimeUnix),
+            (d) => yScale(d.docCount)
+          )
         );
       }
 
       //Tooltips
-      const tooltip = svg.append("g").attr("visibility", "hidden");
+      const tooltip = svg.append<SVGGElement>("g").attr("visibility", "hidden");
       const tooltipRect = tooltip
         .append("rect")
         .attr("fill", "black")
