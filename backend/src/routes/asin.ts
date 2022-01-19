@@ -65,6 +65,7 @@ router.get("/:ASIN/reviews", (req, res) => {
   queryReviews(req.params.ASIN as string, size).then((data) => res.json(data));
 });
 
+// scatter plot
 router.get("/:ASIN/votes-similar-products", (req, res) => {
   let size: number = parseInt(req.query.size as string, 10);
   size = Number.isNaN(size) ? undefined : size;
