@@ -173,7 +173,7 @@ export const LineChart = ({
               year: "numeric",
             })}`
           );
-          const tooltipMonthNode = tooltipMonth.node() as SVGTextElement;
+          const tooltipMonthNode: SVGTextElement = tooltipMonth.node()!;
           const labelWidth = tooltipMonthNode.getComputedTextLength();
           tooltipRect.attr("width", labelWidth + 10);
           tooltip.attr("visibility", "visible");
