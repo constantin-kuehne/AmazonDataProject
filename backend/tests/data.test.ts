@@ -141,7 +141,6 @@ describe("data tests", () => {
       "Meat is murder",
       "Music"
     ).then((data) => {
-      console.log(data);
       expect(data.length).toBe(50);
       expect(new Set(Object.keys(data[0]))).toEqual(
         new Set([

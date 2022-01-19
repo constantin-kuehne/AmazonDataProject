@@ -17,10 +17,9 @@ import { SourceSumVotesArrayASINS as SimilarProductsSource } from "./queries/que
 import { hitsCallback } from "./types";
 
 const getQueryFields = <Source, SearchBody>(
-  data: ApiResponse<SearchResponse<Source>, SearchBody>,
-  field: string
+  data: ApiResponse<SearchResponse<Source>, SearchBody>
 ) => {
-  const hits: string[] = data.body.hits.hits.flatMap((d) => d.fields[field]);
+  const hits = data.body.hits.hits.map((d) => d._source);
   return hits;
 };
 

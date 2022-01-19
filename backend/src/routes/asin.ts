@@ -50,6 +50,7 @@ router.get("/:ASIN/helpful-votes", (req, res) => {
   queryHelpfulVotes(req.params.ASIN as string).then((data) => res.json(data));
 });
 
+// scatter plot
 router.get("/:ASIN/info", (req, res) => {
   queryAsinDistinct(req.params.ASIN as string).then((data) => res.json(data));
 });
