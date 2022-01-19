@@ -195,8 +195,8 @@ const ADPAppbar = () => {
             <Toolbar id="back-to-top-anchor" />
 
             <ScrollTop>
-                <Fab color="primary" size="large" aria-label="scroll back to top">
-                    <SearchIcon/>
+                <Fab color="primary" size="medium" aria-label="scroll back to top">
+                    <KeyboardArrowUpIcon/>
                 </Fab>
             </ScrollTop>
         </React.Fragment>
