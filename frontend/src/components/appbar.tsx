@@ -15,6 +15,7 @@ import Zoom from '@material-ui/core/Zoom';
 import {CssBaseline, useScrollTrigger} from "@material-ui/core";
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import SearchIcon from "@material-ui/icons/Search";
 
 //Appbar created with MUI
 
@@ -195,7 +196,7 @@ const ADPAppbar = () => {
 
             <ScrollTop>
                 <Fab color="primary" size="large" aria-label="scroll back to top">
-                    <KeyboardArrowUpIcon />
+                    <SearchIcon/>
                 </Fab>
             </ScrollTop>
         </React.Fragment>
