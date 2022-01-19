@@ -84,7 +84,10 @@ export const LineChart = ({
         .call(yAxisFn)
         .call((g) => {
           g.select(".domain").remove();
-          g.selectAll(".tick line").attr("stroke", "lightgrey");
+          g.selectAll(".tick line")
+            .attr("stroke", "lightgrey")
+            .attr("x1", 0)
+            .attr("x2", width);
         })
         //label
         .append("text")
@@ -104,7 +107,6 @@ export const LineChart = ({
         .call(xAxisFn)
         .call((g) => {
           g.select(".domain").remove();
-          g.selectAll(".tick line").attr("stroke", "black");
         });
 
       //hide everything out of this area
