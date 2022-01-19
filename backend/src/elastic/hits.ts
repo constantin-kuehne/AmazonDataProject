@@ -116,7 +116,7 @@ const getHelpfulVotes = <Source, SearchBody>(
   data: ApiResponse<SearchResponse<Source>, SearchBody>,
   filterName: string,
   aggName: string
-): { docCount: number; helfulVotes: number } => {
+): { docCount: number; helpfulVotes: number } => {
   const aggregation: AggregationsSingleBucketAggregate = data.body.aggregations[
     filterName
   ] as AggregationsSingleBucketAggregate;
@@ -125,9 +125,46 @@ const getHelpfulVotes = <Source, SearchBody>(
     string,
     any
   >;
-  const helfulVotes = intermediate.value;
+  const helpfulVotes = intermediate.value;
 
-  return { docCount, helfulVotes };
+  return { docCount, helpfulVotes };
+};
+
+const getDistinctAsinVotes = <Source, SearchBody>(
+  data: ApiResponse<SearchResponse<Source>, SearchBody>,
+  filterName: string,
+  aggName1: string,
+  aggName2: string,
+  aggName3: string
+): {
+  docCount: number;
+  helpfulVotes: number;
+  totalVotes: number;
+  starRating: number;
+} => {
+  const aggregation: AggregationsSingleBucketAggregate = data.body.aggregations[
+    filterName
+  ] as AggregationsSingleBucketAggregate;
+  const docCount = aggregation.doc_count;
+  const intermediate1: Record<string, number> = aggregation[aggName1] as Record<
+    string,
+    number
+  >;
+  const helpfulVotes = intermediate1.value;
+
+  const intermediate2: Record<string, number> = aggregation[aggName2] as Record<
+    string,
+    number
+  >;
+  const totalVotes = intermediate2.value;
+
+  const intermediate3: Record<string, number> = aggregation[aggName3] as Record<
+    string,
+    number
+  >;
+  const starRating = intermediate3.value;
+
+  return { docCount, helpfulVotes, totalVotes, starRating };
 };
 
 const getNumberReviews = <SearchBody>(
@@ -170,4 +207,5 @@ export {
   getCompletionTitle,
   getQueryHitsSimilarProducts,
   getVotesSimilarProducts,
+  getDistinctAsinVotes,
 };

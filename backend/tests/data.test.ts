@@ -15,6 +15,7 @@ import {
   querySimilarProducts,
   queryVotesSimilarProducts,
 } from "../src/elastic/queries/query-similar-products";
+import queryDistinctAsinVotes from "../src/elastic/queries/query-asin-distinct";
 
 describe("data tests", () => {
   test("check if query for ASIN works", async () => {
@@ -74,8 +75,16 @@ describe("data tests", () => {
 
   test("check if helpful votes ASIN of an ASIN that should exist actually returns something", async () => {
     return queryHelpfulVotes("B000002L7Y").then((data) => {
-      expect(typeof data.helfulVotes).toBe("number");
-      expect(data.helfulVotes).toBeGreaterThan(0);
+      expect(typeof data.helpfulVotes).toBe("number");
+      expect(data.helpfulVotes).toBeGreaterThan(0);
+    });
+  });
+
+  test("check if distinct votes ASIN of an ASIN that should exist actually returns something", async () => {
+    return queryDistinctAsinVotes("B000002L7Y").then((data) => {
+      expect(new Set(Object.keys(data))).toEqual(
+        new Set(["docCount", "helpfulVotes", "totalVotes", "starRating"])
+      );
     });
   });
 
@@ -132,9 +141,17 @@ describe("data tests", () => {
       "Meat is murder",
       "Music"
     ).then((data) => {
+      console.log(data);
       expect(data.length).toBe(50);
       expect(new Set(Object.keys(data[0]))).toEqual(
-        new Set(["ASIN", "docCount", "totalVotes"])
+        new Set([
+          "ASIN",
+          "docCount",
+          "totalVotes",
+          "helpfulVotes",
+          "productTitle",
+          "starRating",
+        ])
       );
     });
   });

@@ -10,6 +10,7 @@ import queryTimeNumberReviews, {
   CalendarIntervalOptions,
 } from "../elastic/queries/query-time-number-reviews";
 import { queryVotesSimilarProducts } from "../elastic/queries/query-similar-products";
+import queryAsinDistinct from "../elastic/queries/query-asin-distinct";
 
 const router = Router();
 
@@ -47,6 +48,10 @@ router.get("/:ASIN/total-votes", (req, res) => {
 
 router.get("/:ASIN/helpful-votes", (req, res) => {
   queryHelpfulVotes(req.params.ASIN as string).then((data) => res.json(data));
+});
+
+router.get("/:ASIN/info", (req, res) => {
+  queryAsinDistinct(req.params.ASIN as string).then((data) => res.json(data));
 });
 
 // bar chart helpful votes total votes review headline
