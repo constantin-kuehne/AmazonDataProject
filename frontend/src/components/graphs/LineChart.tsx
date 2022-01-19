@@ -206,14 +206,7 @@ export const LineChart = ({
       function onZoom(event: any) {
         const xNew = event.transform.rescaleX(xScale);
         const xNew1 = event.transform.rescaleX(xScale);
-        dots.attr("cx", (d) => xNew(d.intervalTimeUnix));
-        path.attr(
-          "d",
-          d3.line<Source>(
-            (d) => xNew1(d.intervalTimeUnix),
-            (d) => yScale(d.docCount)
-          )
-        );
+
         svg.selectAll("g.x-axis").remove(); //Ck hinzugefügt
         const xAxisFn = d3.axisBottom(xNew);
 
@@ -222,6 +215,15 @@ export const LineChart = ({
           .classed("x-axis", true) // CK Namen geändert
           .attr("transform", `translate(0, ${height - margin.bottom})`)
           .call(xAxisFn);
+
+        dots.attr("cx", (d) => xNew(d.intervalTimeUnix));
+        path.attr(
+            "d",
+            d3.line<Source>(
+              (d) => xNew1(d.intervalTimeUnix),
+              (d) => yScale(d.docCount)
+            )
+        );
       }
 
       //Tooltips
