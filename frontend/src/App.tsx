@@ -26,6 +26,7 @@ const App = () => {
   const classes = useStyles();
 
   const [searchedProduct, setSearchedProduct] = useState<Source | null>(null);
+  const [search, setSearch] = useState<string>("Product");
 
   return (
     <div className="App">
@@ -38,7 +39,7 @@ const App = () => {
         </div>
         <br />
         <h2> ADP SEARCH</h2>
-        <SearchSelect />
+        <SearchSelect search={search} setSearch={setSearch} />
         <br />
         <Search setSearchedProduct={setSearchedProduct} />
 
