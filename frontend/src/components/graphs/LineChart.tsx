@@ -151,7 +151,6 @@ export const LineChart = ({
         .attr("cy", (d) => yScale(d.docCount))
         .attr("r", 2.5)
         .style("fill", "darkblue")
-        //@ts-ignore
         .on("mouseenter", function (event, d: Source) {
           console.log(d);
           d3.select(this)
