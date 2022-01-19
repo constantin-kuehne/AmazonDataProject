@@ -7,8 +7,6 @@ import { makeStyles } from "@material-ui/core";
 import { Dashboard } from "./pages/dashboard";
 import "./config";
 import ADPAppbar from "./components/appbar";
-import about from "./pages/about"
-import About from "./pages/about";
 
 //App Styling for App.tsx mui components
 const useStyles = makeStyles({
@@ -60,8 +58,9 @@ const App = () => {
       </header>
 
       <div className="App-about">
-          <About/>
+          <p> This is how the app works - About our App.</p>
       </div>
+
       <div className="App-Body">
         <Dashboard searchedProduct={searchedProduct} />
       </div>

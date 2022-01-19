@@ -42,7 +42,6 @@ export const LineChart = ({
   }, [searchedProduct]);
 
   useEffect(() => {
-    console.log(data);
     if (svgRef.current && data) {
       const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove();
@@ -78,14 +77,14 @@ export const LineChart = ({
       const yAxisFn = d3.axisLeft(yScale);
 
       // yAxis & grid;
-      const yAxis = svg
+      svg
         .append<SVGGElement>("g")
         .classed("y-axis", true)
         .attr("transform", `translate(${margin.left}, 0)`)
         .call(yAxisFn)
         .call((g) => {
           g.select(".domain").remove();
-          g.selectAll(".tick-line").attr("stroke", "lightgrey");
+          g.selectAll(".tick line").attr("stroke", "lightgrey");
         })
         //label
         .append("text")
@@ -98,14 +97,14 @@ export const LineChart = ({
         .text("↑ Number of reviews");
 
       // xAxis & grid
-      const xAxis = svg
+      svg
         .append<SVGGElement>("g")
         .classed("x-axis", true)
         .attr("transform", `translate(0, ${height - margin.bottom})`)
         .call(xAxisFn)
         .call((g) => {
           g.select(".domain").remove();
-          g.selectAll(".tick-line").attr("stroke", "black");
+          g.selectAll(".tick line").attr("stroke", "black");
         });
 
       //hide everything out of this area
@@ -152,7 +151,6 @@ export const LineChart = ({
         .attr("r", 2.5)
         .style("fill", "darkblue")
         .on("mouseenter", function (event, d: Source) {
-          console.log(d);
           d3.select(this)
             .attr("r", 5)
             .style("fill", "blue")
