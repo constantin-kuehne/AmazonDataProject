@@ -268,24 +268,24 @@ export const ScatterPlotTwo = ({
 
       //yAxis
         svg
-            .append<SVGGElement>("g")
-            .classed("y-axis", true)
-            .attr("transform", `translate(${margin.left}, 0)`)
-            .call(yAxisFn)
-            .call((g) => {
-                g.select(".domain").remove();
-                g.selectAll(".tick line")
-                .attr("stroke", "lightgrey")
-                .attr("x1", 0)
-                .attr("x2", width-margin.right);
-            })
-            .append("text")
-            .attr("font-family", "sans-serif")
-            .attr("font-size", 12)
-            .attr("y", 0.3 * margin.top)
-            .attr("fill", "black")
-            .attr("text-anchor", "start")
-            .text("↑ Number of reviews");
+        .append<SVGGElement>("g")
+        .classed("y-axis", true)
+        .attr("transform", `translate(${margin.left}, 0)`)
+        .call(yAxisFn)
+        .call((g) => {
+            g.select(".domain").remove();
+            g.selectAll(".tick line")
+            .attr("stroke", "lightgrey")
+            .attr("x1", 0)
+            .attr("x2", width-margin.right);
+        })
+        .append("text")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", 12)
+        .attr("y", 0.3 * margin.top)
+        .attr("fill", "black")
+        .attr("text-anchor", "start")
+        .text("↑ Number of reviews");
 
             dots
               .attr("cx", (d) => xNew(d.starRating))
