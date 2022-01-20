@@ -111,7 +111,7 @@ export const ScatterPlot = ({
             .attr("x1", 0)
             .attr("x2", width - margin.right);
         })
-        //lable
+        //label
         .append("text")
         .attr("font-family", "sans-serif")
         .attr("font-size", 12)
@@ -120,7 +120,7 @@ export const ScatterPlot = ({
         .attr("text-anchor", "start")
         .text("↑ Number of reviews");
 
-     //hide everythin out of this area on Zoom 
+      //hide everything out of this area on Zoom
       const clip = svg
         .append<SVGGElement>("g")
         .attr("clip-path", "url(#border)");
