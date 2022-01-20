@@ -192,10 +192,19 @@ export const ScatterPlotTwo = ({
           const self = d3.select(this);
           const node: SVGRectElement = self.node()!;
 
+<<<<<<< HEAD
           tooltip.attr("transform",`translate(${node.x.baseVal.value + 5}, ${node.y.baseVal.value - 30})`);
+=======
+          tooltip.attr(
+            "transform",
+            `translate(${node.x.baseVal.value + 12}, ${
+              node.y.baseVal.value - 30
+            })`
+          );
+>>>>>>> 63dc12eb66628a34d521960ccf42f611b7d3a033
 
           tooltipProduct.text(`Product: ${searchedProduct!.product_title}`);
-          tooltipStarRating.text(`Star rating: ${(d.starRating).toFixed(2)}`);
+          tooltipStarRating.text(`Star rating: ${d.starRating.toFixed(2)}`);
           tooltipDocCount.text(`Number of reviews: ${d.docCount}`);
 
           const labelWidth1 = d3.max([
