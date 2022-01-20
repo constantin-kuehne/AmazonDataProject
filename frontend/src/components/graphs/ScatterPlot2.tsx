@@ -66,15 +66,7 @@ export const ScatterPlotTwo = ({
         .domain([0, 5])
         .range([margin.left, width - margin.right]);
 
-      const xAxisFn = d3
-        .axisBottom(xScale)
-        .tickFormat((tick) => {
-          const tickNumber = tick as number;
-          if (Math.floor(tickNumber) !== tickNumber) {
-            return "";
-          }
-          return tickNumber.toString();
-        });;
+      const xAxisFn = d3.axisBottom(xScale)
 
       //yAxis Scale
       const yScale = d3
@@ -255,13 +247,7 @@ export const ScatterPlotTwo = ({
         const xNew = event.transform.rescaleX(xScale);
         const yNew = event.transform.rescaleY(yScale);
 
-        const xAxisFn = d3.axisBottom(xNew).tickFormat((tick) => {
-          const tickNumber = tick as number;
-          if (Math.floor(tickNumber) !== tickNumber) {
-            return "";
-          }
-          return tickNumber.toString();
-        });
+        const xAxisFn = d3.axisBottom(xNew)
         const yAxisFn = d3.axisLeft(yNew);
 
         //xAxis
