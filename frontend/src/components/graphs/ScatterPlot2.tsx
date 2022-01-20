@@ -204,7 +204,7 @@ export const ScatterPlotTwo = ({
           );
 
           tooltipProduct.text(`Product: ${searchedProduct!.product_title}`);
-          tooltipStarRating.text(`Star rating: ${d.starRating}`);
+          tooltipStarRating.text(`Star rating: ${(d.starRating).toFixed(2)}`);
           tooltipDocCount.text(`Number of reviews: ${d.docCount}`);
 
           //Label width
