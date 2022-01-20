@@ -11,6 +11,7 @@ import About from "./pages/about";
 import Select from "./components/searchoptions";
 import SearchSelect from "./components/searchoptions";
 import { polyfill } from "seamless-scroll-polyfill";
+import Searchresult from "./pages/about";
 
 export type SearchOptions = "Product" | "ASIN";
 //App Styling for App.tsx mui components
@@ -69,7 +70,7 @@ const App = () => {
       </header>
 
       <div className="App-about" ref={jumpRef}>
-        <About searchedProduct={searchedProduct} />
+        <About searchedProduct={searchedProduct}/>
       </div>
 
       {searchedProduct !== null ? (
