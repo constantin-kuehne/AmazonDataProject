@@ -111,7 +111,7 @@ export const ScatterPlot = ({
             .attr("x1", 0)
             .attr("x2", width - margin.right);
         })
-        //lable
+        //label
         .append("text")
         .attr("font-family", "sans-serif")
         .attr("font-size", 12)
@@ -120,7 +120,7 @@ export const ScatterPlot = ({
         .attr("text-anchor", "start")
         .text("↑ Number of reviews");
 
-      //hide everxthin out of this area
+      //hide everything out of this area
       svg
         .append("clipPath")
         .attr("id", "border")
@@ -262,15 +262,23 @@ export const ScatterPlot = ({
         const xNew = event.transform.rescaleX(xScale);
         const yNew = event.transform.rescaleY(yScale);
 
-        svg.selectAll("g.x-axis").remove();
-        svg.selectAll("g.y-axis").remove();
+        //svg.selectAll("g.x-axis").remove();
+        //svg.selectAll("g.y-axis").remove();
+
+        dots
+          .attr("cx", (d) => xNew((d.helpfulVotes / d.totalVotes) * 100))
+          .attr("cy", (d) => yNew(d.docCount));
+
+        dot
+          .attr("x", (d) => xNew((d.helpfulVotes / d.totalVotes) * 100))
+          .attr("y", (d) => yNew(d.docCount));
 
         const xAxisFn = d3.axisBottom(xNew);
         const yAxisFn = d3.axisLeft(yNew);
 
         //xAxis
         svg
-          .append<SVGGElement>("g")
+          .select<SVGGElement>("g.x-axis")
           .classed("x-axis", true)
           .attr("transform", `translate(0, ${height - margin.bottom})`)
           .call(xAxisFn)
@@ -292,7 +300,7 @@ export const ScatterPlot = ({
 
         //yAxis
         svg
-          .append<SVGGElement>("g")
+          .select<SVGGElement>("g.y-axis")
           .classed("y-axis", true)
           .attr("transform", `translate(${margin.left}, 0)`)
           .call(yAxisFn)
@@ -310,14 +318,6 @@ export const ScatterPlot = ({
           .attr("fill", "black")
           .attr("text-anchor", "start")
           .text("↑ Number of reviews");
-
-        dots
-          .attr("cx", (d) => xNew((d.helpfulVotes / d.totalVotes) * 100))
-          .attr("cy", (d) => yNew(d.docCount));
-
-        dot
-          .attr("x", (d) => xNew((d.helpfulVotes / d.totalVotes) * 100))
-          .attr("y", (d) => yNew(d.docCount));
       }
 
       //Tooltips
