@@ -53,20 +53,8 @@ export const ScatterPlot = ({
       const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove();
 
-      //get max value of "Number of reviews" / "docCount"
-        let maxData = d3.max(data, (d) => d["docCount"]);
-        maxData =(maxData! > searchedData!.docCount? maxData!: searchedData!.docCount) + 5;
-      
-      //hide everything out of this area
-        svg
-          .append("clipPath")
-          .attr("id", "border")
-          .append("rect")
-          .attr("width", width - margin.right)
-          .attr("height", height - margin.bottom - margin.top)
-          .attr("x", margin.left)
-          .attr("y", margin.top)
-          .attr("fill", "white");
+      let maxData = d3.max(data, (d) => d["docCount"]);
+      maxData =(maxData! > searchedData!.docCount? maxData!: searchedData!.docCount) + 5;
 
       //xAxis Scale
         const xScale = d3
@@ -168,7 +156,7 @@ export const ScatterPlot = ({
               tooltip.attr("transform",`translate(${node.cx.baseVal.value + 5}, ${node.cy.baseVal.value - 30})`);
 
               tooltipProduct.text(`Product: ${d.productTitle}`);
-              tooltipVotes.text(`Votes: ${((d.helpfulVotes / d.totalVotes) * 100).toFixed(2)}%`);
+              tooltipVotes.text(`Helpful votes: ${((d.helpfulVotes / d.totalVotes) * 100).toFixed(2)}%`);
               tooltipDocCount.text(`Number of reviews: ${d.docCount}`);
 
             //Label width
@@ -213,7 +201,7 @@ export const ScatterPlot = ({
               tooltip.attr("transform",`translate(${node.x.baseVal.value + 5}, ${node.y.baseVal.value - 30})`);
             
               tooltipProduct.text(`Product: ${searchedProduct!.product_title}`);
-              tooltipVotes.text(`Votes: ${((d.helpfulVotes / d.totalVotes) * 100).toFixed(2)}%`);
+              tooltipVotes.text(`Helpful votes: ${((d.helpfulVotes / d.totalVotes) * 100).toFixed(2)}%`);
               tooltipDocCount.text(`Number of reviews: ${d.docCount}`);
 
             //Label width

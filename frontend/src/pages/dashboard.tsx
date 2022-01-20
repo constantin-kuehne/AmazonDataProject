@@ -2,6 +2,7 @@ import React from "react";
 import { BarChart } from "../components/graphs/BarChart";
 import { LineChart } from "../components/graphs/LineChart";
 import { ScatterPlot } from "../components/graphs/ScatterPlot1";
+import { ScatterPlotTwo } from "../components/graphs/ScatterPlot2";
 import { Source as SearchProductSource } from "../components/searchbar";
 
 export const Dashboard = ({
@@ -27,7 +28,11 @@ export const Dashboard = ({
         height={500}
       />
       <h3> This is the fourth Chart.</h3>
-      <BarChart searchedProduct={searchedProduct} width={1000} height={500} />
+      <ScatterPlotTwo
+        searchedProduct={searchedProduct}
+        width={1000}
+        height={500}
+      />
     </div>
   );
 };
