@@ -37,12 +37,10 @@ export const BarChart = ({
 
   useEffect(() => {
     if (svgRef.current && data) {
-      console.log(data);
       const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove();
 
       const max = d3.max(data, (d) => d.total_votes);
-      console.log(max);
 
       //xAxis Scale
       const xScale = d3.scaleLinear(
@@ -56,7 +54,7 @@ export const BarChart = ({
           return "";
         }
         return tickNumber.toString();
-      });;
+      });
 
       // xAxis
       const xAxis = svg
@@ -106,7 +104,7 @@ export const BarChart = ({
         .attr("width", (d) => xScale(d.total_votes) - margin.left)
         .attr("fill", "lightgray");
 
-      //Bars helpful votes 
+      //Bars helpful votes
       let bars1 = svg
         .selectAll("rect.helpfulVotes")
         .data<Source>(data)
