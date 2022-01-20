@@ -5,13 +5,14 @@ import { ScatterPlot } from "../components/graphs/ScatterPlot1";
 import { ScatterPlotTwo } from "../components/graphs/ScatterPlot2";
 import { Source as SearchProductSource } from "../components/searchbar";
 
+
 export const Dashboard = ({
   searchedProduct,
 }: {
   searchedProduct: null | SearchProductSource;
 }) => {
   return (
-    <div>
+    <div className="dash-descriptions">
       <h3> Top 20 most voted reviews </h3>
         <p> In diesem Bar Chart werden die Top 20 der meistbewerteten Reviews gezeigt. Die Balken sind nach der Anzahl an total Votes sortiert - der Anteil der helpful Votes wird durch eine andere Sättigung der Farbe hervorgehoben. </p>
         <p> Dieser Chart gibt einen Überblick über die besten Reviews und wie hilfreich sie waren. Je höher die Anzahl der Bewertungen ist, desto geringer ist die Wahrscheinlichkeit, dass es sich um ein gefälschtes Review handelt</p>
