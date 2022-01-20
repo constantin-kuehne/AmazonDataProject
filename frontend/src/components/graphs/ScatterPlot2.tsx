@@ -125,17 +125,6 @@ export const ScatterPlotTwo = ({
         .attr("text-anchor", "start")
         .text("↑ Number of reviews");
 
-      //hide everxthin out of this area
-      svg
-        .append("clipPath")
-        .attr("id", "border")
-        .append("rect")
-        .attr("width", width - margin.right)
-        .attr("height", height - margin.bottom - margin.top)
-        .attr("x", margin.left)
-        .attr("y", margin.top)
-        .attr("fill", "white");
-
       const clip = svg
         .append<SVGGElement>("g")
         .attr("clip-path", "url(#border)");
