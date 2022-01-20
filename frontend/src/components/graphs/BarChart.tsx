@@ -42,6 +42,8 @@ export const BarChart = ({
 
       const max = d3.max(data, (d) => d.total_votes);
 
+      
+ //xAxis Scale 
       const xScale = d3.scaleLinear(
         [0, max as number],
         [margin.left, width - margin.right]
@@ -49,11 +51,20 @@ export const BarChart = ({
 
       const xAxisFn = d3.axisBottom(xScale);
 
-      const xAxis = svg.append<SVGGElement>("g");
-      xAxis
+// xAxis
+      const xAxis = svg
+        .append<SVGGElement>("g")
         .call(xAxisFn)
-        .attr("transform", `translate(0, ${height - margin.bottom})`);
+        .attr("transform", `translate(0, ${height - margin.bottom})`)
+        .call((g) => {
+          g.select(".domain").remove();
+          g.selectAll(".tick line")
+            .attr("stroke", "lightgrey")
+            .attr('y1',  -height+1.5*margin.top)
+            .attr('y2', 0)
+        });
 
+ //yAxis Scale        
       const yScale = d3
         .scaleBand(
           data.map((d) => d.review_headline),
@@ -62,9 +73,14 @@ export const BarChart = ({
         .padding(0.3);
 
       const yAxisFn = d3.axisLeft(yScale);
-
-      const yAxis = svg.append<SVGGElement>("g");
-      yAxis.call(yAxisFn).attr("transform", `translate(${margin.left}, 0)`);
+// yAxis
+      const yAxis = svg
+        .append<SVGGElement>("g")
+        .call(yAxisFn)
+        .attr("transform", `translate(${margin.left}, 0)`)
+        .call((g) => {
+          g.select(".domain").remove();
+        });
 
       let bars = svg
         .selectAll("rect.totalVotes")
@@ -95,10 +111,10 @@ export const BarChart = ({
           const yPos =
             yScale(d.review_headline)! +
             yScale.bandwidth() / 2 -
-            (yScale.bandwidth() * 0.7) / 2;
+            (yScale.bandwidth() * 0.3) / 2;
           return yPos;
         })
-        .attr("height", yScale.bandwidth() * 0.7)
+        .attr("height", yScale.bandwidth() * 0.3)
         .attr("width", (d) => xScale(d.helpful_votes) - margin.left)
         .attr("fill", "#0288d1");
     }

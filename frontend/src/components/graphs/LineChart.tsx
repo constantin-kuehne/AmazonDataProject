@@ -120,20 +120,6 @@ export const LineChart = ({
         .append<SVGPathElement>("path")
         .attr("clip-path", "url(#border)");
 
-      //implement line
-      const path = clip1
-        .datum(data)
-        .attr("fill", "none")
-        .attr("stroke", "steelblue")
-        .attr("stroke-width", 1.5)
-        .attr(
-          "d",
-          d3.line<Source>(
-            (d) => xScale(d.intervalTimeUnix),
-            (d) => yScale(d.docCount)
-          )
-        );
-
       //implement circles
       const dots = clip
         .selectAll("circle")
@@ -179,6 +165,20 @@ export const LineChart = ({
           tooltip.attr("visibility", "hidden");
         });
 
+      //implement line
+      const path = clip1
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "steelblue")
+        .attr("stroke-width", 1.5)
+        .attr(
+          "d",
+          d3.line<Source>(
+            (d) => xScale(d.intervalTimeUnix),
+            (d) => yScale(d.docCount)
+          )
+        );
+
       //Zoom and update
       const zoom = d3
         .zoom<SVGSVGElement, Source>()
@@ -211,9 +211,7 @@ export const LineChart = ({
           });
 
         dots.attr("cx", (d) => xNew(d.intervalTimeUnix));
-        path.attr(
-          "d",
-          d3.line<Source>(
+        path.attr("d", d3.line<Source>(
             (d) => xNew(d.intervalTimeUnix),
             (d) => yScale(d.docCount)
           )
