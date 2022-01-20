@@ -50,7 +50,13 @@ export const BarChart = ({
         [margin.left, width - margin.right]
       );
 
-      const xAxisFn = d3.axisBottom(xScale);
+      const xAxisFn = d3.axisBottom(xScale).tickFormat((tick) => {
+        const tickNumber = tick as number;
+        if (Math.floor(tickNumber) !== tickNumber) {
+          return "";
+        }
+        return tickNumber.toString();
+      });;
 
       // xAxis
       const xAxis = svg
