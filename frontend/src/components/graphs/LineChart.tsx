@@ -46,15 +46,18 @@ export const LineChart = ({
       const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove();
 
+
+
+//hide everything out of this area
       svg
-        .append("clipPath")
-        .attr("id", "border")
-        .append("rect")
-        .attr("width", width - margin.right)
-        .attr("height", height - margin.bottom - margin.top)
-        .attr("x", margin.top)
-        .attr("y", margin.top)
-        .attr("fill", "white");
+      .append("clipPath")
+      .attr("id", "border")
+      .append("rect")
+      .attr("width", width - margin.right)
+      .attr("height", height - margin.bottom - margin.top)
+      .attr("x", margin.left)
+      .attr("y", margin.top)
+      .attr("fill", "white");
 
       const extent = d3.extent<Source, number>(
         data,
@@ -108,17 +111,6 @@ export const LineChart = ({
         .call((g) => {
           g.select(".domain").remove();
         });
-
-      //hide everything out of this area
-      svg
-        .append("clipPath")
-        .attr("id", "border")
-        .append("rect")
-        .attr("width", width - margin.right)
-        .attr("height", height - margin.bottom - margin.top)
-        .attr("x", margin.left)
-        .attr("y", margin.top)
-        .attr("fill", "white");
 
       const clip = svg
         .append<SVGGElement>("g")
