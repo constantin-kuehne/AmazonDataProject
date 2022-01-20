@@ -8482,6 +8482,11 @@
     "ajv" "^6.12.2"
     "ajv-keywords" "^3.4.1"
 
+"seamless-scroll-polyfill@^2.1.6":
+  "integrity" "sha512-xgrwq7wu+W9AL/RCXWdvGZpgj2JRaub7R59QKxFLdiz7NXriEahhYQR0q6PFT5+izqBqbJZ+9oQZFbpA1xBWhw=="
+  "resolved" "https://registry.npmjs.org/seamless-scroll-polyfill/-/seamless-scroll-polyfill-2.1.6.tgz"
+  "version" "2.1.6"
+
 "select-hose@^2.0.0":
   "integrity" "sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo="
   "resolved" "https://registry.npmjs.org/select-hose/-/select-hose-2.0.0.tgz"

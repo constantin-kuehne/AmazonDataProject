@@ -31,7 +31,7 @@ export const Dashboard = ({
         width={1000}
         height={500}
       />
-      <h3> ? </h3>
+      <h3> Star-rating & amount of reviews  </h3>
         <p> </p>
       <ScatterPlotTwo
         searchedProduct={searchedProduct}
