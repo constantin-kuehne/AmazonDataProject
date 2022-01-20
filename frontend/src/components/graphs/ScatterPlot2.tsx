@@ -198,13 +198,13 @@ export const ScatterPlotTwo = ({
 
           tooltip.attr(
             "transform",
-            `translate(${node.x.baseVal.value + 5}, ${
+            `translate(${node.x.baseVal.value + 12}, ${
               node.y.baseVal.value - 30
             })`
           );
 
           tooltipProduct.text(`Product: ${searchedProduct!.product_title}`);
-          tooltipStarRating.text(`Star rating: ${(d.starRating).toFixed(2)}`);
+          tooltipStarRating.text(`Star rating: ${d.starRating.toFixed(2)}`);
           tooltipDocCount.text(`Number of reviews: ${d.docCount}`);
 
           //Label width

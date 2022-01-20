@@ -201,7 +201,7 @@ export const ScatterPlot = ({
 
           tooltip.attr(
             "transform",
-            `translate(${node.x.baseVal.value + 5}, ${
+            `translate(${node.x.baseVal.value + 12}, ${
               node.y.baseVal.value - 30
             })`
           );
