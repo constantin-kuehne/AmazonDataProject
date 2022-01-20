@@ -16,7 +16,7 @@ export default function About({
         <h4> What this app is about and how it's working!</h4>
 
       </div>
-      <p>Your search result: {searchedProduct?.product_title}</p>
+        {/*<p>{searchedProduct?.product_title}</p> */}
     </div>
   );
 }
