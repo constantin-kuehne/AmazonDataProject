@@ -11,11 +11,12 @@ export default function About({
 }) {
   return (
     <div>
-      <p>{searchedProduct?.product_title}</p>
+
       <div>
         <h4> What this app is about and how it's working!</h4>
 
       </div>
+      <p>{searchedProduct?.product_title}</p>
     </div>
   );
 }
