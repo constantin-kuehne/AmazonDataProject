@@ -46,18 +46,16 @@ export const LineChart = ({
       const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove();
 
-
-
-//hide everything out of this area
+      //hide everything out of this area
       svg
-      .append("clipPath")
-      .attr("id", "border")
-      .append("rect")
-      .attr("width", width - margin.right)
-      .attr("height", height - margin.bottom - margin.top)
-      .attr("x", margin.left)
-      .attr("y", margin.top)
-      .attr("fill", "white");
+        .append("clipPath")
+        .attr("id", "border")
+        .append("rect")
+        .attr("width", width - margin.right)
+        .attr("height", height - margin.bottom - margin.top)
+        .attr("x", margin.left)
+        .attr("y", margin.top)
+        .attr("fill", "white");
 
       const extent = d3.extent<Source, number>(
         data,
@@ -68,7 +66,6 @@ export const LineChart = ({
       const xScale = d3.scaleTime(extent, [margin.left, width - margin.right]);
 
       const xAxisFn = d3.axisBottom(xScale);
-
       const max = d3.max(data, (d) => d.docCount) as number;
 
       //yAxis Scale
@@ -77,7 +74,13 @@ export const LineChart = ({
         .domain([0, max + 1])
         .range([height - margin.bottom, margin.top]);
 
-      const yAxisFn = d3.axisLeft(yScale);
+      const yAxisFn = d3.axisLeft(yScale).tickFormat((tick) => {
+        const tickNumber = tick as number;
+        if (Math.floor(tickNumber) !== tickNumber) {
+          return "";
+        }
+        return tickNumber.toString();
+      });
 
       // yAxis & grid;
       svg
@@ -211,7 +214,9 @@ export const LineChart = ({
           });
 
         dots.attr("cx", (d) => xNew(d.intervalTimeUnix));
-        path.attr("d", d3.line<Source>(
+        path.attr(
+          "d",
+          d3.line<Source>(
             (d) => xNew(d.intervalTimeUnix),
             (d) => yScale(d.docCount)
           )

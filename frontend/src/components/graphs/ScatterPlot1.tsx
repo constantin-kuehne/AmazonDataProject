@@ -88,7 +88,7 @@ export const ScatterPlot = ({
             .attr("y1", -height + 1.5 * margin.top)
             .attr("y2", 0);
         })
-        //lable
+        //label
         .append("text")
         .attr("font-family", "sans-serif")
         .attr("font-size", 12)
@@ -252,15 +252,12 @@ export const ScatterPlot = ({
         const xNew = event.transform.rescaleX(xScale);
         const yNew = event.transform.rescaleY(yScale);
 
-        svg.selectAll("g.x-axis").remove();
-        svg.selectAll("g.y-axis").remove();
-
         const xAxisFn = d3.axisBottom(xNew);
         const yAxisFn = d3.axisLeft(yNew);
 
         //xAxis
         svg
-          .append<SVGGElement>("g")
+          .select<SVGGElement>("g.x-axis")
           .classed("x-axis", true)
           .attr("transform", `translate(0, ${height - margin.bottom})`)
           .call(xAxisFn)
@@ -282,7 +279,7 @@ export const ScatterPlot = ({
 
         //yAxis
         svg
-          .append<SVGGElement>("g")
+          .select<SVGGElement>("g.y-axis")
           .classed("y-axis", true)
           .attr("transform", `translate(${margin.left}, 0)`)
           .call(yAxisFn)
