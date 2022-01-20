@@ -155,11 +155,11 @@ export const ScatterPlotTwo = ({
         .attr("cx", (d) => xScale(d.starRating))
         .attr("cy", (d) => yScale(d.docCount))
         .attr("r", 3.5)
-        .style("fill", "lightblue")
+        .style("fill", "#0288d1")
         .on("mouseenter", function (event, d: Source) {
           d3.select(this)
             .attr("r", 5)
-            .style("fill", "darkblue")
+            .style("fill", "#0288d1")
             .attr("opacity", 0.5);
           const self = d3.select(this);
           const node: SVGCircleElement = self.node()!;
@@ -184,7 +184,7 @@ export const ScatterPlotTwo = ({
         .on("mouseleave", function () {
           d3.select(this)
             .attr("r", 3.5)
-            .style("fill", "lightblue")
+            .style("fill", "#0288d1")
             .attr("opacity", null);
           tooltip.attr("visibility", "hidden");
         });
@@ -202,7 +202,9 @@ export const ScatterPlotTwo = ({
         .attr("height", 10)
         .style("fill", "red")
         .on("mouseenter", function (event, d: SearchedData) {
-          d3.select(this).style("fill", "red").attr("opacity", 0.5);
+          d3.select(this)
+          .style("fill", "red")
+          .attr("opacity", 0.5);
 
           const self = d3.select(this);
           const node: SVGRectElement = self.node()!;

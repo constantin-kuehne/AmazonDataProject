@@ -137,8 +137,7 @@ export const LineChart = ({
         .on("mouseenter", function (event, d: Source) {
           d3.select(this)
             .attr("r", 5)
-            .style("fill", "blue")
-            .attr("opacity", 0.5);
+            .style("fill", "darkblue");
           const self = d3.select(this);
           const node = self.node() as SVGCircleElement;
           tooltip.attr(
@@ -173,7 +172,7 @@ export const LineChart = ({
       const path = clip1
         .datum(data)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
+        .attr("stroke", "#0288d1")
         .attr("stroke-width", 1.5)
         .attr(
           "d",

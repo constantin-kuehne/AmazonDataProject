@@ -146,7 +146,7 @@ export const ScatterPlot = ({
         .attr("cx", (d) => xScale((d.helpfulVotes / d.totalVotes) * 100))
         .attr("cy", (d) => yScale(d.docCount))
         .attr("r", 3.5)
-        .style("fill", "lightblue")
+        .style("fill", "#0288d1")
         .on("mouseenter", function (event, d: Source) {
           d3.select(this)
             .attr("r", 5)
@@ -175,7 +175,7 @@ export const ScatterPlot = ({
         .on("mouseleave", function () {
           d3.select(this)
             .attr("r", 3.5)
-            .style("fill", "lightblue")
+            .style("fill", "#0288d1")
             .attr("opacity", null);
           tooltip.attr("visibility", "hidden");
         });
