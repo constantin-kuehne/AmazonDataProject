@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Search, { Source } from "./components/searchbar";
 import { Avatar } from "@material-ui/core";
@@ -10,6 +10,7 @@ import ADPAppbar from "./components/appbar";
 import About from "./pages/about";
 import Select from "./components/searchoptions";
 import SearchSelect from "./components/searchoptions";
+import { polyfill } from "seamless-scroll-polyfill";
 
 export type SearchOptions = "Product" | "ASIN";
 //App Styling for App.tsx mui components
@@ -24,10 +25,18 @@ const useStyles = makeStyles({
 });
 //App Function
 const App = () => {
+  polyfill();
   const classes = useStyles();
 
   const [searchedProduct, setSearchedProduct] = useState<Source | null>(null);
   const [search, setSearch] = useState<SearchOptions>("Product");
+  const jumpRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (jumpRef && searchedProduct) {
+      jumpRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [searchedProduct, jumpRef]);
 
   return (
     <div className="App">
@@ -59,8 +68,8 @@ const App = () => {
         </Button>*/}
       </header>
 
-      <div className="App-about">
-        <About />
+      <div className="App-about" ref={jumpRef}>
+        <About searchedProduct={searchedProduct} />
       </div>
 
       {searchedProduct !== null ? (
