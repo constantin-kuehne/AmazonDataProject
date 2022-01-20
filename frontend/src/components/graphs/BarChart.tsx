@@ -85,6 +85,14 @@ export const BarChart = ({
         .attr("transform", `translate(${margin.left}, 0)`)
         .call((g) => {
           g.select(".domain").remove();
+          g.selectAll<SVGTextElement, string>(".tick text").each(function (d) {
+            const self = d3.select(this);
+            const shortText =
+              self.node()!.getComputedTextLength() >= margin.left - 20
+                ? d.replace(/^(.{50}[^\s]*).*/, "$1") + "..."
+                : d;
+            d3.select(this).text(shortText);
+          });
         });
 
       //Bars total Votes
