@@ -11,15 +11,16 @@ import {
   Theme,
 } from "@material-ui/core/styles";
 import { SearchOptions } from "../App";
+import transparent from "material-ui/styles/colors";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     options: {
       position: "relative",
       borderRadius: theme.shape.borderRadius,
-      backgroundColor: alpha(theme.palette.common.white, 0.15),
+      backgroundColor: "transparent",
       "&:hover": {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
       },
       padding: 0,
       margin: 0,
@@ -52,7 +53,7 @@ export default function SearchSelect({
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label" color="primary">
-            Option
+            Options
           </InputLabel>
           <Select
             labelId="simple-select-label"

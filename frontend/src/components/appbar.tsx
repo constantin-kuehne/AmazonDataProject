@@ -19,7 +19,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 //Appbar created with MUI
 
-//Links der Appbar und dem Profile Icon. Können durch Routes ersetzt werden mit React Router. //TODO Routing
+//Links der Appbar und dem Profile Icon. Können durch Routes ersetzt werden mit React Router. //TODO EVTL. Routing (Tim)
 interface Props {
     /**
      * Injected by the documentation to work in an iframe.
@@ -31,9 +31,6 @@ interface Props {
 
 function ScrollTop(props: Props) {
     const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
     const trigger = useScrollTrigger({
         target: window ? window() : undefined,
         disableHysteresis: true,
@@ -58,7 +55,7 @@ function ScrollTop(props: Props) {
             <Box
                 onClick={handleClick}
                 role="presentation"
-                sx={{ position: 'fixed', bottom: 16, right: 16 }}
+                sx={{ position: 'fixed', bottom: 11, right: 16 }}
             >
                 {children}
             </Box>
@@ -92,14 +89,14 @@ const ADPAppbar = () => {
         <React.Fragment>
             <CssBaseline/>
             <AppBar position="static" style={{background: "transparent"}}>
-                <Container maxWidth="xl">
+                <Container maxWidth="lg">
                     <Toolbar disableGutters>
                         <Typography
-                            variant="h4"
+                            variant="h6"
                             noWrap
                             component="div"
                             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-                            fontWeight="600"
+                            fontWeight="400"
                         >
                             Amazon Data Project
                         </Typography>

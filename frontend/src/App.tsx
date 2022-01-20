@@ -36,10 +36,10 @@ const App = () => {
       </div>
       <header className="App-header">
         <div>
-          <Avatar alt="Example Alt" src="ADP_Logo.png" />
+          <Avatar alt="Example Alt" src="ADP_Logo.png"/>
         </div>
         <br />
-        <h2> ADP SEARCH</h2>
+        <h1> ADP SEARCH</h1>
         <SearchSelect search={search} setSearch={setSearch} />
         <br />
         <Search setSearchedProduct={setSearchedProduct} search={search} />
@@ -72,7 +72,8 @@ const App = () => {
       )}
 
       <div className="App-footer">
-        <Button
+          <p> made by Constantin Kühne, Tim Muscholl, Valentin Kieslinger 2022</p>
+          {/* <Button
           className={classes.errorbutton}
           onClick={() => console.log("Error Button Clicked")} //Kann man auch noch eine Mailto Function machen oder eine Route zu einem extra Fenster.
           variant="outlined"
@@ -80,7 +81,7 @@ const App = () => {
           type="submit"
         >
           Report problem
-        </Button>
+        </Button>*/}
       </div>
     </div>
   );
