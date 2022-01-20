@@ -68,9 +68,13 @@ export const ScatterPlotTwo = ({
 
       const xAxisFn = d3
         .axisBottom(xScale)
-        .scale(xScale)
-        .tickFormat(d3.format(".0f"))
-        .ticks(6);
+        .tickFormat((tick) => {
+          const tickNumber = tick as number;
+          if (Math.floor(tickNumber) !== tickNumber) {
+            return "";
+          }
+          return tickNumber.toString();
+        });;
 
       //yAxis Scale
       const yScale = d3
@@ -90,7 +94,7 @@ export const ScatterPlotTwo = ({
           g.select(".domain").remove();
           g.selectAll(".tick line")
             .attr("stroke", "lightgrey")
-            .attr("y1", -height + 1.5 * margin.top)
+            .attr("y1", -height + 2 * margin.top)
             .attr("y2", 0);
         })
         //lable
@@ -114,7 +118,7 @@ export const ScatterPlotTwo = ({
           g.selectAll(".tick line")
             .attr("stroke", "lightgrey")
             .attr("x1", 0)
-            .attr("x2", width - margin.right);
+            .attr("x2", width - 2 * margin.right);
         })
         //lable
         .append("text")
@@ -125,10 +129,21 @@ export const ScatterPlotTwo = ({
         .attr("text-anchor", "start")
         .text("↑ Number of reviews");
 
-      //hide everything oru of the Graph area on Zoom
+      //hide everything out of his area
+      svg
+        .append("clipPath")
+        .attr("id", "border2")
+        .append("rect")
+        .attr("width", width - 2 * margin.right)
+        .attr("height", height - 2 * margin.bottom)
+        .attr("x", margin.left)
+        .attr("y", margin.top)
+        .attr("fill", "white");
+
       const clip = svg
         .append<SVGGElement>("g")
-        .attr("clip-path", "url(#border)");
+        .attr("clip-path", "url(#border2)");
+      svg.append("path");
 
       //implement circles for comparison products
       const dots = clip
@@ -185,9 +200,9 @@ export const ScatterPlotTwo = ({
         .attr("y", (d) => yScale(d.docCount))
         .attr("width", 10)
         .attr("height", 10)
-        .style("fill", "orange")
+        .style("fill", "red")
         .on("mouseenter", function (event, d: SearchedData) {
-          d3.select(this).style("fill", "darkblue").attr("opacity", 0.5);
+          d3.select(this).style("fill", "red").attr("opacity", 0.5);
 
           const self = d3.select(this);
           const node: SVGRectElement = self.node()!;
@@ -216,7 +231,7 @@ export const ScatterPlotTwo = ({
 
         .on("mouseleave", function () {
           d3.select(this)
-            .style("fill", "orange")
+            .style("fill", "red")
             .attr("opacity", null);
           tooltip.attr("visibility", "hidden");
         });
@@ -225,7 +240,7 @@ export const ScatterPlotTwo = ({
       const zoom = d3
         .zoom<SVGSVGElement, Source>()
         .on("zoom", onZoom)
-        .scaleExtent([1, 10])
+        .scaleExtent([1, 6])
         .extent([[margin.left, margin.top],[width + margin.left, height + margin.top],]) as (
           selection: d3.Selection<SVGSVGElement, unknown, null, undefined>,
           ...args: any[]
@@ -238,7 +253,13 @@ export const ScatterPlotTwo = ({
         const xNew = event.transform.rescaleX(xScale);
         const yNew = event.transform.rescaleY(yScale);
 
-        const xAxisFn = d3.axisBottom(xNew);
+        const xAxisFn = d3.axisBottom(xNew).tickFormat((tick) => {
+          const tickNumber = tick as number;
+          if (Math.floor(tickNumber) !== tickNumber) {
+            return "";
+          }
+          return tickNumber.toString();
+        });
         const yAxisFn = d3.axisLeft(yNew);
 
         //xAxis
@@ -251,17 +272,10 @@ export const ScatterPlotTwo = ({
             g.select(".domain").remove();
             g.selectAll(".tick line")
               .attr("stroke", "lightgrey")
-              .attr("y1", -height + 1.5 * margin.top)
+              .attr("y1", -height + 2 * margin.top)
               .attr("y2", 0);
           })
-          .append("text")
-          .attr("font-family", "sans-serif")
-          .attr("font-size", 12)
-          .attr("y", 0.8 * margin.bottom)
-          .attr("text-anchor", "end")
-          .attr("x", width - margin.right)
-          .attr("fill", "black")
-          .text("Star rating ⭢");
+
 
         //yAxis
         svg
@@ -274,15 +288,9 @@ export const ScatterPlotTwo = ({
             g.selectAll(".tick line")
               .attr("stroke", "lightgrey")
               .attr("x1", 0)
-              .attr("x2", width - margin.right);
+              .attr("x2", width - 2 * margin.right);
           })
-          .append("text")
-          .attr("font-family", "sans-serif")
-          .attr("font-size", 12)
-          .attr("y", 0.3 * margin.top)
-          .attr("fill", "black")
-          .attr("text-anchor", "start")
-          .text("↑ Number of reviews");
+
 
         //cicles 
         dots

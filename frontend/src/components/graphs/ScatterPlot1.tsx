@@ -85,7 +85,7 @@ export const ScatterPlot = ({
           g.select(".domain").remove();
           g.selectAll(".tick line")
             .attr("stroke", "lightgrey")
-            .attr("y1", -height + 1.5 * margin.top)
+            .attr("y1", -height + 2 * margin.top)
             .attr("y2", 0);
         })
         //label
@@ -109,7 +109,7 @@ export const ScatterPlot = ({
           g.selectAll(".tick line")
             .attr("stroke", "lightgrey")
             .attr("x1", 0)
-            .attr("x2", width - margin.right);
+            .attr("x2", width - 2 *margin.right);
         })
         //label
         .append("text")
@@ -120,10 +120,21 @@ export const ScatterPlot = ({
         .attr("text-anchor", "start")
         .text("↑ Number of reviews");
 
-      //hide everything oru of the Graph area on Zoom
+      //hide everything out of his area
+      svg
+        .append("clipPath")
+        .attr("id", "border1")
+        .append("rect")
+        .attr("width", width - 2 * margin.right)
+        .attr("height", height - 2 * margin.right)
+        .attr("x", margin.left)
+        .attr("y", margin.top)
+        .attr("fill", "white");
+
       const clip = svg
         .append<SVGGElement>("g")
-        .attr("clip-path", "url(#border)");
+        .attr("clip-path", "url(#border1)");
+      svg.append("path");
 
       //implement circles for comparison products
       const dots = clip
@@ -180,9 +191,9 @@ export const ScatterPlot = ({
         .attr("y", (d) => yScale(d.docCount))
         .attr("width", 10)
         .attr("height", 10)
-        .style("fill", "orange")
+        .style("fill", "red")
         .on("mouseenter", function (event, d: SearchedData) {
-          d3.select(this).attr("r", 5).style("fill", "darkblue").attr("opacity", 0.5);
+          d3.select(this).attr("r", 5).style("fill", "red").attr("opacity", 0.5);
 
           const self = d3.select(this);
           const node: SVGRectElement = self.node()!;
@@ -211,7 +222,7 @@ export const ScatterPlot = ({
 
         .on("mouseleave", function () {
           d3.select(this)
-            .style("fill", "orange")
+            .style("fill", "red")
             .attr("opacity", null);
           tooltip.attr("visibility", "hidden");
         });
@@ -246,17 +257,9 @@ export const ScatterPlot = ({
             g.select(".domain").remove();
             g.selectAll(".tick line")
               .attr("stroke", "lightgrey")
-              .attr("y1", -height + 1.5 * margin.top)
+              .attr("y1", -height + 2 * margin.top)
               .attr("y2", 0);
           })
-          .append("text")
-          .attr("font-family", "sans-serif")
-          .attr("font-size", 12)
-          .attr("y", 0.8 * margin.bottom)
-          .attr("text-anchor", "end")
-          .attr("x", width - margin.right)
-          .attr("fill", "black")
-          .text("total votes ∷ helpful votes in % ⭢");
 
         //yAxis
         svg
@@ -269,15 +272,8 @@ export const ScatterPlot = ({
             g.selectAll(".tick line")
               .attr("stroke", "lightgrey")
               .attr("x1", 0)
-              .attr("x2", width - margin.right);
+              .attr("x2", width - 2 * margin.right);
           })
-          .append("text")
-          .attr("font-family", "sans-serif")
-          .attr("font-size", 12)
-          .attr("y", 0.3 * margin.top)
-          .attr("fill", "black")
-          .attr("text-anchor", "start")
-          .text("↑ Number of reviews");
 
         //cicles
         dots
