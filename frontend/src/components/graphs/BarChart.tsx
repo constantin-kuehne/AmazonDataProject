@@ -83,6 +83,7 @@ export const BarChart = ({
           g.select(".domain").remove();
         });
 
+      //Bars total Votes
       let bars = svg
         .selectAll("rect.totalVotes")
         .data<Source>(data)
@@ -99,6 +100,7 @@ export const BarChart = ({
         .attr("width", (d) => xScale(d.total_votes) - margin.left)
         .attr("fill", "lightgray");
 
+      //Bars helpful votes 
       let bars1 = svg
         .selectAll("rect.helpfulVotes")
         .data<Source>(data)

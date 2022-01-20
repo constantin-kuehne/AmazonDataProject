@@ -125,6 +125,7 @@ export const ScatterPlotTwo = ({
         .attr("text-anchor", "start")
         .text("↑ Number of reviews");
 
+      //hide everything oru of the Graph area on Zoom
       const clip = svg
         .append<SVGGElement>("g")
         .attr("clip-path", "url(#border)");
@@ -148,12 +149,7 @@ export const ScatterPlotTwo = ({
           const self = d3.select(this);
           const node: SVGCircleElement = self.node()!;
 
-          tooltip.attr(
-            "transform",
-            `translate(${node.cx.baseVal.value + 5}, ${
-              node.cy.baseVal.value - 30
-            })`
-          );
+          tooltip.attr("transform",`translate(${node.cx.baseVal.value + 5}, ${node.cy.baseVal.value - 30})`);
 
           tooltipProduct.text(`Product: ${d.productTitle}`);
           tooltipStarRating.text(`Star rating: ${d.starRating.toFixed(2)}`);
@@ -196,26 +192,27 @@ export const ScatterPlotTwo = ({
           const self = d3.select(this);
           const node: SVGRectElement = self.node()!;
 
-          tooltip.attr(
-            "transform",
-            `translate(${node.x.baseVal.value + 5}, ${
-              node.y.baseVal.value - 30
-            })`
-          );
+          tooltip.attr("transform",`translate(${node.x.baseVal.value + 5}, ${node.y.baseVal.value - 30})`);
 
           tooltipProduct.text(`Product: ${searchedProduct!.product_title}`);
           tooltipStarRating.text(`Star rating: ${(d.starRating).toFixed(2)}`);
           tooltipDocCount.text(`Number of reviews: ${d.docCount}`);
 
+          const labelWidth1 = d3.max([
+            tooltipProduct.node()!.getComputedTextLength(),
+            tooltipProduct.node()!.getComputedTextLength(),
+            tooltipDocCount.node()!.getComputedTextLength(),
+          ]) as number;
+
           //Label width
-          const tooltipProductNode: SVGTextElement = tooltipProduct.node()!;
-          const labelWidth = tooltipProductNode.getComputedTextLength();
-          tooltipRect.attr("width", labelWidth + 20);
+          tooltipRect.attr("width", labelWidth1 + 20);
           tooltip.attr("visibility", "visible");
         })
 
         .on("mouseleave", function () {
-          d3.select(this).style("fill", "orange").attr("opacity", null);
+          d3.select(this)
+            .style("fill", "orange")
+            .attr("opacity", null);
           tooltip.attr("visibility", "hidden");
         });
 
@@ -224,16 +221,14 @@ export const ScatterPlotTwo = ({
         .zoom<SVGSVGElement, Source>()
         .on("zoom", onZoom)
         .scaleExtent([1, 10])
-        .extent([
-          [margin.left, margin.top],
-          [width + margin.left, height + margin.top],
-        ]) as (
-        selection: d3.Selection<SVGSVGElement, unknown, null, undefined>,
-        ...args: any[]
-      ) => void;
+        .extent([[margin.left, margin.top],[width + margin.left, height + margin.top],]) as (
+          selection: d3.Selection<SVGSVGElement, unknown, null, undefined>,
+          ...args: any[]
+        ) => void;
 
       svg.call(zoom);
 
+      //Update graph
       function onZoom(event: any) {
         const xNew = event.transform.rescaleX(xScale);
         const yNew = event.transform.rescaleY(yScale);
@@ -284,6 +279,7 @@ export const ScatterPlotTwo = ({
           .attr("text-anchor", "start")
           .text("↑ Number of reviews");
 
+        //cicles 
         dots
           .attr("cx", (d) => xNew(d.starRating))
           .attr("cy", (d) => yNew(d.docCount));

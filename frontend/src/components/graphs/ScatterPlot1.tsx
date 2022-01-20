@@ -120,7 +120,7 @@ export const ScatterPlot = ({
         .attr("text-anchor", "start")
         .text("↑ Number of reviews");
 
-      //hide everything out of this area on Zoom
+      //hide everything oru of the Graph area on Zoom
       const clip = svg
         .append<SVGGElement>("g")
         .attr("clip-path", "url(#border)");
@@ -144,19 +144,10 @@ export const ScatterPlot = ({
           const self = d3.select(this);
           const node: SVGCircleElement = self.node()!;
 
-          tooltip.attr(
-            "transform",
-            `translate(${node.cx.baseVal.value + 5}, ${
-              node.cy.baseVal.value - 30
-            })`
-          );
+          tooltip.attr("transform",`translate(${node.cx.baseVal.value + 5}, ${node.cy.baseVal.value - 30})`);
 
           tooltipProduct.text(`Product: ${d.productTitle}`);
-          tooltipVotes.text(
-            `Helpful votes: ${((d.helpfulVotes / d.totalVotes) * 100).toFixed(
-              2
-            )}%`
-          );
+          tooltipVotes.text(`Helpful votes: ${((d.helpfulVotes / d.totalVotes) * 100).toFixed(2)}%`);
           tooltipDocCount.text(`Number of reviews: ${d.docCount}`);
 
           const labelWidth = d3.max([
@@ -191,27 +182,15 @@ export const ScatterPlot = ({
         .attr("height", 10)
         .style("fill", "orange")
         .on("mouseenter", function (event, d: SearchedData) {
-          d3.select(this)
-            .attr("r", 5)
-            .style("fill", "darkblue")
-            .attr("opacity", 0.5);
+          d3.select(this).attr("r", 5).style("fill", "darkblue").attr("opacity", 0.5);
 
           const self = d3.select(this);
           const node: SVGRectElement = self.node()!;
 
-          tooltip.attr(
-            "transform",
-            `translate(${node.x.baseVal.value + 5}, ${
-              node.y.baseVal.value - 30
-            })`
-          );
+          tooltip.attr("transform",`translate(${node.x.baseVal.value + 5}, ${node.y.baseVal.value - 30})`);
 
           tooltipProduct.text(`Product: ${searchedProduct!.product_title}`);
-          tooltipVotes.text(
-            `Helpful votes: ${((d.helpfulVotes / d.totalVotes) * 100).toFixed(
-              2
-            )}%`
-          );
+          tooltipVotes.text(`Helpful votes: ${((d.helpfulVotes / d.totalVotes) * 100).toFixed(2)}%`);
           tooltipDocCount.text(`Number of reviews: ${d.docCount}`);
 
           const labelWidth = d3.max([
@@ -227,7 +206,6 @@ export const ScatterPlot = ({
 
         .on("mouseleave", function () {
           d3.select(this)
-            .attr("r", 3.5)
             .style("fill", "orange")
             .attr("opacity", null);
           tooltip.attr("visibility", "hidden");
@@ -238,16 +216,14 @@ export const ScatterPlot = ({
         .zoom<SVGSVGElement, Source>()
         .on("zoom", onZoom)
         .scaleExtent([1, 10])
-        .extent([
-          [margin.left, margin.top],
-          [width + margin.left, height + margin.top],
-        ]) as (
+        .extent([[margin.left, margin.top],[width + margin.left, height + margin.top],]) as (
         selection: d3.Selection<SVGSVGElement, unknown, null, undefined>,
         ...args: any[]
       ) => void;
 
       svg.call(zoom);
 
+      //Update graph
       function onZoom(event: any) {
         const xNew = event.transform.rescaleX(xScale);
         const yNew = event.transform.rescaleY(yScale);
@@ -298,6 +274,7 @@ export const ScatterPlot = ({
           .attr("text-anchor", "start")
           .text("↑ Number of reviews");
 
+        //cicles
         dots
           .attr("cx", (d) => xNew((d.helpfulVotes / d.totalVotes) * 100))
           .attr("cy", (d) => yNew(d.docCount));
