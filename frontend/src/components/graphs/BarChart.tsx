@@ -37,21 +37,22 @@ export const BarChart = ({
 
   useEffect(() => {
     if (svgRef.current && data) {
+      console.log(data);
       const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove();
 
       const max = d3.max(data, (d) => d.total_votes);
+      console.log(max);
 
-      
- //xAxis Scale 
+      //xAxis Scale
       const xScale = d3.scaleLinear(
-        [0, max as number],
+        [0, (max as number) + 1],
         [margin.left, width - margin.right]
       );
 
       const xAxisFn = d3.axisBottom(xScale);
 
-// xAxis
+      // xAxis
       const xAxis = svg
         .append<SVGGElement>("g")
         .call(xAxisFn)
@@ -60,11 +61,11 @@ export const BarChart = ({
           g.select(".domain").remove();
           g.selectAll(".tick line")
             .attr("stroke", "lightgrey")
-            .attr('y1',  -height+1.5*margin.top)
-            .attr('y2', 0)
+            .attr("y1", -height + 1.5 * margin.top)
+            .attr("y2", 0);
         });
 
- //yAxis Scale        
+      //yAxis Scale
       const yScale = d3
         .scaleBand(
           data.map((d) => d.review_headline),
@@ -73,7 +74,7 @@ export const BarChart = ({
         .padding(0.3);
 
       const yAxisFn = d3.axisLeft(yScale);
-// yAxis
+      // yAxis
       const yAxis = svg
         .append<SVGGElement>("g")
         .call(yAxisFn)
