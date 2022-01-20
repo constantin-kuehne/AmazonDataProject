@@ -74,48 +74,48 @@ export const ScatterPlot = ({
 
       // xAxis & grid
         svg
-          .append<SVGGElement>("g")
-          .classed("x-axis", true)
-          .attr("transform", `translate(0, ${height - margin.bottom})`)
-          .call(xAxisFn)
-          .call((g) => {
-            g.select(".domain").remove();
-            g.selectAll(".tick line")
-              .attr("stroke", "lightgrey")
-              .attr('y1',  -height+1.5*margin.top)
-              .attr('y2', 0)
-          })
+        .append<SVGGElement>("g")
+        .classed("x-axis", true)
+        .attr("transform", `translate(0, ${height - margin.bottom})`)
+        .call(xAxisFn)
+        .call((g) => {
+          g.select(".domain").remove();
+          g.selectAll(".tick line")
+          .attr("stroke", "lightgrey")
+          .attr('y1',  -height+1.5*margin.top)
+          .attr('y2', 0)
+        })
       //lable
-          .append("text")
-          .attr("font-family", "sans-serif")
-          .attr("font-size", 12)
-          .attr("y", 0.8 * margin.bottom)
-          .attr("text-anchor", "end")
-          .attr("x", width - margin.right)
-          .attr("fill", "black")
-          .text("total votes ∷ helpful votes in % ⭢");
+        .append("text")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", 12)
+        .attr("y", 0.8 * margin.bottom)
+        .attr("text-anchor", "end")
+        .attr("x", width - margin.right)
+        .attr("fill", "black")
+        .text("total votes ∷ helpful votes in % ⭢");
 
-      // yAxis & grid
-        svg
-          .append<SVGGElement>("g")
-          .classed("y-axis", true)
-          .attr("transform", `translate(${margin.left}, 0)`)
-          .call(yAxisFn)
-          .call((g) => {
-            g.select(".domain").remove();
-            g.selectAll(".tick line")
-            .attr("stroke", "lightgrey")
-            .attr("x1", 0)
-            .attr("x2", width-margin.right);
-          })
+    // yAxis & grid
+      svg
+        .append<SVGGElement>("g")
+        .classed("y-axis", true)
+        .attr("transform", `translate(${margin.left}, 0)`)
+        .call(yAxisFn)
+        .call((g) => {
+          g.select(".domain").remove();
+          g.selectAll(".tick line")
+          .attr("stroke", "lightgrey")
+          .attr("x1", 0)
+          .attr("x2", width-margin.right);
+        })
       //lable
-          .append("text")
-          .attr("font-family", "sans-serif")
-          .attr("font-size", 1)
-          .attr("y", 0.3 * margin.top)
-          .attr("fill", "black")
-          .attr("text-anchor", "start")
-          .text("↑ Number of reviews");
+        .append("text")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", 12)
+        .attr("y", 0.3 * margin.top)
+        .attr("fill", "black")
+        .attr("text-anchor", "start")
+        .text("↑ Number of reviews");
 
       //hide everxthin out of this area
         svg
