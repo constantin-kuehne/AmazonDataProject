@@ -111,7 +111,7 @@ export const ScatterPlot = ({
             .attr("x1", 0)
             .attr("x2", width - margin.right);
         })
-        //label
+        //lable
         .append("text")
         .attr("font-family", "sans-serif")
         .attr("font-size", 12)
@@ -120,7 +120,7 @@ export const ScatterPlot = ({
         .attr("text-anchor", "start")
         .text("↑ Number of reviews");
 
-      //hide everything out of this area on Zoom
+     //hide everythin out of this area on Zoom 
       const clip = svg
         .append<SVGGElement>("g")
         .attr("clip-path", "url(#border)");
@@ -153,9 +153,7 @@ export const ScatterPlot = ({
 
           tooltipProduct.text(`Product: ${d.productTitle}`);
           tooltipVotes.text(
-            `Helpful votes: ${((d.helpfulVotes / d.totalVotes) * 100).toFixed(
-              2
-            )}%`
+            `Helpful votes: ${((d.helpfulVotes / d.totalVotes) * 100).toFixed(2)}%`
           );
           tooltipDocCount.text(`Number of reviews: ${d.docCount}`);
 
@@ -252,23 +250,15 @@ export const ScatterPlot = ({
         const xNew = event.transform.rescaleX(xScale);
         const yNew = event.transform.rescaleY(yScale);
 
-        //svg.selectAll("g.x-axis").remove();
-        //svg.selectAll("g.y-axis").remove();
-
-        dots
-          .attr("cx", (d) => xNew((d.helpfulVotes / d.totalVotes) * 100))
-          .attr("cy", (d) => yNew(d.docCount));
-
-        dot
-          .attr("x", (d) => xNew((d.helpfulVotes / d.totalVotes) * 100))
-          .attr("y", (d) => yNew(d.docCount));
+        svg.selectAll("g.x-axis").remove();
+        svg.selectAll("g.y-axis").remove();
 
         const xAxisFn = d3.axisBottom(xNew);
         const yAxisFn = d3.axisLeft(yNew);
 
         //xAxis
         svg
-          .select<SVGGElement>("g.x-axis")
+          .append<SVGGElement>("g")
           .classed("x-axis", true)
           .attr("transform", `translate(0, ${height - margin.bottom})`)
           .call(xAxisFn)
@@ -290,7 +280,7 @@ export const ScatterPlot = ({
 
         //yAxis
         svg
-          .select<SVGGElement>("g.y-axis")
+          .append<SVGGElement>("g")
           .classed("y-axis", true)
           .attr("transform", `translate(${margin.left}, 0)`)
           .call(yAxisFn)
@@ -308,6 +298,14 @@ export const ScatterPlot = ({
           .attr("fill", "black")
           .attr("text-anchor", "start")
           .text("↑ Number of reviews");
+
+        dots
+          .attr("cx", (d) => xNew((d.helpfulVotes / d.totalVotes) * 100))
+          .attr("cy", (d) => yNew(d.docCount));
+
+        dot
+          .attr("x", (d) => xNew((d.helpfulVotes / d.totalVotes) * 100))
+          .attr("y", (d) => yNew(d.docCount));
       }
 
       //Tooltips
