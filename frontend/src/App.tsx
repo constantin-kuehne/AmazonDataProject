@@ -49,7 +49,7 @@ const App = () => {
           <Avatar alt="A" src="ADP_Logo.png"/>
         </div>
         <br />
-        <h1> ADP SEARCH</h1>
+        <h1>ADP SEARCH</h1>
         <SearchSelect search={search} setSearch={setSearch} />
         <br />
         <Search setSearchedProduct={setSearchedProduct} search={search} />

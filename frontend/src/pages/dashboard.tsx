@@ -4,7 +4,7 @@ import { LineChart } from "../components/graphs/LineChart";
 import { ScatterPlot } from "../components/graphs/ScatterPlot1";
 import { ScatterPlotTwo } from "../components/graphs/ScatterPlot2";
 import { Source as SearchProductSource } from "../components/searchbar";
-
+import "./dashboard.css"
 
 export const Dashboard = ({
   searchedProduct,
