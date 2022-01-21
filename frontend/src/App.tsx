@@ -12,6 +12,7 @@ import Select from "./components/searchoptions";
 import SearchSelect from "./components/searchoptions";
 import { polyfill } from "seamless-scroll-polyfill";
 import Searchresult from "./pages/about";
+import Appfooter from "./pages/appfooter";
 
 export type SearchOptions = "Product" | "ASIN";
 //App Styling for App.tsx mui components
@@ -80,19 +81,11 @@ const App = () => {
       ) : (
         <></>
       )}
+        <div>
+            <Appfooter/>
+        </div>
 
-      <div className="App-footer">
-          <p> made by Constantin Kühne, Tim Muscholl, Valentin Kieslinger 2022</p>
-          {/* <Button
-          className={classes.errorbutton}
-          onClick={() => console.log("Error Button Clicked")} //Kann man auch noch eine Mailto Function machen oder eine Route zu einem extra Fenster.
-          variant="outlined"
-          color="secondary"
-          type="submit"
-        >
-          Report problem
-        </Button>*/}
-      </div>
+
     </div>
   );
 };
