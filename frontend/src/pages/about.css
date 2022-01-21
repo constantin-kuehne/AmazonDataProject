@@ -6,9 +6,42 @@
 
 .About-box{
     /*background-color:#385AA8; */
-    align-content: center;
+
+
+}
+
+.About-about{
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: calc(10px + 2vmin);
+    background-color: #e8e8e8b;
+}
 
+.About-about{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    background-color: #e8e8e8b;
+}
 
+.About-about{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    background-color: #e8e8e8b;
+}
+
+.About-about{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    background-color: #e8e8e8b;
 }

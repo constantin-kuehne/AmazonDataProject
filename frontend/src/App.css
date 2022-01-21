@@ -20,7 +20,7 @@
 }
 
 .App-Body{
-  background-color: #EDEDED;
+  background-color: #e8e8e8b;
   /*background-image: linear-gradient(to right, white , white); */
   display: flex;
   flex-direction: column;

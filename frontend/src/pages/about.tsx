@@ -10,7 +10,7 @@ export default function About({
 }) {
   return (
     <div>
-      <div>
+      <div className="About-about">
           <h4> What this app is about and how it's working!</h4>
           <Box
           sx={{width: 400, height: 100, border: "2px dashed grey" , borderRadius: 1 , m: 4}} alignItems="center" justifyContent="center" className="About-box">
