@@ -27,13 +27,7 @@ export const Dashboard = ({
                <p className="legendcontent"> <CropSquareIcon className="legendicon" sx={{m: -0.8}}/> Amount of helpful votes.</p>
                 <p className="legendcontent"> <CropSquareIcon className="legendicontwo" sx={{m: -0.55}}/> Amount of total votes.</p>
 
-
-
-
-
             </CardContent>
-
-
         </Card>
 
       <h4> Number of reviews per month</h4>
@@ -67,4 +61,3 @@ export const Dashboard = ({
 };
 
 
-//TODO Optimize Card

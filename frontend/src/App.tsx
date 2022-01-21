@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     fontSize: 10,
   },
 });
-//App Function
+//App Consts
 const App = () => {
   polyfill();
   const classes = useStyles();
@@ -39,7 +39,7 @@ const App = () => {
       jumpRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [searchedProduct, jumpRef]);
-
+//App Function
   return (
     <div className="App">
       <div className="app-bar">

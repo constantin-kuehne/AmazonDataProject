@@ -165,5 +165,3 @@ const Search = ({
 };
 
 export default Search;
-
-//TODO Fix Search Icon Position

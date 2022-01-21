@@ -56,5 +56,4 @@ please make sure to specify the right path to the .env file after the volume fla
 
 * Web App
 
-
 You'll find this documents in the "Further Documentation" directory.

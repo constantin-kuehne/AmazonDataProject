@@ -5,3 +5,5 @@
 * "Code" Button formatieren
 * Searchresult Box formatieren und einfärben
 * Code Strukturieren, unnötiges rauslöschen, Kommentieren, was nötig ist
+* Fix Search Icon Position
+* Legend Card Optimize

@@ -14,9 +14,6 @@ export default function About({
           <h4> What this app is about and how it's working!</h4>
           <p className="about-text">This app.  </p>
 
-
-
-
           <Box
           sx={{width: 400, height: 100, border: "2px dashed grey" , borderRadius: 1 , m: 4}} alignItems="center" justifyContent="center" className="About-box">
               <p className="Searchresult">Your search result:{searchedProduct?.product_title}</p>
@@ -31,4 +28,3 @@ export default function About({
 }
 
 
-//TODO Commenting
