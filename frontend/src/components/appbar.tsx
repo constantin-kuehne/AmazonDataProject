@@ -160,7 +160,7 @@ const ADPAppbar = () => {
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt="User" src="ADP_Logo.png" />
+                                    <Avatar alt="A" src="ADP_Logo.png" />
                                 </IconButton>
                             </Tooltip>
                             <Menu
