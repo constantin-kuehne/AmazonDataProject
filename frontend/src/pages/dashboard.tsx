@@ -5,6 +5,7 @@ import { ScatterPlot } from "../components/graphs/ScatterPlot1";
 import { ScatterPlotTwo } from "../components/graphs/ScatterPlot2";
 import { Source as SearchProductSource } from "../components/searchbar";
 import "./dashboard.css"
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 export const Dashboard = ({
   searchedProduct,
@@ -16,6 +17,8 @@ export const Dashboard = ({
       <h4> Top 20 most voted reviews </h4>
         <p className="dash-descriptions"> In diesem Bar Chart werden die Top 20 der meistbewerteten Reviews gezeigt. Die Balken sind nach der Anzahl an total Votes sortiert - der Anteil der helpful Votes wird durch eine andere Sättigung der Farbe hervorgehoben. </p>
         <p className="dash-descriptions"> Dieser Chart gibt einen Überblick über die besten Reviews und wie hilfreich sie waren. Je höher die Anzahl der Bewertungen, desto geringer ist die Wahrscheinlichkeit, dass es sich um ein gefälschtes Review handelt.</p>
+        <p className="dash-legend"> Legende: <FiberManualRecordIcon className="legendicon" sx={{m: -0.8}}/> Amount of helpful-Votes  <FiberManualRecordIcon className="legendicontwo" sx={{m: -0.5}}/> Amount of Votes </p>
+
       <BarChart searchedProduct={searchedProduct} width={1000} height={500} />
 
       <h4> Number of reviews per month</h4>
