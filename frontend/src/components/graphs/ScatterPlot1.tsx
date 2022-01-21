@@ -54,10 +54,8 @@ export const ScatterPlot = ({
       svg.selectAll("*").remove();
 
       let maxData = d3.max(data, (d) => d["docCount"]);
-      maxData =
-        (maxData! > searchedData!.docCount
-          ? maxData!
-          : searchedData!.docCount) + 5;
+      maxData = (maxData! > searchedData!.docCount? maxData!: searchedData!.docCount);
+      maxData = (maxData + (maxData/100*5));
 
       //xAxis Scale
       const xScale = d3

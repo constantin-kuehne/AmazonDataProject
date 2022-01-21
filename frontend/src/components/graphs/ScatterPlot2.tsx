@@ -55,10 +55,8 @@ export const ScatterPlotTwo = ({
 
       //get max value of "Number of reviews" / "docCount"
       let maxData = d3.max(data, (d) => d["docCount"]);
-      maxData =
-        (maxData! > searchedData!.docCount
-          ? maxData!
-          : searchedData!.docCount) + 5;
+      maxData =(maxData! > searchedData!.docCount? maxData!: searchedData!.docCount);
+      maxData = (maxData + (maxData/100*5));
 
       //xAxis Scale
       const xScale = d3
