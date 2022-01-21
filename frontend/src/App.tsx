@@ -12,7 +12,7 @@ import Select from "./components/searchoptions";
 import SearchSelect from "./components/searchoptions";
 import { polyfill } from "seamless-scroll-polyfill";
 import Searchresult from "./pages/about";
-import Appfooter from "./pages/appfooter";
+import Appfooter from "./components/appfooter";
 
 export type SearchOptions = "Product" | "ASIN";
 //App Styling for App.tsx mui components
