@@ -59,7 +59,8 @@ function ScrollTop(props: Props) {
         </Zoom>
     );
 }
-const pages = ['Documentation', 'Contact'];
+
+const pages = ['', '']; //Gerade leer weil kein Router //TODO Routing einbinden...
 const settings = ['Dashboard', 'Report a Problem']; //Kann mit React Router dann durch die Routes ersetzt werden.
 
 const ADPAppbar = () => {
