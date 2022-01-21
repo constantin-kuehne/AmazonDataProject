@@ -7,6 +7,10 @@ import {Link} from "@mui/material";
 export default function Appfooter(){
     return(
         <div className="App-footer">
+
+            <Button sx={{m: 2}} variant="contained" href="https://bitbucket.org/constantin-kuehne/amazondataproject/src/main/" className="code-button">
+                Code
+            </Button>
             <p> made by Constantin Kühne, Tim Muscholl, Valentin Kieslinger 2022</p>
             {/* <Button
           className={classes.errorbutton}
@@ -17,10 +21,6 @@ export default function Appfooter(){
         >
           Report problem
         </Button>*/}
-            <Button variant="outlined" href="https://bitbucket.org/constantin-kuehne/amazondataproject/src/main/">
-               Code
-
-            </Button>
         </div>
 
 
