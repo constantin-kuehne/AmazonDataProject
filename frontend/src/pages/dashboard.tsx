@@ -7,6 +7,7 @@ import { Source as SearchProductSource } from "../components/searchbar";
 import "./dashboard.css"
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import CropSquareIcon from '@mui/icons-material/CropSquare';
+import {Card, CardContent, Paper} from "@mui/material";
 
 export const Dashboard = ({
   searchedProduct,
@@ -18,9 +19,22 @@ export const Dashboard = ({
       <h4> Top 20 most voted reviews </h4>
         <p className="dash-descriptions"> In diesem Bar Chart werden die Top 20 der meistbewerteten Reviews gezeigt. Die Balken sind nach der Anzahl an total Votes sortiert - der Anteil der helpful Votes wird durch eine andere Sättigung der Farbe hervorgehoben. </p>
         <p className="dash-descriptions"> Dieser Chart gibt einen Überblick über die besten Reviews und wie hilfreich sie waren. Je höher die Anzahl der Bewertungen, desto geringer ist die Wahrscheinlichkeit, dass es sich um ein gefälschtes Review handelt.</p>
-        <p className="dash-legend"> Legende: <CropSquareIcon className="legendicon" sx={{m: -0.8}}/> Amount of helpful-Votes  <CropSquareIcon className="legendicontwo" sx={{m: -0.5}}/> Amount of Votes </p>
 
       <BarChart searchedProduct={searchedProduct} width={1000} height={500} />
+        <Card variant={"outlined"}>
+            <CardContent className="legendcard">
+                <p className="dash-legend">Legende:</p>
+               <p className="legendcontent"> <CropSquareIcon className="legendicon" sx={{m: -0.8}}/> Amount of helpful votes.</p>
+                <p className="legendcontent"> <CropSquareIcon className="legendicontwo" sx={{m: -0.55}}/> Amount of total votes.</p>
+
+
+
+
+
+            </CardContent>
+
+
+        </Card>
 
       <h4> Number of reviews per month</h4>
         <p className="dash-descriptions">Dieser Line Graph zeigt die pro Monat geschriebenen Reviews über den Verlauf der Zeit. Die Zeitachse beginnt in dem Monat, in dem das erste Review geschrieben wurde, meist der Monat, in dem das Produkt auf den Markt kam.  </p>
