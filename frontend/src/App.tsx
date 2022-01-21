@@ -46,7 +46,7 @@ const App = () => {
       </div>
       <header className="App-header">
         <div>
-          <Avatar alt="A" src="ADP_Logo.png"/>
+          <Avatar alt="A" src="Bigproject_Logo.png"/>
         </div>
         <br />
         <h1>ADP SEARCH</h1>
