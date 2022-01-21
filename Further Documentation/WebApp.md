@@ -19,6 +19,30 @@
 * Express Server 
 #### APIs
 
+/:ASIN
+
+/:ASIN/number-reviews/:DATETYPE
+
+/:ASIN/number-reviews
+
+// star bar
+/:ASIN/star-rating
+
+/:ASIN/total-votes
+
+/:ASIN/helpful-votes
+
+// scatter plot
+/:ASIN/info
+
+// bar chart helpful votes total votes review headline
+/:ASIN/reviews-votes
+
+// same as one up but more info
+/:ASIN/reviews
+
+// scatter plot
+/:ASIN/votes-similar-products
 
 ###
 ### Frontend
