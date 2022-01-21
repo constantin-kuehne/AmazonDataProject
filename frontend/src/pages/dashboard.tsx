@@ -14,7 +14,7 @@ export const Dashboard = ({
 }: {
   searchedProduct: null | SearchProductSource;
 }) => {
-  return (
+  return ( //All Charts + Descriptions and Legends
     <div>
       <h4> Top 20 most voted reviews </h4>
         <p className="dash-descriptions"> In diesem Bar Chart werden die Top 20 der meistbewerteten Reviews gezeigt. Die Balken sind nach der Anzahl an total Votes sortiert - der Anteil der helpful Votes wird durch eine andere Sättigung der Farbe hervorgehoben. </p>
@@ -65,3 +65,6 @@ export const Dashboard = ({
     </div>
   );
 };
+
+
+//TODO Optimize Card

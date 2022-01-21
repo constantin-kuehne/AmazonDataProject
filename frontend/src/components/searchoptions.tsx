@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function SearchSelect({
+export default function SearchSelect({ //Choose between different Search Options (Title & ASIN)
   search,
   setSearch,
 }: {

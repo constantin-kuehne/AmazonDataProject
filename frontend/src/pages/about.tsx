@@ -1,7 +1,5 @@
 import { Box } from "@material-ui/core";
-import { Skeleton } from "@mui/material";
 import React from "react";
-import Animations from "../animations/loading_animation";
 import { Source } from "../components/searchbar";
 import "./about.css"
 
@@ -26,3 +24,6 @@ export default function About({
     </div>
   );
 }
+
+
+//TODO Commenting

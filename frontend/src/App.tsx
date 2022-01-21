@@ -16,10 +16,10 @@ import Searchresult from "./pages/about";
 export type SearchOptions = "Product" | "ASIN";
 //App Styling for App.tsx mui components
 const useStyles = makeStyles({
-  searchbutton: {
+  searchbutton: { //Inactive
     backgroundColor: "transparent",
   },
-  errorbutton: {
+  errorbutton: { //Inactive
     backgroundColor: "transparent",
     fontSize: 10,
   },

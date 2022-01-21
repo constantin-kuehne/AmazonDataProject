@@ -112,14 +112,14 @@ const Search = ({
     }, 100);
   };
 
-  return (
+  return ( //Searchbar starts
     <div className={classes.search}>
       <div>
         <div className={classes.searchIcon}>
           <SearchIcon />
         </div>
         <InputBase
-          placeholder="Product ID"
+          placeholder="Search..."
           classes={{
             root: classes.inputRoot,
             input: classes.inputInput,
@@ -165,3 +165,5 @@ const Search = ({
 };
 
 export default Search;
+
+//TODO Fix Search Icon Position

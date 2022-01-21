@@ -17,9 +17,6 @@ import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import SearchIcon from "@material-ui/icons/Search";
 
-//Appbar created with MUI
-
-//Links der Appbar und dem Profile Icon. Können durch Routes ersetzt werden mit React Router. //TODO EVTL. Routing (Tim)
 interface Props {
     /**
      * Injected by the documentation to work in an iframe.
@@ -63,7 +60,7 @@ function ScrollTop(props: Props) {
     );
 }
 const pages = ['Documentation', 'Contact'];
-const settings = ['Dashboard', 'Report a Problem'];
+const settings = ['Dashboard', 'Report a Problem']; //Kann mit React Router dann durch die Routes ersetzt werden.
 
 const ADPAppbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -85,7 +82,7 @@ const ADPAppbar = () => {
     };
 
 
-    return (
+    return ( //Appbar + Anchor Icon
         <React.Fragment>
             <CssBaseline/>
             <AppBar position="static" style={{background: "transparent"}}>
