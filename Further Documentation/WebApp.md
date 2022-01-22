@@ -1,6 +1,6 @@
 # Technical Details about ADP Search
 
-###Infos
+### Infos
 * React
   * webapp written in Typescript, HTML, CSS & D3.js
 * MUI
@@ -37,8 +37,10 @@ We used different ways to apply styles to our webapp:
 ### Backend
 #### Data & Data Handling
 * Elastic 
+
 #### Server
 * Express Server 
+
 #### APIs
 
 /:ASIN
@@ -66,11 +68,12 @@ We used different ways to apply styles to our webapp:
 // scatter plot
 /:ASIN/votes-similar-products
 
-###
 ### Frontend
 * React written in Typescript
+
 #### MUI
 * Material UI Themes, Components, Icons & Animation
+
 #### Components
 * Appbar
 * Searchbar
