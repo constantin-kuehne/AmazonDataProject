@@ -18,6 +18,10 @@ router.get("/:ASIN", (req, res) => {
   queryAsin(req.params.ASIN as string).then((data) => res.json(data));
 });
 
+router.get("/:ASIN/number-reviews", (req, res) => {
+  queryNumberReviews(req.params.ASIN as string).then((data) => res.json(data));
+});
+
 // Line chart
 router.get("/:ASIN/number-reviews/:DATETYPE", (req, res) => {
   let interval: number = parseInt(req.query.interval as string, 10);
@@ -31,10 +35,6 @@ router.get("/:ASIN/number-reviews/:DATETYPE", (req, res) => {
   queryTimeNumberReviews(req.params.ASIN as string, datetype, interval).then(
     (data) => res.json(data)
   );
-});
-
-router.get("/:ASIN/number-reviews", (req, res) => {
-  queryNumberReviews(req.params.ASIN as string).then((data) => res.json(data));
 });
 
 // star bar

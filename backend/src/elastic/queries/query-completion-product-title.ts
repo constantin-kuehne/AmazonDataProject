@@ -59,21 +59,10 @@ const _queryCompletionTitleRaw = (
 export default async (title: string, size: number = 10) => {
   const field = "product_title";
   const sourceFields = [
-    "marketplace",
-    "customer_id",
-    "review_id",
     "product_id",
     "product_parent",
     "product_title",
     "product_category",
-    "star_rating",
-    "helpful_votes",
-    "total_votes",
-    "vine",
-    "verified_purchase",
-    "review_headline",
-    "review_body",
-    "review_date",
   ];
   const collapseField = "product_id.keyword";
   const data = await _queryCompletionTitleRaw(

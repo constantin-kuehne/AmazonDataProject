@@ -17,6 +17,7 @@ import {
 
 import { DocumentRequired } from "../types";
 import { SearchOptions } from "../App";
+import config from "../config";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -76,12 +77,15 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export interface Source extends DocumentRequired {}
+export type Source = Pick<
+  DocumentRequired,
+  "product_id" | "product_parent" | "product_title" | "product_category"
+>;
 
 const getProductTitles = async (searchString: string, search: string) => {
   const searchOption = search === "Product" ? "title" : "asin";
   const res = await fetch(
-    `http://localhost:3001/completion/${searchOption}?s=${searchString}&size=10`
+    `${config.url}/completion/${searchOption}?s=${searchString}&size=10`
   );
   return res.json() as Promise<Source[] | []>;
 };
@@ -112,7 +116,8 @@ const Search = ({
     }, 100);
   };
 
-  return ( //Searchbar starts
+  return (
+    //Searchbar starts
     <div className={classes.search}>
       <div>
         <div className={classes.searchIcon}>
