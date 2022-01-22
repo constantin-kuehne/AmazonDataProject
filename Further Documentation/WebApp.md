@@ -48,11 +48,16 @@ We used different ways to apply styles to our webapp:
 #### ASIN queries (prefix: /asin)
 
 **/:ASIN**
+
 Parameters:
+
 - ASIN - *required* - the product id of the product you want to search for (called ASIN at amazon)
 
+
 Returns:
+
 all reviews for this asin as stored in elasticsearch
+
 
 Example:
 ```JSON
@@ -78,25 +83,37 @@ Example:
 ]
 ```
 
+
 **/:ASIN/number-reviews**
+
 Parameters:
+
 - ASIN - *required* - the product id of the product you want to search for (called ASIN at amazon)
 
+
 Returns:
+
 only the number of reviews for this asin
+
 
 Example:
 ```JSON
 131
 ```
 
+
 **/:ASIN/number-reviews/:DATETYPE**
+
 Parameters:
+
 - ASIN - *required* - the product id of the product you want to search for (called ASIN at amazon)
 - DATETYPE - *required* - the time interval of how the data should be aggregated; must be one of: DAY, WEEK, MONTH, QUARTER, YEAR
 
+
 Returns:
+
 the interval time in datetime format (yyyy-MM-dd'T'HH:mm:ss.SSSZ) in unix format; the amount of reviews in this interval (docCount)
+
 
 Example:
 ```json
@@ -110,15 +127,22 @@ Example:
 ]
 ```
 
+
 Used in:
+
 - LineChart
 
 **/:ASIN/star-rating**
+
 Parameters:
+
 - ASIN - *required* - the product id of the product you want to search for (called ASIN at amazon)
 
+
 Returns:
+
 the number of reviews of this asin and the average star rating over these reviews
+
 
 Example:
 ```JSON
@@ -128,12 +152,18 @@ Example:
 }
 ```
 
+
 **/:ASIN/total-votes**
+
 Parameters:
+
 - ASIN - *required* - the product id of the product you want to search for (called ASIN at amazon)
 
+
 Returns:
+
 the number of reviews of this asin and the sum of total votes over these reviews
+
 
 Example:
 ```JSON
@@ -143,12 +173,18 @@ Example:
 }
 ```
 
+
 **/:ASIN/helpful-votes**
+
 Parameters:
+
 - ASIN - *required* - the product id of the product you want to search for (called ASIN at amazon)
 
+
 Returns:
+
 the number of reviews of this asin and the sum of helpful votes over these reviews
+
 
 Example:
 ```JSON
@@ -158,12 +194,18 @@ Example:
 }
 ```
 
+
 **/:ASIN/info**
+
 Parameters:
+
 - ASIN - *required* - the product id of the product you want to search for (called ASIN at amazon)
 
+
 Returns:
+
 the number of reviews of this asin, the sum of helpful votes over these reviews, the sum of total votes over these reviews and the average star rating over these votes
+
 
 Example:
 ```JSON
@@ -175,19 +217,29 @@ Example:
 }
 ```
 
+
 Used in:
+
 - ScatterPlot1
 - ScatterPlot2
 
+
 **/:ASIN/reviews-votes**
+
 Parameters:
+
 - ASIN - *required* - the product id of the product you want to search for (called ASIN at amazon)
 
+
 Query parameters:
+
 - size - *optional* - number of reviews that should be returned - default: 10
 
+
 Returns:
+
 the total votes, helpful votes and review headline of the top *size* reviews of this asin based on helpful votes :: total votes ratio
+
 
 Example:
 ```JSON
@@ -201,15 +253,23 @@ Example:
 ]
 ```
 
+
 **/:ASIN/reviews**
+
 Parameters:
+
 - ASIN - *required* - the product id of the product you want to search for (called ASIN at amazon)
 
+
 Query parameters:
+
 - size - *optional* - number of reviews that should be returned - default: 10
 
+
 Returns:
+
 the whole elasticsearch document of the top *size* reviews of this asin based on helpful votes :: total votes ratio
+
 
 Example:
 ```JSON
@@ -235,20 +295,30 @@ Example:
 ]
 ```
 
+
 Used in:
+
 - BarChart
 
+
 **/:ASIN/votes-similar-products**
+
 Parameters:
+
 - ASIN - *required* - the product id of the product you want similar products for (called ASIN at amazon)
 
+
 Query parameters:
+
 - size - *optional* - number of reviews that should be returned - default: 50
 - title - *required* - the title of the product
 - category - *required* - the category of the product
 
+
 Returns:
+
 the *size* most similar products to your product based on product title and category; computed by elasticsearch (computation based on [TF-IDF](https://en.wikipedia.org/wiki/Tf–idf))
+
 
 Example:
 ```JSON
@@ -273,19 +343,26 @@ Example:
 ]
 ```
 
+
 Used in:
 - ScatterPlot1
 - ScatterPlot2
 
+
 #### Completion queries (prefix: /completion)
 
 **/asin**
+
 Query parameters:
+
 - s - *required* - the string to search for
 - size - *optional* - the number of search results - default: 10
 
+
 Returns:
+
 product parent, title, category and id of *size* products which begin or have the asin specified via the s query parameter; it gives back the whole doc
+
 
 Example:
 ```JSON
@@ -306,16 +383,23 @@ Example:
 ]
 ```
 
+
 Used in:
+
 - Search bar
 
+
 **/title**
+
 Query parameters:
+
 - s - *required* - the string to search for
 - size - *optional* - the number of search results - default: 10
 
+
 Returns:
 product parent, title, category and id of *size* products which have a similar product title (based on elasticsearch  match query)
+
 
 Example:
 ```JSON
@@ -336,8 +420,10 @@ Example:
 ]
 ```
 
+
 Used in:
 - search bar
+
 
 ### Frontend
 - React, written in Typescript
