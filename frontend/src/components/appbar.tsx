@@ -61,7 +61,7 @@ function ScrollTop(props: Props) {
 }
 
 const pages = ['', '']; //Gerade leer weil kein Router
-const settings = ['Dashboard', 'Report a Problem']; //Kann mit React Router dann durch die Routes ersetzt werden.
+const settings = ['Dashboard', 'Coming soon']; //Kann mit React Router dann durch die Routes ersetzt werden.
 
 const ADPAppbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);

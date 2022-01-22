@@ -62,6 +62,7 @@ export default function SearchSelect({ //Choose between different Search Options
             label="Search Option"
             onChange={handleChange}
             color="primary"
+
           >
             <MenuItem value={"ASIN"}>ASIN</MenuItem>
             <MenuItem value={"Product"}>Product</MenuItem>
