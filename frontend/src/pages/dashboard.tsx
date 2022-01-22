@@ -21,7 +21,7 @@ export const Dashboard = ({
         <p className="dash-descriptions"> Dieser Chart gibt einen Überblick über die besten Reviews und wie hilfreich sie waren. Je höher die Anzahl der Bewertungen, desto geringer ist die Wahrscheinlichkeit, dass es sich um ein gefälschtes Review handelt.</p>
 
       <BarChart searchedProduct={searchedProduct} width={1000} height={500} />
-        <Card variant={"outlined"}>
+        <Card variant={"outlined"} sx={{width: 300, height: 150, mx: 75}} className="legendbox">
             <CardContent className="legendcard">
                 <p className="dash-legend">Legende:</p>
                <p className="legendcontent"> <CropSquareIcon className="legendicon" sx={{m: -0.8}}/> Amount of helpful votes.</p>

@@ -29,9 +29,18 @@
 
 
 
+
+
 }
 
 .legendcontent{
     font-size: 13px;
+
+}
+
+.legendbox{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
 }
