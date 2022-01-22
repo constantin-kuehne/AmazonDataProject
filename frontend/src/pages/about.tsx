@@ -3,6 +3,7 @@ import React from "react";
 import { Source } from "../components/searchbar";
 import "./about.css"
 
+
 export default function About({
   searchedProduct,
 }: {
@@ -15,7 +16,7 @@ export default function About({
           <p className="about-text">This app.  </p>
 
           <Box
-          sx={{width: 400, height: 100, border: "2px dashed grey" , borderRadius: 1 , m: 4}} alignItems="center" justifyContent="center" className="About-box">
+          sx={{width: 400, height: 100, borderRadius: 1 , border: "2px solid #0288d1", m: 4}} alignItems="center" justifyContent="center" >
               <p className="Searchresult">Your search result:{searchedProduct?.product_title}</p>
               <p className="Searchresult">ASIN / Product ID: {searchedProduct?.product_id}</p>
 
