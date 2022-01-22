@@ -1,0 +1,10 @@
+.App-footer {
+    background-image: linear-gradient(to right, dodgerblue, yellow);
+    min-height: 7vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    margin: 2px;
+}

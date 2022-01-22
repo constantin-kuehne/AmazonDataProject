@@ -1,0 +1,7 @@
+{
+  "index": "constantin_amazondataproject_v5",
+  "url": "http://10.11.12.69:9200",
+  "max_request_size": 1000,
+  "port": 3001,
+  "host": "0.0.0.0"
+}
