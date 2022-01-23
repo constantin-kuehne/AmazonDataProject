@@ -36,18 +36,20 @@ const _queryTimeNumberReviewsAsinRaw = (
       query: {
         constant_score: {
           filter: {
-            term: {},
+            term: {
+              [field]: ASIN,
+            },
           },
         },
       },
-      aggs: {},
-    },
-  };
-  query.body.query.constant_score.filter.term[field] = ASIN;
-  query.body.aggs[aggName] = {
-    date_histogram: {
-      field: "review_date",
-      calendar_interval: `${intervalNumber}${interval}`,
+      aggs: {
+        aggName: {
+          date_histogram: {
+            field: "review_date",
+            calendar_interval: `${intervalNumber}${interval}`,
+          },
+        },
+      },
     },
   };
   return client.search<false, SearchBody>(query);
