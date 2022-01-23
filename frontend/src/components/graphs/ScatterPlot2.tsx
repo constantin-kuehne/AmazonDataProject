@@ -22,10 +22,12 @@ export const ScatterPlotTwo = ({
   searchedProduct,
   width,
   height,
+  size,
 }: {
   searchedProduct: null | SearchProductSource;
   width: number;
   height: number;
+  size: number;
 }) => {
   const svgRef = useRef<null | SVGSVGElement>(null);
 
@@ -35,7 +37,7 @@ export const ScatterPlotTwo = ({
 
   useEffect(() => {
     if (searchedProduct?.hasOwnProperty("product_id")) {
-      const uri = `${config.url}/asin/${searchedProduct?.product_id}/votes-similar-products?title=${searchedProduct.product_title}&category=${searchedProduct.product_category}`;
+      const uri = `${config.url}/asin/${searchedProduct?.product_id}/votes-similar-products?title=${searchedProduct.product_title}&category=${searchedProduct.product_category}&size=${size}`;
       fetch(uri)
         .then((res) => res.json())
         .then((data) => setData(data))
@@ -46,7 +48,7 @@ export const ScatterPlotTwo = ({
         .then((data) => setSearchedData(data))
         .catch((err) => console.error(err));
     }
-  }, [searchedProduct]);
+  }, [searchedProduct, size]);
 
   useEffect(() => {
     if (svgRef.current && data && searchedData) {
@@ -55,8 +57,9 @@ export const ScatterPlotTwo = ({
 
       //get max value of "Number of reviews" / "docCount"
       let maxData = d3.max(data, (d) => d["docCount"]);
-      maxData =(maxData! > searchedData!.docCount? maxData!: searchedData!.docCount);
-      maxData = (maxData + (maxData/100*5));
+      maxData =
+        maxData! > searchedData!.docCount ? maxData! : searchedData!.docCount;
+      maxData = maxData + (maxData / 100) * 5;
 
       //xAxis Scale
       const xScale = d3
@@ -64,7 +67,7 @@ export const ScatterPlotTwo = ({
         .domain([0, 5])
         .range([margin.left, width - margin.right]);
 
-      const xAxisFn = d3.axisBottom(xScale)
+      const xAxisFn = d3.axisBottom(xScale);
 
       //yAxis Scale
       const yScale = d3
@@ -154,7 +157,12 @@ export const ScatterPlotTwo = ({
           const self = d3.select(this);
           const node: SVGCircleElement = self.node()!;
 
-          tooltip.attr("transform",`translate(${node.cx.baseVal.value + 5}, ${node.cy.baseVal.value - 30})`);
+          tooltip.attr(
+            "transform",
+            `translate(${node.cx.baseVal.value + 5}, ${
+              node.cy.baseVal.value - 30
+            })`
+          );
 
           tooltipProduct.text(`Product: ${d.productTitle}`);
           tooltipStarRating.text(`Star rating: ${d.starRating.toFixed(2)}`);
@@ -192,9 +200,7 @@ export const ScatterPlotTwo = ({
         .attr("height", 10)
         .style("fill", "red")
         .on("mouseenter", function (event, d: SearchedData) {
-          d3.select(this)
-          .style("fill", "red")
-          .attr("opacity", 0.5);
+          d3.select(this).style("fill", "red").attr("opacity", 0.5);
 
           const self = d3.select(this);
           const node: SVGRectElement = self.node()!;
@@ -222,9 +228,7 @@ export const ScatterPlotTwo = ({
         })
 
         .on("mouseleave", function () {
-          d3.select(this)
-            .style("fill", "red")
-            .attr("opacity", null);
+          d3.select(this).style("fill", "red").attr("opacity", null);
           tooltip.attr("visibility", "hidden");
         });
 
@@ -233,10 +237,13 @@ export const ScatterPlotTwo = ({
         .zoom<SVGSVGElement, Source>()
         .on("zoom", onZoom)
         .scaleExtent([1, 6])
-        .extent([[margin.left, margin.top],[width + margin.left, height + margin.top],]) as (
-          selection: d3.Selection<SVGSVGElement, unknown, null, undefined>,
-          ...args: any[]
-        ) => void;
+        .extent([
+          [margin.left, margin.top],
+          [width + margin.left, height + margin.top],
+        ]) as (
+        selection: d3.Selection<SVGSVGElement, unknown, null, undefined>,
+        ...args: any[]
+      ) => void;
 
       svg.call(zoom);
 
@@ -245,7 +252,7 @@ export const ScatterPlotTwo = ({
         const xNew = event.transform.rescaleX(xScale);
         const yNew = event.transform.rescaleY(yScale);
 
-        const xAxisFn = d3.axisBottom(xNew)
+        const xAxisFn = d3.axisBottom(xNew);
         const yAxisFn = d3.axisLeft(yNew);
 
         //xAxis
@@ -260,8 +267,7 @@ export const ScatterPlotTwo = ({
               .attr("stroke", "lightgrey")
               .attr("y1", -height + 2 * margin.top)
               .attr("y2", 0);
-          })
-
+          });
 
         //yAxis
         svg
@@ -275,10 +281,9 @@ export const ScatterPlotTwo = ({
               .attr("stroke", "lightgrey")
               .attr("x1", 0)
               .attr("x2", width - 2 * margin.right);
-          })
+          });
 
-
-        //cicles 
+        //cicles
         dots
           .attr("cx", (d) => xNew(d.starRating))
           .attr("cy", (d) => yNew(d.docCount));
