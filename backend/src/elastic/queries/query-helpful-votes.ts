@@ -34,20 +34,22 @@ const _queryHelpfulVotesAsinRaw = (
     index: `${config.index}`,
     size: 0,
     body: {
-      aggs: {},
-    },
-  };
-  query.body.aggs[filterName] = {
-    filter: {
-      term: {
-        "product_id.keyword": ASIN,
+      aggs: {
+        [filterName]: {
+          filter: {
+            term: {
+              "product_id.keyword": ASIN,
+            },
+          },
+          aggs: {
+            [aggName]: {
+              sum: {
+                field,
+              },
+            },
+          },
+        },
       },
-    },
-    aggs: {},
-  };
-  query.body.aggs[filterName].aggs[aggName] = {
-    sum: {
-      field,
     },
   };
   return client.search<false, SearchBody>(query);
