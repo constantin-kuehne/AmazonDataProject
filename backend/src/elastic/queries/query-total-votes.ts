@@ -9,9 +9,7 @@ class SearchBody implements SearchRequest {
   body: {
     aggs: {
       [key: string]: {
-        filter: {
-          term: { "product_id.keyword": string };
-        };
+        filter: { term: { "product_id.keyword": string } };
         aggs: {
           [key: string]: {
             sum: {
@@ -34,20 +32,22 @@ const _queryTotalVotesAsinRaw = (
     index: `${config.index}`,
     size: 0,
     body: {
-      aggs: {},
-    },
-  };
-  query.body.aggs[filterName] = {
-    filter: {
-      term: {
-        "product_id.keyword": ASIN,
+      aggs: {
+        [filterName]: {
+          filter: {
+            term: {
+              "product_id.keyword": ASIN,
+            },
+          },
+          aggs: {
+            [aggName]: {
+              sum: {
+                field: field,
+              },
+            },
+          },
+        },
       },
-    },
-    aggs: {},
-  };
-  query.body.aggs[filterName].aggs[aggName] = {
-    sum: {
-      field,
     },
   };
   return client.search<false, SearchBody>(query);

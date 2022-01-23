@@ -44,7 +44,7 @@ const _queryHelpfulVotesAsinRaw = (
           aggs: {
             [aggName]: {
               sum: {
-                field,
+                field: field,
               },
             },
           },
