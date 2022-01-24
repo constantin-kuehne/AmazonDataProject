@@ -43,7 +43,7 @@ const _queryTimeNumberReviewsAsinRaw = (
         },
       },
       aggs: {
-        aggName: {
+        [aggName]: {
           date_histogram: {
             field: "review_date",
             calendar_interval: `${intervalNumber}${interval}`,
