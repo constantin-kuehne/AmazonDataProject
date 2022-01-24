@@ -38,16 +38,17 @@ ENV NODE_ENV="production"
 
 WORKDIR /server/src
 
-COPY /backend/config/ ../config/
 COPY /backend/package.json ./
+
+RUN npm install .
 
 COPY --from=backend /backend/dist/ ./
 COPY --from=frontend /frontend/build/ ./public/
 
 # VOLUME ${PWD}/backend/.env:/server/.env
 
-EXPOSE 3000
+COPY /backend/config/ ../config/
 
-RUN npm install .
+EXPOSE 3000
 
 CMD ["node", "."]
