@@ -43,7 +43,7 @@ please make sure to specify the right path to the .env file after the volume fla
 
 ### Contribution & Team ###
 
-* Elastic, APIs, Data-Stuff, Dashboard Data -> Constantin Khne
+* Elastic, APIs, Data-Stuff, Dashboard Data -> Constantin Kühne
 * D3 & Data Visualization-Stuff, Dashboard Design -> Valentin Kieslinger
 * React App Development, Design, Components -> Tim Muscholl
 
