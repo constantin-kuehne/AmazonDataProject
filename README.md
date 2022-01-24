@@ -12,12 +12,14 @@ and display them in a webapp built in a react environment.
 ### How do I get set up? ###
 
 Install the frontend:
+
 * Run ``cd frontend``
 * Run ``npm install``
 * Run ``npm audit fix --force``
 * Run ``npm run start`` -> Starts the webapp on your localhost. 
 
 Install the backend:
+
 * Run ``cd backend``
 * Run ``npm install``
 * Run ``npm audit fix --force``
@@ -41,7 +43,7 @@ please make sure to specify the right path to the .env file after the volume fla
 
 ### Contribution & Team ###
 
-* Elastic, APIs, Data-Stuff, Dashboard Data -> Constantin KÃ¼hne
+* Elastic, APIs, Data-Stuff, Dashboard Data -> Constantin Khne
 * D3 & Data Visualization-Stuff, Dashboard Design -> Valentin Kieslinger
 * React App Development, Design, Components -> Tim Muscholl
 
