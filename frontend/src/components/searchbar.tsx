@@ -133,7 +133,7 @@ const Search = ({
           onChange={onChange}
         />
       </div>
-      {searchResults.length > 1 && (
+      {searchResults.length >= 1 && (
         <Box classes={{ root: classes.boxStyle }}>
           <nav aria-label="main mailbox folders">
             <List
@@ -141,13 +141,14 @@ const Search = ({
                 root: classes.searchResultList,
               }}
             >
-              {searchResults.map((ele) => (
+              {searchResults.map((ele, i) => (
                 <ListItem
-                  key={ele.product_id}
+                  key={`${ele.product_id} - ${i}`}
                   onClick={() => setSearchedProduct(ele)}
                 >
-                  <ListItemButton>
+                  <ListItemButton key={`${ele.product_id} - ${i}`}>
                     <ListItemText
+                      key={`${ele.product_id} - ${i}`}
                       primary={ele.product_title}
                       primaryTypographyProps={{
                         style: {

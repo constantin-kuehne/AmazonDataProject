@@ -40,7 +40,7 @@ const _queryCompletionAsinRaw = (
         },
       },
       collapse: {
-        field,
+        field: field,
       },
       _source: sourceFields,
     },
