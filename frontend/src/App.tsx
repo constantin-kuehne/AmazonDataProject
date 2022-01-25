@@ -17,10 +17,12 @@ import Appfooter from "./components/appfooter";
 export type SearchOptions = "Product" | "ASIN";
 //App Styling for App.tsx mui components
 const useStyles = makeStyles({
-  searchbutton: { //Inactive
+  searchbutton: {
+    //Inactive
     backgroundColor: "transparent",
   },
-  errorbutton: { //Inactive
+  errorbutton: {
+    //Inactive
     backgroundColor: "transparent",
     fontSize: 10,
   },
@@ -39,7 +41,7 @@ const App = () => {
       jumpRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [searchedProduct, jumpRef]);
-//App Function
+  //App Function
   return (
     <div className="App">
       <div className="app-bar">
@@ -47,33 +49,17 @@ const App = () => {
       </div>
       <header className="App-header">
         <div>
-          <Avatar alt="A" src="Bigproject_Logo.png"/>
+          <Avatar alt="A" src="Bigproject_Logo.png" />
         </div>
         <br />
         <h1>ADP SEARCH</h1>
         <SearchSelect search={search} setSearch={setSearch} />
         <br />
         <Search setSearchedProduct={setSearchedProduct} search={search} />
-
-        {/*<Button //Searchbutton
-          onClick={() =>
-            console.log("Search Button Clicked - Process started.")
-          }
-          className={classes.searchbutton}
-          color={"secondary"}
-          endIcon={<KeyboardArrowRight />}
-          type={"submit"}
-          variant={"outlined"}
-        >
-          {" "}
-          Search
-        </Button>*/}
       </header>
-
       <div className="App-about" ref={jumpRef}>
-        <About searchedProduct={searchedProduct}/>
+        <About searchedProduct={searchedProduct} />
       </div>
-
       {searchedProduct !== null ? (
         <div className="App-Body">
           <Dashboard searchedProduct={searchedProduct} />
@@ -81,11 +67,9 @@ const App = () => {
       ) : (
         <></>
       )}
-        <div>
-            <Appfooter/>
-        </div>
-
-
+      <div>
+        <Appfooter />
+      </div>
     </div>
   );
 };
