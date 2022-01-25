@@ -23,6 +23,8 @@ class SearchBody implements SearchRequest {
 interface Source {
   product_id: string;
   product_title: string;
+  product_parent: string;
+  product_category: string;
 }
 
 // NOTE: pobably should collapse based on asin and then make array of all asins
