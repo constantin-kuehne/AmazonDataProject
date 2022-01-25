@@ -43,11 +43,17 @@ export const Dashboard = ({
         <CardContent className="legendcard">
           <p className="dash-legend">Legende:</p>
           <p className="legendcontent">
-            <CropSquareIcon className="legendicon" sx={{ m: -0.8 }} /> Amount of
-            helpful votes.
+            <CropSquareIcon
+              className="legendicon"
+              sx={{ m: -0.55, marginRight: 0.1 }}
+            />
+            Amount of helpful votes.
           </p>
           <p className="legendcontent">
-            <CropSquareIcon className="legendicontwo" sx={{ m: -0.55 }} />{" "}
+            <CropSquareIcon
+              className="legendicontwo"
+              sx={{ m: -0.55, marginRight: 0.1 }}
+            />
             Amount of total votes.
           </p>
         </CardContent>

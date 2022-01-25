@@ -37,7 +37,7 @@ export default function About({
           justifyContent="center"
         >
           <p className="Searchresult">
-            Your search result:{searchedProduct?.product_title}
+            Your search result: {searchedProduct?.product_title}
           </p>
           <p className="Searchresult">
             ASIN / Product ID: {searchedProduct?.product_id}
