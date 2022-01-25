@@ -23,16 +23,15 @@ export const Dashboard = ({
     <div>
       <h4> Top 20 most voted reviews </h4>
       <p className="dash-descriptions">
-        In diesem Bar Chart werden die Top 20 der meistbewerteten Reviews
+        In diesem Bar Chart werden die Top 20 Reviews des gesuchten Produktes
         gezeigt. Die Balken sind nach der Anzahl an total Votes sortiert - der
-        Anteil der helpful Votes wird durch eine andere Sättigung der Farbe
+        Anteil der helpful Votes wird durch eine blaue Einfärbung des Balkens
         hervorgehoben.
       </p>
       <p className="dash-descriptions">
         Dieser Chart gibt einen Überblick über die besten Reviews und wie
-        hilfreich sie waren. Je höher die Anzahl der Bewertungen, desto geringer
-        ist die Wahrscheinlichkeit, dass es sich um ein gefälschtes Review
-        handelt.
+        hilfreich sie waren. Sie können anhand des Graphen erkennen,
+          welche die entscheidenden Kommentare zu dem gesuchten Produkt sind.
       </p>
       <BarChart searchedProduct={searchedProduct} width={1000} height={500} />
       <Card
@@ -54,17 +53,13 @@ export const Dashboard = ({
           </p>
         </CardContent>
       </Card>
-      <h4> Number of reviews per month</h4>
+      <h4> Number of new reviews per month</h4>
       <p className="dash-descriptions">
-        Dieser Line Graph zeigt die pro Monat geschriebenen Reviews über den
-        Verlauf der Zeit. Die Zeitachse beginnt in dem Monat, in dem das erste
-        Review geschrieben wurde, meist der Monat, in dem das Produkt auf den
-        Markt kam.{" "}
+        Dieser Line Graph zeigt die geschriebenen Reviews pro Monat.
       </p>
       <p className="dash-descriptions">
         Durch starkes Ansteigen oder Absinken der Anzahl an Reviews lassen sich
-        Trends erkennen. Beispielsweise, ob ein Produkt gerade beliebt ist oder
-        ob es ein Ersatzprodukt gibt.{" "}
+        Trends erkennen. Beispielsweise, ob ein Produkt gerade beliebt ist oder es ein Ersatzprodukt gibt.
       </p>
       <LineChart
         searchedProduct={searchedProduct}
@@ -72,16 +67,13 @@ export const Dashboard = ({
         width={1000}
         height={500}
       />
-      <h4> Amount of helpful votes</h4>
+      <h4> Quality of reviews</h4>
       <p className="dash-descriptions">
-        Hier werden die Qualität der Reviews dargestellt. Auf der x-Achse wird
-        der prozentuale Anteil der helpful Votes an den total Votes, auf der
-        y-Achse wird wieder die Anzahl an Reviews gezeigt.{" "}
+        Hier wird die Qualität der Reviews dargestellt.
       </p>
       <p className="dash-descriptions">
-        Das gesuchte Produkt wird auch hier durch einen orangen Punkt
-        gekennzeichnet. Die anderen Punkte, die der Scatter plot darstellt, sind
-        wieder die 100 ähnlichsten Produkte derselben Kategorie.{" "}
+          Hier können Sie schnell die Qualität der Kommentare des gesuchten Produktes mit ähnlichen Produkten vergleichen
+          und so auch einen Schluss über die Glaubhaftigkeit der Kommentare treffen.
       </p>
       <br />
       <p className="dash-descriptions">Amount of similar products</p>
@@ -104,20 +96,14 @@ export const Dashboard = ({
         height={500}
         size={sizeScatterPlot1}
       />
-      <h4> Star-rating & amount of reviews </h4>
+      <h4> Quality of the product </h4>
       <p className="dash-descriptions">
-        Dieser Scatter Plot zeigt auf der x-Achse die durchschnittliche Anzahl
-        an Sternebewertungen (0-5). Auf der y-Achse wird angezeigt, wie viele
-        Reviews das Produkt insgesamt hat.{" "}
-      </p>
-      <p className="dash-descriptions">
-        Das gesuchte Produkt wird durch einen orangen Punkt gekennzeichnet. Die
-        anderen Punkte, sind die 100 ähnlichsten Produkte derselben Kategorie.{" "}
+          Die Position des gesuchten Produktes soll dem User die Qualität und Beliebtheit des Produktes widerspiegeln
       </p>
       <p className="dash-descriptions">
         Die Position des gesuchten Produktes (orange) soll die Beliebtheit des
         Produktes widerspiegeln. Je weiter oben rechts in der Ecke sich das
-        Produkt befindet, desto beliebter ist es bei anderen Kunden.{" "}
+        Produkt befindet, desto beliebter ist es bei anderen Kunden.
       </p>
       <br />
       <p className="dash-descriptions">Amount of similar products</p>
