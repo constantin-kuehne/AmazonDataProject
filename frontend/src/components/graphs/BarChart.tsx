@@ -104,7 +104,7 @@ export const BarChart = ({
         .classed("totalVotes", true);
 
       bars = bars
-        .attr("x", margin.left + 0.5)
+        .attr("x", margin.left)
         .attr("y", (d) => {
           return yScale(d.review_headline)!;
         })
@@ -121,7 +121,7 @@ export const BarChart = ({
         .classed("helpfulVotes", true);
 
       bars1 = bars1
-        .attr("x", margin.left + 0.5)
+        .attr("x", margin.left)
         .attr("y", (d) => {
           const yPos =
             yScale(d.review_headline)! +
