@@ -39,7 +39,18 @@ The access is limited and not public domain.
 * Run docker image:
 ``docker run --volume ${PWD}/backend/.env:/server/.env --rm -dp 3000:3000 adp:release``
 
-please make sure to specify the right path to the .env file after the volume flag
+Please make sure to specify the right path to the .env file after the volume flag
+
+Another option is to pull an image from dockerhub:
+
+* Pull from dockerhub:
+    * linux/amd64: ``docker pull constantinkuehne/adp:linux``
+    * macos m1: ``docker pull constantinkuehne/adp:release``
+
+* Run pulled image:
+``docker run --volume ${PWD}/backend/.env:/server/.env --rm -dp 80:80 constantinkuehne/adp:release``
+
+Please make sure to specify the right path to the .env file after the volume flag
 
 ### Contribution & Team ###
 
