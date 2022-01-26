@@ -109,11 +109,14 @@ const Search = ({
     target: { value: string };
   }) => {
     clearTimeout(timer);
-    timer = setTimeout(() => {
-      getProductTitles(value, search).then((data: Source[]) =>
-        setSearchResults(data)
-      );
-    }, 100);
+    timer = setTimeout(
+      () => {
+        getProductTitles(value, search).then((data: Source[]) =>
+          setSearchResults(data)
+        );
+      },
+      search === "Product" ? 100 : 600
+    );
   };
 
   return (

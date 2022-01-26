@@ -55,8 +55,11 @@ export default async (ASIN: string, size: number = 10) => {
     "product_title",
     "product_category",
   ];
-  const data = await _queryCompletionAsinRaw(ASIN, field, sourceFields, size);
-  return getQueryFields<DocumentRequired, SearchBody>(data);
+  const data = await _queryCompletionAsinRaw(ASIN, field, sourceFields, size)
+    .then((data) => getQueryFields<DocumentRequired, SearchBody>(data))
+    .catch((e) => console.log(e));
+
+  return data;
 };
 
 export { SearchBody, _queryCompletionAsinRaw };
