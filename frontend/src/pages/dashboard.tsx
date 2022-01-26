@@ -17,6 +17,23 @@ export const Dashboard = ({
   const [sizeScatterPlot1, setSizeScatterPlot1] = useState<number>(100);
 
   const [sizeScatterPlot2, setSizeScatterPlot2] = useState<number>(100);
+
+  let timer: NodeJS.Timeout;
+
+  const onChangeSlider1 = (event: Event, newValue: number | number[]) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      setSizeScatterPlot1(newValue as number);
+    }, 300);
+  };
+
+  const onChangeSlider2 = (event: Event, newValue: number | number[]) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      setSizeScatterPlot2(newValue as number);
+    }, 300);
+  };
+
   return (
     //All Charts + Descriptions and Legends
 
@@ -93,9 +110,7 @@ export const Dashboard = ({
         min={10}
         max={200}
         sx={{ width: "50vw" }}
-        onChange={(event: Event, newValue: number | number[]) =>
-          setSizeScatterPlot1(newValue as number)
-        }
+        onChange={onChangeSlider1}
       />
       <ScatterPlot
         searchedProduct={searchedProduct}
@@ -124,9 +139,7 @@ export const Dashboard = ({
         min={10}
         max={200}
         sx={{ width: "50vw" }}
-        onChange={(event: Event, newValue: number | number[]) =>
-          setSizeScatterPlot2(newValue as number)
-        }
+        onChange={onChangeSlider2}
       />
       <ScatterPlotTwo
         searchedProduct={searchedProduct}
